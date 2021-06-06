@@ -11,7 +11,7 @@
  Target Server Version : 50724
  File Encoding         : 65001
 
- Date: 05/06/2021 14:52:01
+ Date: 06/06/2021 12:20:49
 */
 
 SET NAMES utf8mb4;
@@ -38,7 +38,7 @@ CREATE TABLE `data_rows`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `data_rows_data_type_id_foreign`(`data_type_id`) USING BTREE,
   CONSTRAINT `data_rows_data_type_id_foreign` FOREIGN KEY (`data_type_id`) REFERENCES `data_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 49 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 51 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of data_rows
@@ -48,11 +48,11 @@ INSERT INTO `data_rows` VALUES (2, 1, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, 
 INSERT INTO `data_rows` VALUES (3, 1, 'email', 'text', 'Email', 1, 1, 1, 1, 1, 1, '{}', 3);
 INSERT INTO `data_rows` VALUES (4, 1, 'password', 'password', 'Password', 1, 0, 0, 1, 1, 0, '{}', 4);
 INSERT INTO `data_rows` VALUES (5, 1, 'remember_token', 'text', 'Remember Token', 0, 0, 0, 0, 0, 0, '{}', 7);
-INSERT INTO `data_rows` VALUES (6, 1, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '{}', 8);
-INSERT INTO `data_rows` VALUES (7, 1, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 10);
-INSERT INTO `data_rows` VALUES (8, 1, 'avatar', 'image', 'Avatar', 0, 1, 1, 1, 1, 1, '{}', 11);
-INSERT INTO `data_rows` VALUES (9, 1, 'user_belongsto_role_relationship', 'relationship', 'Role', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsTo\",\"column\":\"role_id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"roles\",\"pivot\":\"0\",\"taggable\":\"0\"}', 13);
-INSERT INTO `data_rows` VALUES (10, 1, 'user_belongstomany_role_relationship', 'relationship', 'Roles', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"user_roles\",\"pivot\":\"1\",\"taggable\":\"0\"}', 14);
+INSERT INTO `data_rows` VALUES (6, 1, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '{}', 14);
+INSERT INTO `data_rows` VALUES (7, 1, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 9);
+INSERT INTO `data_rows` VALUES (8, 1, 'avatar', 'image', 'Avatar', 0, 1, 1, 1, 1, 1, '{}', 10);
+INSERT INTO `data_rows` VALUES (9, 1, 'user_belongsto_role_relationship', 'relationship', 'Role', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsTo\",\"column\":\"role_id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"roles\",\"pivot\":\"0\",\"taggable\":\"0\"}', 12);
+INSERT INTO `data_rows` VALUES (10, 1, 'user_belongstomany_role_relationship', 'relationship', 'Roles', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"user_roles\",\"pivot\":\"1\",\"taggable\":\"0\"}', 13);
 INSERT INTO `data_rows` VALUES (11, 1, 'settings', 'hidden', 'Settings', 0, 0, 0, 0, 0, 0, '{}', 15);
 INSERT INTO `data_rows` VALUES (12, 2, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1);
 INSERT INTO `data_rows` VALUES (13, 2, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 2);
@@ -63,7 +63,7 @@ INSERT INTO `data_rows` VALUES (17, 3, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1,
 INSERT INTO `data_rows` VALUES (18, 3, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, NULL, 3);
 INSERT INTO `data_rows` VALUES (19, 3, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 4);
 INSERT INTO `data_rows` VALUES (20, 3, 'display_name', 'text', 'Display Name', 1, 1, 1, 1, 1, 1, NULL, 5);
-INSERT INTO `data_rows` VALUES (21, 1, 'role_id', 'text', 'Role', 0, 1, 1, 1, 1, 1, '{}', 12);
+INSERT INTO `data_rows` VALUES (21, 1, 'role_id', 'text', 'Role', 0, 1, 1, 1, 1, 1, '{}', 11);
 INSERT INTO `data_rows` VALUES (22, 5, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1);
 INSERT INTO `data_rows` VALUES (23, 5, 'jenis_dokumen_id', 'hidden', 'Jenis Dokumen Id', 1, 1, 1, 1, 1, 1, '{}', 2);
 INSERT INTO `data_rows` VALUES (24, 5, 'dinas_id', 'hidden', 'Dinas Id', 1, 1, 1, 1, 1, 1, '{}', 4);
@@ -86,9 +86,10 @@ INSERT INTO `data_rows` VALUES (42, 10, 'updated_at', 'timestamp', 'Updated At',
 INSERT INTO `data_rows` VALUES (43, 5, 'tb_dokuman_belongsto_tb_jenis_dokuman_relationship', 'relationship', 'Jenis Dokumen', 1, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\JenisDokumen\",\"table\":\"tb_jenis_dokumen\",\"type\":\"belongsTo\",\"column\":\"jenis_dokumen_id\",\"key\":\"id\",\"label\":\"nm_jenis_dokumen\",\"pivot_table\":\"data_rows\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3);
 INSERT INTO `data_rows` VALUES (44, 5, 'tb_dokuman_belongsto_tb_dinas_relationship', 'relationship', 'Dinas', 1, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Dinas\",\"table\":\"tb_dinas\",\"type\":\"belongsTo\",\"column\":\"dinas_id\",\"key\":\"id\",\"label\":\"nm_dinas\",\"pivot_table\":\"data_rows\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5);
 INSERT INTO `data_rows` VALUES (45, 5, 'file', 'file', 'File', 1, 0, 1, 1, 1, 1, '{}', 8);
-INSERT INTO `data_rows` VALUES (46, 1, 'user_belongsto_tb_dina_relationship', 'relationship', 'Dinas', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Dinas\",\"table\":\"tb_dinas\",\"type\":\"belongsTo\",\"column\":\"dinas_id\",\"key\":\"id\",\"label\":\"nm_dinas\",\"pivot_table\":\"data_rows\",\"pivot\":\"0\",\"taggable\":\"0\"}', 6);
-INSERT INTO `data_rows` VALUES (47, 1, 'email_verified_at', 'timestamp', 'Email Verified At', 0, 1, 1, 1, 1, 1, '{}', 9);
-INSERT INTO `data_rows` VALUES (48, 1, 'dinas_id', 'text', 'Dinas Id', 0, 1, 1, 1, 1, 1, '{}', 5);
+INSERT INTO `data_rows` VALUES (46, 1, 'user_belongsto_tb_dina_relationship', 'relationship', 'Dinas', 1, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Dinas\",\"table\":\"tb_dinas\",\"type\":\"belongsTo\",\"column\":\"dinas_id\",\"key\":\"id\",\"label\":\"nm_dinas\",\"pivot_table\":\"data_rows\",\"pivot\":\"0\",\"taggable\":\"0\"}', 6);
+INSERT INTO `data_rows` VALUES (47, 1, 'email_verified_at', 'timestamp', 'Email Verified At', 0, 0, 0, 0, 0, 0, '{}', 8);
+INSERT INTO `data_rows` VALUES (48, 1, 'dinas_id', 'hidden', 'Dinas Id', 0, 1, 1, 1, 1, 1, '{}', 5);
+INSERT INTO `data_rows` VALUES (50, 5, 'no_dokumen', 'text', 'No Dokumen', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"unique:tb_dokumen,no_dokumen\",\"messages\":{\"unique\":\"No Dokumen telah digunakan.\"}}}', 4);
 
 -- ----------------------------
 -- Table structure for data_types
@@ -118,12 +119,12 @@ CREATE TABLE `data_types`  (
 -- ----------------------------
 -- Records of data_types
 -- ----------------------------
-INSERT INTO `data_types` VALUES (1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2021-06-01 12:22:26', '2021-06-05 14:51:47');
+INSERT INTO `data_types` VALUES (1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'App\\Http\\Controllers\\UserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2021-06-01 12:22:26', '2021-06-06 10:41:13');
 INSERT INTO `data_types` VALUES (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2021-06-01 12:22:26', '2021-06-01 12:22:26');
 INSERT INTO `data_types` VALUES (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2021-06-01 12:22:26', '2021-06-01 12:22:26');
-INSERT INTO `data_types` VALUES (5, 'tb_dokumen', 'dokumen', 'Dokuman', 'Dokumen', NULL, 'App\\Models\\Dokumen', NULL, 'App\\Http\\Controllers\\DokumenController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-06-05 13:38:13', '2021-06-05 14:25:11');
-INSERT INTO `data_types` VALUES (9, 'tb_jenis_dokumen', 'jenis-dokumen', 'Jenis Dokumen', 'Jenis Dokumen', NULL, 'App\\Models\\JenisDokumen', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-06-05 13:43:54', '2021-06-05 14:10:24');
-INSERT INTO `data_types` VALUES (10, 'tb_dinas', 'dinas', 'Dinas', 'Dinas', NULL, 'App\\Models\\Dinas', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2021-06-05 13:49:16', '2021-06-05 13:49:16');
+INSERT INTO `data_types` VALUES (5, 'tb_dokumen', 'dokumen', 'Dokumen', 'Dokumen', 'voyager-documentation', 'App\\Models\\Dokumen', NULL, 'App\\Http\\Controllers\\DokumenController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":\"currentUser\"}', '2021-06-05 13:38:13', '2021-06-06 10:57:15');
+INSERT INTO `data_types` VALUES (9, 'tb_jenis_dokumen', 'jenis-dokumen', 'Jenis Dokumen', 'Jenis Dokumen', 'voyager-receipt', 'App\\Models\\JenisDokumen', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-06-05 13:43:54', '2021-06-05 18:31:52');
+INSERT INTO `data_types` VALUES (10, 'tb_dinas', 'dinas', 'Dinas', 'Dinas', 'voyager-company', 'App\\Models\\Dinas', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2021-06-05 13:49:16', '2021-06-06 09:53:31');
 
 -- ----------------------------
 -- Table structure for failed_jobs
@@ -166,25 +167,27 @@ CREATE TABLE `menu_items`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `menu_items_menu_id_foreign`(`menu_id`) USING BTREE,
   CONSTRAINT `menu_items_menu_id_foreign` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of menu_items
 -- ----------------------------
 INSERT INTO `menu_items` VALUES (1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2021-06-01 12:22:26', '2021-06-01 12:22:26', 'voyager.dashboard', NULL);
-INSERT INTO `menu_items` VALUES (2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 5, '2021-06-01 12:22:26', '2021-06-01 12:22:26', 'voyager.media.index', NULL);
-INSERT INTO `menu_items` VALUES (3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 3, '2021-06-01 12:22:26', '2021-06-01 12:22:26', 'voyager.users.index', NULL);
-INSERT INTO `menu_items` VALUES (4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 2, '2021-06-01 12:22:26', '2021-06-01 12:22:26', 'voyager.roles.index', NULL);
-INSERT INTO `menu_items` VALUES (5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 9, '2021-06-01 12:22:26', '2021-06-01 12:22:26', NULL, NULL);
-INSERT INTO `menu_items` VALUES (6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 10, '2021-06-01 12:22:26', '2021-06-01 12:22:26', 'voyager.menus.index', NULL);
-INSERT INTO `menu_items` VALUES (7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 11, '2021-06-01 12:22:26', '2021-06-01 12:22:26', 'voyager.database.index', NULL);
-INSERT INTO `menu_items` VALUES (8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 12, '2021-06-01 12:22:26', '2021-06-01 12:22:26', 'voyager.compass.index', NULL);
-INSERT INTO `menu_items` VALUES (9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 13, '2021-06-01 12:22:26', '2021-06-01 12:22:26', 'voyager.bread.index', NULL);
-INSERT INTO `menu_items` VALUES (10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 14, '2021-06-01 12:22:26', '2021-06-01 12:22:26', 'voyager.settings.index', NULL);
-INSERT INTO `menu_items` VALUES (11, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 13, '2021-06-01 12:22:26', '2021-06-01 12:22:26', 'voyager.hooks', NULL);
-INSERT INTO `menu_items` VALUES (12, 1, 'Dokumen', '', '_self', NULL, NULL, NULL, 15, '2021-06-05 13:38:13', '2021-06-05 13:38:13', 'voyager.dokumen.index', NULL);
-INSERT INTO `menu_items` VALUES (13, 1, 'Jenis Dokumen', '', '_self', NULL, NULL, NULL, 16, '2021-06-05 13:41:15', '2021-06-05 13:41:15', 'voyager.jenis-dokumen.index', NULL);
-INSERT INTO `menu_items` VALUES (14, 1, 'Dinas', '', '_self', NULL, NULL, NULL, 17, '2021-06-05 13:49:16', '2021-06-05 13:49:16', 'voyager.dinas.index', NULL);
+INSERT INTO `menu_items` VALUES (2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 6, '2021-06-01 12:22:26', '2021-06-06 10:05:57', 'voyager.media.index', NULL);
+INSERT INTO `menu_items` VALUES (3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 3, '2021-06-01 12:22:26', '2021-06-06 10:05:57', 'voyager.users.index', NULL);
+INSERT INTO `menu_items` VALUES (4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 5, '2021-06-01 12:22:26', '2021-06-06 10:05:57', 'voyager.roles.index', NULL);
+INSERT INTO `menu_items` VALUES (5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 7, '2021-06-01 12:22:26', '2021-06-06 10:05:57', NULL, NULL);
+INSERT INTO `menu_items` VALUES (6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2021-06-01 12:22:26', '2021-06-05 18:25:04', 'voyager.menus.index', NULL);
+INSERT INTO `menu_items` VALUES (7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 2, '2021-06-01 12:22:26', '2021-06-05 18:25:04', 'voyager.database.index', NULL);
+INSERT INTO `menu_items` VALUES (8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2021-06-01 12:22:26', '2021-06-05 18:25:04', 'voyager.compass.index', NULL);
+INSERT INTO `menu_items` VALUES (9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2021-06-01 12:22:26', '2021-06-05 18:25:04', 'voyager.bread.index', NULL);
+INSERT INTO `menu_items` VALUES (10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 8, '2021-06-01 12:22:26', '2021-06-06 10:05:57', 'voyager.settings.index', NULL);
+INSERT INTO `menu_items` VALUES (11, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 5, '2021-06-01 12:22:26', '2021-06-05 18:25:04', 'voyager.hooks', NULL);
+INSERT INTO `menu_items` VALUES (12, 1, 'Upload Dokumen', '', '_self', 'voyager-documentation', '#000000', 15, 1, '2021-06-05 13:38:13', '2021-06-06 10:05:55', 'voyager.dokumen.create', 'null');
+INSERT INTO `menu_items` VALUES (13, 1, 'Jenis Dokumen', '', '_self', 'voyager-receipt', '#000000', 15, 3, '2021-06-05 13:41:15', '2021-06-06 10:09:42', 'voyager.jenis-dokumen.index', 'null');
+INSERT INTO `menu_items` VALUES (14, 1, 'Dinas', '', '_self', 'voyager-company', '#000000', NULL, 4, '2021-06-05 13:49:16', '2021-06-06 10:05:57', 'voyager.dinas.index', 'null');
+INSERT INTO `menu_items` VALUES (15, 1, 'Dokumen', '#', '_self', 'voyager-documentation', '#000000', NULL, 2, '2021-06-06 10:05:46', '2021-06-06 10:05:55', NULL, '');
+INSERT INTO `menu_items` VALUES (16, 1, 'Pencarian Dokumen', '', '_self', 'voyager-search', '#000000', 15, 2, '2021-06-06 10:09:37', '2021-06-06 10:09:42', 'voyager.dokumen.index', NULL);
 
 -- ----------------------------
 -- Table structure for menus
@@ -276,6 +279,7 @@ CREATE TABLE `permission_role`  (
 -- ----------------------------
 INSERT INTO `permission_role` VALUES (1, 1);
 INSERT INTO `permission_role` VALUES (1, 2);
+INSERT INTO `permission_role` VALUES (1, 3);
 INSERT INTO `permission_role` VALUES (2, 1);
 INSERT INTO `permission_role` VALUES (3, 1);
 INSERT INTO `permission_role` VALUES (4, 1);
@@ -311,14 +315,19 @@ INSERT INTO `permission_role` VALUES (25, 1);
 INSERT INTO `permission_role` VALUES (26, 1);
 INSERT INTO `permission_role` VALUES (27, 1);
 INSERT INTO `permission_role` VALUES (27, 2);
+INSERT INTO `permission_role` VALUES (27, 3);
 INSERT INTO `permission_role` VALUES (28, 1);
 INSERT INTO `permission_role` VALUES (28, 2);
+INSERT INTO `permission_role` VALUES (28, 3);
 INSERT INTO `permission_role` VALUES (29, 1);
 INSERT INTO `permission_role` VALUES (29, 2);
+INSERT INTO `permission_role` VALUES (29, 3);
 INSERT INTO `permission_role` VALUES (30, 1);
 INSERT INTO `permission_role` VALUES (30, 2);
+INSERT INTO `permission_role` VALUES (30, 3);
 INSERT INTO `permission_role` VALUES (31, 1);
 INSERT INTO `permission_role` VALUES (31, 2);
+INSERT INTO `permission_role` VALUES (31, 3);
 INSERT INTO `permission_role` VALUES (37, 1);
 INSERT INTO `permission_role` VALUES (37, 2);
 INSERT INTO `permission_role` VALUES (38, 1);
@@ -585,19 +594,20 @@ CREATE TABLE `tb_dokumen`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `jenis_dokumen_id` int(10) UNSIGNED NOT NULL,
   `dinas_id` int(10) UNSIGNED NOT NULL,
+  `no_dokumen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tanggal` date NOT NULL,
   `ukuran` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `file` longblob NOT NULL,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `tb_dokumen_kode_unique`(`no_dokumen`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_dokumen
 -- ----------------------------
-INSERT INTO `tb_dokumen` VALUES (5, 1, 1, '2021-06-05', '32.82 KB', 0x5B7B22646F776E6C6F61645F6C696E6B223A22646F6B756D656E5C5C4A756E65323032315C5C38734750726C3062737772554C776F766E5633772E706466222C226F726967696E616C5F6E616D65223A2253414D504C452E706466227D5D, '2021-06-05 14:38:48', '2021-06-05 14:38:48');
-INSERT INTO `tb_dokumen` VALUES (6, 1, 2, '2021-06-05', '2241.56 KB', 0x5B7B22646F776E6C6F61645F6C696E6B223A22646F6B756D656E5C5C4A756E65323032315C5C426C3975797A384A466A444C57304D4A323946392E706466222C226F726967696E616C5F6E616D65223A2253494B41524441323032302E706466227D5D, '2021-06-05 14:39:08', '2021-06-05 14:39:08');
+INSERT INTO `tb_dokumen` VALUES (9, 1, 1, '001/ADUM/1.02.01.21/XI/2019', '2021-06-05', '32.82 KB', 0x5B7B22646F776E6C6F61645F6C696E6B223A22646F6B756D656E5C5C4A756E65323032315C5C357034726E615766416B674A524E554F325364782E706466222C226F726967696E616C5F6E616D65223A2253414D504C452E706466227D5D, '2021-06-05 18:53:31', '2021-06-05 18:53:31');
 
 -- ----------------------------
 -- Table structure for tb_jenis_dokumen
@@ -682,12 +692,13 @@ CREATE TABLE `users`  (
   UNIQUE INDEX `users_email_unique`(`email`) USING BTREE,
   INDEX `users_role_id_foreign`(`role_id`) USING BTREE,
   CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 1, NULL, 'Super Admin', 'sikanda@sikanda.com', 'users/default.png', NULL, '$2y$10$2RSJ0QM3N28gQk8j6oRgWuDAr5X57VRLdPJ7XmtabseNWDiYxF.dC', NULL, '{\"locale\":\"id\"}', '2021-06-01 12:22:59', '2021-06-01 20:25:11');
+INSERT INTO `users` VALUES (1, 1, NULL, 'Super Admin', 'sikanda@sikanda.com', 'users/default.png', NULL, '$2y$10$2RSJ0QM3N28gQk8j6oRgWuDAr5X57VRLdPJ7XmtabseNWDiYxF.dC', NULL, '{\"locale\":\"id\"}', '2021-06-01 12:22:59', '2021-06-06 10:44:23');
 INSERT INTO `users` VALUES (2, 2, NULL, 'Admin', 'admin@sikanda.com', 'users/default.png', NULL, '$2y$10$DFloSE3P2AFq9YM9LdXbxeeFSZZfNk8R6yTpPBi8a4aIJ/XkgbKtS', NULL, '{\"locale\":\"id\"}', '2021-06-01 20:22:01', '2021-06-01 20:24:57');
+INSERT INTO `users` VALUES (3, 3, 1, 'Dispen Staff', 'staffdispen@sikanda.com', 'users/default.png', NULL, '$2y$10$Gp5TCzoT2PK3JbthCWMS2usxDNoRmXzVDlSIl.7ccCdRhNT9ZTxuq', NULL, '{\"locale\":\"id\"}', '2021-06-06 10:34:51', '2021-06-06 10:36:44');
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -5,7 +5,7 @@
         @include('voyager::alerts')
         @include('voyager::dimmers')
 
-        <div class="row ml-2">
+        <div class="row" style="margin-left: 10px">
             <div class="col">
                 <div class="card">
                     <div class="card-body">

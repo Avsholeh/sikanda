@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 26, 2021 at 01:49 AM
+-- Generation Time: Sep 15, 2021 at 10:48 AM
 -- Server version: 10.3.31-MariaDB-0ubuntu0.20.04.1
 -- PHP Version: 7.4.3
 
@@ -197,18 +197,18 @@ CREATE TABLE `menu_items` (
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
 (1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2021-06-01 05:22:26', '2021-06-01 05:22:26', 'voyager.dashboard', NULL),
-(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 8, '2021-06-01 05:22:26', '2021-08-25 16:29:53', 'voyager.media.index', NULL),
-(3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 5, '2021-06-01 05:22:26', '2021-08-25 16:29:53', 'voyager.users.index', NULL),
-(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 7, '2021-06-01 05:22:26', '2021-08-25 16:29:53', 'voyager.roles.index', NULL),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 9, '2021-06-01 05:22:26', '2021-08-25 16:29:53', NULL, NULL),
+(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 7, '2021-06-01 05:22:26', '2021-09-15 01:46:35', 'voyager.media.index', NULL),
+(3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 6, '2021-06-01 05:22:26', '2021-09-15 01:35:17', 'voyager.users.index', NULL),
+(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 5, '2021-06-01 05:22:26', '2021-09-15 01:35:04', 'voyager.roles.index', NULL),
+(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 8, '2021-06-01 05:22:26', '2021-09-15 01:46:35', NULL, NULL),
 (6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2021-06-01 05:22:26', '2021-06-05 11:25:04', 'voyager.menus.index', NULL),
 (7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 2, '2021-06-01 05:22:26', '2021-06-05 11:25:04', 'voyager.database.index', NULL),
 (8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2021-06-01 05:22:26', '2021-06-05 11:25:04', 'voyager.compass.index', NULL),
 (9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2021-06-01 05:22:26', '2021-06-05 11:25:04', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 10, '2021-06-01 05:22:26', '2021-08-25 16:29:53', 'voyager.settings.index', NULL),
+(10, 1, 'Pengaturan', '', '_self', 'voyager-settings', '#000000', NULL, 9, '2021-06-01 05:22:26', '2021-09-15 01:46:25', 'voyager.settings.index', 'null'),
 (11, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 5, '2021-06-01 05:22:26', '2021-06-05 11:25:04', 'voyager.hooks', NULL),
 (13, 1, 'Jenis Dokumen', '', '_self', 'voyager-receipt', '#000000', NULL, 3, '2021-06-05 06:41:15', '2021-08-25 16:29:53', 'voyager.jenis-dokumen.index', 'null'),
-(14, 1, 'Dinas', '', '_self', 'voyager-company', '#000000', NULL, 6, '2021-06-05 06:49:16', '2021-08-25 16:29:53', 'voyager.dinas.index', 'null'),
+(14, 1, 'Dinas', '', '_self', 'voyager-company', '#000000', NULL, 4, '2021-06-05 06:49:16', '2021-09-15 01:35:04', 'voyager.dinas.index', 'null'),
 (16, 1, 'Dokumen', '', '_self', 'voyager-search', '#000000', NULL, 2, '2021-06-06 03:09:37', '2021-08-25 16:29:51', 'voyager.dokumen.index', 'null');
 
 -- --------------------------------------------------------
@@ -628,7 +628,8 @@ CREATE TABLE `tb_dokumen` (
 --
 
 INSERT INTO `tb_dokumen` (`id`, `jenis_dokumen_id`, `dinas_id`, `no_dokumen`, `tanggal`, `ukuran`, `file`, `created_at`, `updated_at`) VALUES
-(9, 1, 1, '001/ADUM/1.02.01.21/XI/2019', '2021-06-05', '32.82 KB', 0x5b7b22646f776e6c6f61645f6c696e6b223a22646f6b756d656e5c5c4a756e65323032315c5c357034726e615766416b674a524e554f325364782e706466222c226f726967696e616c5f6e616d65223a2253414d504c452e706466227d5d, '2021-06-05 11:53:31', '2021-06-05 11:53:31');
+(9, 1, 1, '001/ADUM/1.02.01.21/XI/2019', '2021-06-05', '32.82 KB', 0x5b7b22646f776e6c6f61645f6c696e6b223a22646f6b756d656e5c5c4a756e65323032315c5c357034726e615766416b674a524e554f325364782e706466222c226f726967696e616c5f6e616d65223a2253414d504c452e706466227d5d, '2021-06-05 11:53:31', '2021-06-05 11:53:31'),
+(10, 5, 1, '001', '2017-06-07', '695.87 KB', 0x5b7b22646f776e6c6f61645f6c696e6b223a22646f6b756d656e5c2f53657074656d626572323032315c2f79714c707a344d3867365630326362444a316a762e706466222c226f726967696e616c5f6e616d65223a22357034726e615766416b674a524e554f325364782e706466227d2c7b22646f776e6c6f61645f6c696e6b223a22646f6b756d656e5c2f53657074656d626572323032315c2f47376156745972614b477765696f6876627967682e706466222c226f726967696e616c5f6e616d65223a22313635322d312d31303837382d312d31302d32303137303931352e706466227d5d, '2021-09-15 08:33:39', '2021-09-15 09:19:44');
 
 -- --------------------------------------------------------
 
@@ -699,8 +700,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `dinas_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(2, 2, NULL, 'Admin', 'admin@linoxida.us', 'users/default.png', NULL, '$2y$10$KlEyx92LJl9KTX4TUg5kTepd042Yn05Qyje4aFjtjP2ORWfzNxkSa', 'VgVKd6aB9naeQWQUBJSRvFqY94e1XDcgjtJGGWu0qncqGaymEBwlMiTKtkcF', '{\"locale\":\"id\"}', '2021-06-01 13:22:01', '2021-08-25 15:14:35'),
-(3, 3, 1, 'Dispen Staff', 'staffdispen@sikanda.com', 'users/default.png', NULL, '$2y$10$Gp5TCzoT2PK3JbthCWMS2usxDNoRmXzVDlSIl.7ccCdRhNT9ZTxuq', NULL, '{\"locale\":\"id\"}', '2021-06-06 03:34:51', '2021-06-06 03:36:44'),
+(2, 2, NULL, 'Admin', 'admin@linoxida.us', 'users/default.png', NULL, '$2y$10$KlEyx92LJl9KTX4TUg5kTepd042Yn05Qyje4aFjtjP2ORWfzNxkSa', 'bjV12tq7t46eKpZEsVHapL4gTzfMO1RWPCpnIkW39JjcyCZKR6CECqqXeFHz', '{\"locale\":\"id\"}', '2021-06-01 13:22:01', '2021-08-25 15:14:35'),
+(3, 3, 1, 'User', 'user@linoxida.us', 'users/default.png', NULL, '$2y$10$Kam1bHuuKUqaXkthnyaY5Oj3240D6t11nhSv.S3MXibRO/kEWuFW2', NULL, '{\"locale\":\"id\"}', '2021-06-06 03:34:51', '2021-09-15 01:38:30'),
 (4, 1, NULL, 'sikanda', 'sikanda@linoxida.us', 'users/default.png', NULL, '$2y$10$2KkPfS5zRdkPRkBffvi0p.jPLUvWlfNWZPAyxQMKu3Qo92xGiFr7u', NULL, '{\"locale\":\"id\"}', '2021-08-25 15:11:51', '2021-08-25 15:13:09');
 
 -- --------------------------------------------------------
@@ -869,7 +870,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -905,7 +906,7 @@ ALTER TABLE `tb_dinas`
 -- AUTO_INCREMENT for table `tb_dokumen`
 --
 ALTER TABLE `tb_dokumen`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tb_jenis_dokumen`

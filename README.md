@@ -2,6 +2,28 @@
 
 Sistem kearsipan daerah
 
+## Roadmap
+
+#### Proses bisnis
+1. Upload SPP
+    - No_SPP
+    - No_SPM
+    - Tanggal Upload
+    - File
+2. Upload SPM
+    - No_SPM
+    - No_SP2D
+    - Tanggal
+    - File
+3. Upload SP2D
+    - No_SP2D
+    - Tanggal
+    - File
+4. Upload Dokumen Pendukung
+    - Nama Dokumen
+    - Tanggal
+    - File
+
 ## Contributing
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).

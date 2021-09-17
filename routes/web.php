@@ -15,4 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => '/'], function () {
     Voyager::routes();
+
+    Route::get('upload', [\App\Http\Controllers\UploadController::class, 'index'])
+        ->name('upload');
 });

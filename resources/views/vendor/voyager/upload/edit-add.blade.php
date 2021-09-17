@@ -23,7 +23,6 @@
     <div class="page-content edit-add container-fluid">
         <div class="row">
             <div class="col-md-8 col-lg-6">
-
                 <div class="panel panel-bordered">
                     <!-- form start -->
                     <form role="form"
@@ -64,12 +63,14 @@
                                     }
                                 @endphp
                                 @if (isset($row->details->legend) && isset($row->details->legend->text))
-                                    <legend class="text-{{ $row->details->legend->align ?? 'center' }}" style="background-color: {{ $row->details->legend->bgcolor ?? '#f0f0f0' }};padding: 5px;">{{ $row->details->legend->text }}</legend>
+                                    <legend class="text-{{ $row->details->legend->align ?? 'center' }}"
+                                            style="background-color: {{ $row->details->legend->bgcolor ?? '#f0f0f0' }};padding: 5px;">{{ $row->details->legend->text }}</legend>
                                 @endif
 
                                 <div class="form-group @if($row->type == 'hidden') hidden @endif col-md-{{ $display_options->width ?? 12 }} {{ $errors->has($row->field) ? 'has-error' : '' }}" @if(isset($display_options->id)){{ "id=$display_options->id" }}@endif>
                                     {{ $row->slugify }}
-                                    <label class="control-label" for="name">{{ $row->getTranslatedAttribute('display_name') }}</label>
+                                    <label class="control-label"
+                                           for="name">{{ $row->getTranslatedAttribute('display_name') }}</label>
                                     @include('voyager::multilingual.input-hidden-bread-edit-add')
                                     @if (isset($row->details->view))
                                         @include($row->details->view, ['row' => $row, 'dataType' => $dataType, 'dataTypeContent' => $dataTypeContent, 'content' => $dataTypeContent->{$row->field}, 'action' => ($edit ? 'edit' : 'add'), 'view' => ($edit ? 'edit' : 'add'), 'options' => $row->details])
@@ -94,7 +95,8 @@
 
                         <div class="panel-footer">
                             @section('submit-buttons')
-                                <button type="submit" class="btn btn-primary save">{{ __('voyager::generic.save') }}</button>
+                                <button type="submit"
+                                        class="btn btn-primary save">{{ __('voyager::generic.save') }}</button>
                             @stop
                             @yield('submit-buttons')
                         </div>
@@ -120,17 +122,22 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"
-                            aria-hidden="true">&times;</button>
-                    <h4 class="modal-title"><i class="voyager-warning"></i> {{ __('voyager::generic.are_you_sure') }}</h4>
+                            aria-hidden="true">&times;
+                    </button>
+                    <h4 class="modal-title"><i class="voyager-warning"></i> {{ __('voyager::generic.are_you_sure') }}
+                    </h4>
                 </div>
 
                 <div class="modal-body">
-                    <h4>{{ __('voyager::generic.are_you_sure_delete') }} '<span class="confirm_delete_name"></span>'</h4>
+                    <h4>{{ __('voyager::generic.are_you_sure_delete') }} '<span class="confirm_delete_name"></span>'
+                    </h4>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
-                    <button type="button" class="btn btn-danger" id="confirm_delete">{{ __('voyager::generic.delete_confirm') }}</button>
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                    <button type="button" class="btn btn-danger"
+                            id="confirm_delete">{{ __('voyager::generic.delete_confirm') }}</button>
                 </div>
             </div>
         </div>
@@ -144,14 +151,14 @@
         var $file;
 
         function deleteHandler(tag, isMulti) {
-            return function() {
+            return function () {
                 $file = $(this).siblings(tag);
 
                 params = {
-                    slug:   '{{ $dataType->slug }}',
-                    filename:  $file.data('file-name'),
-                    id:     $file.data('id'),
-                    field:  $file.parent().data('field-name'),
+                    slug: '{{ $dataType->slug }}',
+                    filename: $file.data('file-name'),
+                    id: $file.data('id'),
+                    field: $file.parent().data('field-name'),
                     multi: isMulti,
                     _token: '{{ csrf_token() }}'
                 }
@@ -174,7 +181,7 @@
                     elt.type = 'text';
                     $(elt).datetimepicker({
                         format: 'L',
-                        extraFormats: [ 'YYYY-MM-DD' ]
+                        extraFormats: ['YYYY-MM-DD']
                     }).datetimepicker($(elt).data('datepicker'));
                 }
             });
@@ -183,7 +190,7 @@
             $('.side-body').multilingual({"editing": true});
             @endif
 
-            $('.side-body input[data-slug-origin]').each(function(i, el) {
+            $('.side-body input[data-slug-origin]').each(function (i, el) {
                 $(el).slugify();
             });
 
@@ -192,15 +199,17 @@
             $('.form-group').on('click', '.remove-multi-file', deleteHandler('a', true));
             $('.form-group').on('click', '.remove-single-file', deleteHandler('a', false));
 
-            $('#confirm_delete').on('click', function(){
+            $('#confirm_delete').on('click', function () {
                 $.post('{{ route('voyager.'.$dataType->slug.'.media.remove') }}', params, function (response) {
-                    if ( response
+                    if (response
                         && response.data
                         && response.data.status
-                        && response.data.status == 200 ) {
+                        && response.data.status == 200) {
 
                         toastr.success(response.data.message);
-                        $file.parent().fadeOut(300, function() { $(this).remove(); })
+                        $file.parent().fadeOut(300, function () {
+                            $(this).remove();
+                        })
                     } else {
                         toastr.error("Error removing file.");
                     }

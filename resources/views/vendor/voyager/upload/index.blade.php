@@ -19,36 +19,51 @@
             <div class="col-md-6">
                 <div class="panel panel-bordered">
                     <div class="panel-heading">
-                        <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">SPP</p>
+                        <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Dokumen Utama</p>
                     </div>
                     <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci alias assumenda
-                            distinctio,
-                            in ipsum optio quis sapiente! Debitis ducimus exercitationem illum libero maxime molestiae
-                            molestias nesciunt numquam repellat rerum!</p>
-                        <button class="btn btn-primary">Simpan</button>
-                    </div>
-                </div>
-                <div class="panel panel-bordered">
-                    <div class="panel-heading">
-                        <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">SPM</p>
-                    </div>
-                    <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci alias assumenda
-                            distinctio,
-                            in ipsum optio quis sapiente! Debitis ducimus exercitationem illum libero maxime molestiae
-                            molestias nesciunt numquam repellat rerum!</p>
-                        <button class="btn btn-primary">Simpan</button>
-                    </div>
-                </div>
-                <div class="panel panel-bordered">
-                    <div class="panel-heading">
-                        <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">SP2D</p>
-                    </div>
-                    <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci alias assumenda
-                            distinctio,in ipsum optio quis sapiente! Debitis ducimus exercitationem illum libero maxime
-                            molestiae molestias nesciunt numquam repellat rerum!</p>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label>No SPP</label>
+                                    <input class="form-control" name="no_spp" type="text" placeholder="No SPP">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>File SPP</label>
+                                    <input type="file" name="file_spp">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label>No SPM</label>
+                                    <input class="form-control" name="no_spm" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>File SPM</label>
+                                    <input type="file" name="file_spm">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label>No SP2D</label>
+                                    <input class="form-control" name="no_sp2d" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>File SP2D</label>
+                                    <input type="file" name="file_sp2d">
+                                </div>
+                            </div>
+                        </div>
+
                         <button class="btn btn-primary">Simpan</button>
                     </div>
                 </div>
@@ -61,11 +76,16 @@
                     <div class="panel-body">
                         <form action="#">
                             <div class="form-group">
-                                <label class="control-label">File</label>
-                                <input class="form-control" type="file" value="">
+                                <label>Nama Dokumen</label>
+                                <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen"
+                                       placeholder="Nama Dokumen">
+                            </div>
+                            <div class="form-group">
+                                <label>File Dokumen</label>
+                                <input type="file" placeholder="File Dokumen">
                             </div>
                         </form>
-                        <button class="btn btn-primary">Simpan</button>
+                        <button class="btn btn-primary">Upload</button>
                     </div>
                 </div>
             </div>

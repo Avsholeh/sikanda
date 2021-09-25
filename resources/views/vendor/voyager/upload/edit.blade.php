@@ -1,4 +1,4 @@
-@extends('vendor.voyager.master')
+@extends('layouts.master')
 
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">

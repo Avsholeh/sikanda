@@ -5,6 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 
+/**
+ * App\Models\Pendukung
+ *
+ * @property int $id
+ * @property int|null $dokumen_id
+ * @property mixed $file
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Pendukung newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pendukung newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pendukung query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pendukung whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pendukung whereDokumenId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pendukung whereFile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pendukung whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pendukung whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Pendukung extends Model
 {
     protected $table = 'tb_pendukung';

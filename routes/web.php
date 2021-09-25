@@ -16,12 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => '/'], function () {
     Voyager::routes();
 
-    Route::get('upload', [\App\Http\Controllers\UploadController::class, 'index'])
-        ->name('upload.index');
+    Route::get('upload-dokumen', [\App\Http\Controllers\UploadController::class, 'index'])
+        ->name('upload-dokumen.index');
 
-    Route::post('upload', [\App\Http\Controllers\UploadController::class, 'index'])
-        ->name('upload.store');
+    Route::post('upload-dokumen', [\App\Http\Controllers\UploadController::class, 'upload'])
+        ->name('upload-dokumen.store');
 
-    Route::get('upload/{id}', [\App\Http\Controllers\UploadController::class, 'edit'])
-        ->name('upload.edit');
+    Route::get('upload-dokumen/{id}', [\App\Http\Controllers\UploadController::class, 'edit'])
+        ->name('upload-dokumen.edit');
+
+    Route::post('upload-dokumen/{id}', [\App\Http\Controllers\UploadController::class, 'updateUpload'])
+        ->name('upload-dokumen.update');
 });

@@ -53,6 +53,10 @@
         .border-danger {
             border-left: .3rem solid #fa2a00 !important;
         }
+
+        .btn-link, .checkbox-inline, .checkbox label, .radio-inline, .radio label, label {
+            font-weight: 600;
+        }
     </style>
 
     @if(!empty(config('voyager.additional_css')))<!-- Additional CSS -->

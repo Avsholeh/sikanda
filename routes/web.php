@@ -17,5 +17,11 @@ Route::group(['prefix' => '/'], function () {
     Voyager::routes();
 
     Route::get('upload', [\App\Http\Controllers\UploadController::class, 'index'])
-        ->name('upload');
+        ->name('upload.index');
+
+    Route::post('upload', [\App\Http\Controllers\UploadController::class, 'index'])
+        ->name('upload.store');
+
+    Route::get('upload/{id}', [\App\Http\Controllers\UploadController::class, 'edit'])
+        ->name('upload.edit');
 });

@@ -17,51 +17,51 @@
     <div class="page-content edit-add container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <form action="{{ route('upload.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="">
                     @csrf
                     <div class="panel panel-bordered">
                         <div class="panel-heading">
                             <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Dokumen Utama</p>
                         </div>
                         <div class="panel-body">
-                            <div class="panel panel-default border-primary">
+                            <div class="panel panel-default border-success">
                                 <div class="panel-body">
                                     <div class="form-group">
                                         <label class="">No SPP</label>
                                         <input class="form-control" name="no_spp" type="text" placeholder="No SPP">
-                                        @if ($errors->has('no_spp'))
-                                            @foreach ($errors->get('no_spp') as $error)
-                                                <span class="help-block">{{ $error }}</span>
-                                            @endforeach
-                                        @endif
                                     </div>
 
                                     <div class="form-group">
                                         <label>File SPP</label>
                                         <input type="file" name="file_spp">
-                                        @error('file_spp')
-                                        <span>{{ $message }}</span>
-                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <div class="alert alert-success" style="margin-bottom: 0 !important;">
+                                            Sudah Upload
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="panel panel-default">
+                            <div class="panel panel-default border-danger">
                                 <div class="panel-body">
                                     <div class="form-group">
                                         <label>No SPM</label>
                                         <input class="form-control" name="no_spm" type="text" placeholder="No SPM">
-                                        @error('no_spm')
-                                        <span>{{ $message }}</span>
-                                        @enderror
                                     </div>
 
                                     <div class="form-group">
                                         <label>File SPM</label>
                                         <input type="file" name="file_spm" placeholder="No SPM">
-                                        @error('file_spm')
-                                        <span>{{ $message }}</span>
-                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <div class="alert alert-danger" style="margin-bottom: 0 !important;">
+                                            Belum
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -71,17 +71,11 @@
                                     <div class="form-group">
                                         <label>No SP2D</label>
                                         <input class="form-control" name="no_sp2d" type="text" placeholder="No SP2D">
-                                        @error('no_sp2d')
-                                        <span>{{ $message }}</span>
-                                        @enderror
                                     </div>
 
                                     <div class="form-group">
                                         <label>File SP2D</label>
                                         <input type="file" name="file_sp2d">
-                                        @error('file_sp2d')
-                                        <span>{{ $message }}</span>
-                                        @enderror
                                     </div>
                                 </div>
                             </div>

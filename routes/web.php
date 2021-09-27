@@ -27,4 +27,7 @@ Route::group(['prefix' => '/'], function () {
 
     Route::post('upload-dokumen/{id}', [\App\Http\Controllers\UploadController::class, 'updateUpload'])
         ->name('upload-dokumen.update');
+
+    Route::get('dokumen/{status?}', [\App\Http\Controllers\DokumenController::class, 'index'])
+        ->name('dokumen.index');
 });

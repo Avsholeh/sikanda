@@ -27,7 +27,7 @@
                             <div class="panel panel-default border-primary">
                                 <div class="panel-body">
                                     <div class="form-group">
-                                        <label class="">No SPP</label>
+                                        <label class="">No SPP <small class="text-danger">*</small></label>
                                         <input class="form-control" name="no_spp" type="text"
                                                value="{{ old('no_spp') }}" placeholder="No SPP">
                                         @error('no_spp')
@@ -36,7 +36,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>File SPP</label>
+                                        <label>File SPP <small class="text-danger">*</small></label>
                                         <input type="file" name="file_spp">
                                         @error('file_spp')
                                         <span class="text-danger">* {{ $message }}</span>

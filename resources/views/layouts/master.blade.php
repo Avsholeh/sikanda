@@ -57,6 +57,26 @@
         .btn-link, .checkbox-inline, .checkbox label, .radio-inline, .radio label, label {
             font-weight: 600;
         }
+
+        .bg-success {
+            --bs-bg-opacity: 1;
+            background-color: #55b559 !important;
+        }
+
+        .bg-danger {
+            --bs-bg-opacity: 1;
+            background-color: #dc3545 !important;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: .35em .65em;
+            color: #fff;
+            /*text-align: center;*/
+            /*white-space: nowrap;*/
+            /*vertical-align: baseline;*/
+            border-radius: .25rem;
+        }
     </style>
 
     @if(!empty(config('voyager.additional_css')))<!-- Additional CSS -->

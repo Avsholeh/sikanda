@@ -24,11 +24,14 @@
                             <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Dokumen Utama</p>
                         </div>
                         <div class="panel-body">
+
+                            <!-- SPP -->
                             <div class="panel panel-default border-success">
                                 <div class="panel-body">
                                     <div class="form-group">
                                         <label class="">No SPP</label>
-                                        <input class="form-control" name="no_spp" type="text" placeholder="No SPP">
+                                        <input class="form-control" name="no_spp" type="text"
+                                               value="{{ $dokumen->spp->no_spp }}" placeholder="No SPP" disabled>
                                     </div>
 
                                     <div class="form-group">
@@ -38,47 +41,23 @@
 
                                     <div class="form-group">
                                         <label>Status</label>
-                                        <div class="alert alert-success" style="margin-bottom: 0 !important;">
-                                            Sudah Upload
+                                        <div style="margin-bottom: 0 !important;">
+                                            <div class="badge bg-success">
+                                                <i class="voyager-check"></i> Sudah Upload
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- SPP -->
 
-                            <div class="panel panel-default border-danger">
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <label>No SPM</label>
-                                        <input class="form-control" name="no_spm" type="text" placeholder="No SPM">
-                                    </div>
+                            <!-- SPM -->
+                            @include('vendor.voyager.upload.spm')
+                            <!-- ./SPM -->
 
-                                    <div class="form-group">
-                                        <label>File SPM</label>
-                                        <input type="file" name="file_spm" placeholder="No SPM">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Status</label>
-                                        <div class="alert alert-danger" style="margin-bottom: 0 !important;">
-                                            Belum
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <label>No SP2D</label>
-                                        <input class="form-control" name="no_sp2d" type="text" placeholder="No SP2D">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>File SP2D</label>
-                                        <input type="file" name="file_sp2d">
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- SP2D -->
+                            @include('vendor.voyager.upload.sp2d')
+                            <!-- ./SP2D -->
 
                             <button class="btn btn-primary">Simpan</button>
                         </div>
@@ -91,18 +70,22 @@
                         <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Dokumen Pendukung</p>
                     </div>
                     <div class="panel-body">
-                        <form action="#">
-                            <div class="form-group">
-                                <label>Nama Dokumen</label>
-                                <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen"
-                                       placeholder="Nama Dokumen">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <form action="#">
+                                    <div class="form-group">
+                                        <label>Nama Dokumen</label>
+                                        <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen"
+                                               placeholder="Nama Dokumen">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>File Dokumen</label>
+                                        <input type="file" placeholder="File Dokumen">
+                                    </div>
+                                </form>
+                                <button class="btn btn-warning">Tambahkan</button>
                             </div>
-                            <div class="form-group">
-                                <label>File Dokumen</label>
-                                <input type="file" placeholder="File Dokumen">
-                            </div>
-                        </form>
-                        <button class="btn btn-warning">Tambahkan</button>
+                        </div>
                     </div>
                 </div>
             </div>

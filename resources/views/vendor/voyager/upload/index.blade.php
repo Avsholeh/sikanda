@@ -24,8 +24,19 @@
                             <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Dokumen Utama</p>
                         </div>
                         <div class="panel-body">
+
+                            <!-- SPP -->
                             <div class="panel panel-default border-primary">
                                 <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="">Tahun <small class="text-danger">*</small></label>
+                                        <input class="form-control" name="tahun" type="number"
+                                               value="{{ old('tahun') }}" placeholder="Tahun">
+                                        @error('tahun')
+                                        <span class="text-danger">* {{ $message }}</span>
+                                        @enderror
+                                    </div>
+
                                     <div class="form-group">
                                         <label class="">No SPP <small class="text-danger">*</small></label>
                                         <input class="form-control" name="no_spp" type="text"
@@ -45,54 +56,30 @@
                                 </div>
                             </div>
 
+                            <!-- SPM -->
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="form-group">
                                         <label>No SPM</label>
                                         <input class="form-control" name="no_spm" type="text"
-                                               value="{{ old('no_spp') }}" placeholder="No SPM">
-                                        @error('no_spm')
-                                        <span class="text-danger">* {{ $message }}</span>
-                                        @enderror
-                                    </div>
-
-                                    <div id="spm-group" class="form-group">
-                                        <label>File SPM</label>
-                                        <input type="file" name="file_spm" placeholder="No SPM">
-                                        @error('file_spm')
-                                        <span class="text-danger">* {{ $message }}</span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="checkbox" name="spm_check">
-                                        <label><strong>Upload nanti.</strong></label>
+                                               placeholder="No SPM" disabled>
+                                        <div class="text-muted" style="margin-top: .5em">
+                                            * Silahkan upload SPP terlebih dahulu
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
+                            <!-- SP2D -->
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="form-group">
                                         <label>No SP2D</label>
                                         <input class="form-control" name="no_sp2d" type="text"
-                                               value="{{ old('no_spp') }}" placeholder="No SP2D">
-                                        @error('no_sp2d')
-                                        <span class="text-danger">* {{ $message }}</span>
-                                        @enderror
-                                    </div>
-
-                                    <div id="sp2d-group" class="form-group">
-                                        <label>File SP2D</label>
-                                        <input type="file" name="file_sp2d">
-                                        @error('file_sp2d')
-                                        <span class="text-danger">* {{ $message }}</span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="checkbox" name="sp2d_check">
-                                        <label><strong>Upload nanti.</strong></label>
+                                               placeholder="No SP2D" disabled>
+                                        <div class="text-muted" style="margin-top: .5em">
+                                            * Silahkan upload SPP terlebih dahulu
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +94,18 @@
                             <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Dokumen Pendukung</p>
                         </div>
                         <div class="panel-body">
-                            <livewire:dokumen-pendukung/>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label>Nama Dokumen</label>
+                                        <input class="form-control" name="nama_dokumen" type="text"
+                                              placeholder="Nama Dokumen" disabled>
+                                        <div class="text-muted" style="margin-top: .5em">
+                                            * Silahkan upload SPP terlebih dahulu
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

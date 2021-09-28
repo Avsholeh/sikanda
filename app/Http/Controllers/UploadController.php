@@ -24,73 +24,56 @@ class UploadController extends Controller
 
     public function upload(Request $request)
     {
-        $validateAttribute = [
-            'no_spp' => 'required',
-            'file_spp' => 'required',
-        ];
+        // validasi input user
+        $request->validate([
+            'tahun' => 'required|size:4',
+            'no_spp' => 'required|unique:tb_spp,no_spp',
+            'file_spp' => 'required|file|max:10240',
+        ]);
 
-
-        $request->validate($validateAttribute);
-
-        if ($request->post('no_spm') and $request->post('no_sp2d')) {
-            $status = 'Tuntas';
-        } else {
-            $status = 'Belum tuntas';
-        }
-
-        if (auth()->user()->role_id === 1 or auth()->user()->role_id === 2) {
-            $dinas_id = 99;
+        // set dinas sesuai user kecuali superadmin
+        if (auth()->user()->role_id === 1) {
+            $dinas_id = 00;
         } else {
             $dinas_id = auth()->user()->dinas_id;
         }
 
-        $dokumenUploaded = Dokumen::create([
+        // create dokumen baru
+        $newDokumen = Dokumen::create([
             'dinas_id' => $dinas_id,
-            'status' => $status,
-            'tahun' => 2021
+            'status' => 'B', // belum tuntas
+            'tahun' => $request->post('tahun'),
         ]);
 
-        $sppUploaded = Spp::create([
-            'dokumen_id' => $dokumenUploaded->id,
+        // create spp baru dengan hasOne ke dokumen
+        Spp::create([
+            'dokumen_id' => $newDokumen->id,
             'no_spp' => $request->post('no_spp'),
             'file' => base64_encode($request->post('file_spp')),
         ]);
 
-        // Jika date spm tersedia
-        $spmUploaded = null;
-        if ($request->post('no_spm') and $request->post('file_spm')) {
-            $spmUploaded = Spm::create([
-                'dokumen_id' => $dokumenUploaded->id,
-                'no_spm' => $request->post('no_spm'),
-                'file' => base64_encode($request->post('file_spm')),
-            ]);
-        }
-
-        // Jika data sp2d tersedia
-        $sp2dUploaded = null;
-        if ($request->post('no_sp2d') and $request->post('file_sp2d')) {
-            $sp2dUploaded = Sp2d::create([
-                'dokumen_id' => $dokumenUploaded->id,
-                'no_spm' => $request->post('no_sp2d'),
-                'file' => base64_encode($request->post('file_sp2d')),
-            ]);
-        }
-
-        return redirect()->back()->with([
-            'message' => "Telah berhasil ditambahkan",
+        // redirect ke halaman perbarui/edit
+        return redirect()->route('upload-dokumen.edit', $newDokumen->id)->with([
+            'message' => "SPP telah berhasil ditambahkan",
             'alert-type' => 'success',
         ]);
     }
 
     public function edit($id)
     {
-        $dokumen = Dokumen::findOrFail($id)->get();
-        dd($dokumen->spp);
-        return view('vendor.voyager.upload.edit', compact('id'));
+        $dokumen = Dokumen::findOrFail($id);
+        return view('vendor.voyager.upload.edit', compact('dokumen'));
     }
 
-    public function updateUpload()
+    public function update()
     {
 
+    }
+
+    private function updateSPP(Request $request)
+    {
+        $request->validate([
+            'no_spp' => 'required|alpha_dash'
+        ]);
     }
 }

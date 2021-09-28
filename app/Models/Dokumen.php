@@ -43,6 +43,16 @@ class Dokumen extends Model
 
     public function spp()
     {
-        return $this->hasOne(Spp::class);
+        return $this->hasOne(Spp::class, 'dokumen_id');
+    }
+
+    public function spm()
+    {
+        return $this->hasOne(Spm::class, 'dokumen_id');
+    }
+
+    public function sp2d()
+    {
+        return $this->hasOne(Sp2d::class, 'dokumen_id');
     }
 }

@@ -16,7 +16,7 @@
 @section('content')
     <div class="page-content edit-add container-fluid">
         <div class="row">
-            <form action="{{ route('upload-dokumen.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="#" method="POST" enctype="multipart/form-data">
                 <div class="col-md-6">
                     @csrf
                     <div class="panel panel-bordered">
@@ -115,28 +115,3 @@
 
 @stop
 
-@push('javascript')
-    <script>
-        document.querySelector("input[name=spm_check]")
-            .addEventListener('change', function() {
-            if (this.checked) {
-                document.querySelector("#spm-group").style.display = 'none';
-                document.querySelector("input[name=no_spm]").disabled = true;
-            } else {
-                document.querySelector("#spm-group").style.display = 'block';
-                document.querySelector("input[name=no_spm]").disabled = false;
-            }
-        });
-
-        document.querySelector("input[name=sp2d_check]")
-            .addEventListener('change', function() {
-                if (this.checked) {
-                    document.querySelector("#sp2d-group").style.display = 'none';
-                    document.querySelector("input[name=no_sp2d]").disabled = true;
-                } else {
-                    document.querySelector("#sp2d-group").style.display = 'block';
-                    document.querySelector("input[name=no_sp2d]").disabled = false;
-                }
-            });
-    </script>
-@endpush

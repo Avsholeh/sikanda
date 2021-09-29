@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dokumen;
-use App\Models\Sp2d;
-use App\Models\Spm;
 use App\Models\Spp;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -28,7 +26,7 @@ class UploadController extends Controller
         $request->validate([
             'tahun' => 'required|size:4',
             'no_spp' => 'required|unique:tb_spp,no_spp',
-            'file_spp' => 'required|file|max:10240',
+            'file_spp' => 'required|mimes:pdf|max:10240',
         ]);
 
         // set dinas sesuai user kecuali superadmin
@@ -59,21 +57,47 @@ class UploadController extends Controller
         ]);
     }
 
-    public function edit($id)
+    public function edit(Dokumen $dokumen)
     {
-        $dokumen = Dokumen::findOrFail($id);
         return view('vendor.voyager.upload.edit', compact('dokumen'));
     }
 
-    public function update()
+    public function update(Request $request, Dokumen $dokumen)
     {
+        // validate spm form
+        if ($request->post('spm_uploaded') === '0') {
+            $request->validate([
+                'no_spm' => 'required|unique:tb_spm,no_spm',
+                'file_spm' => 'required|mimes:pdf|max:10240',
+            ]);
+            $input = [
+                'no_spm' => $request->post('no_spm'),
+                'file' => base64_encode($request->file('file_spm')),
+            ];
+            $dokumen->spm()->create($input);
+        }
 
-    }
+        // validate sp2d form
+        if ($request->post('sp2d_uploaded') === '0') {
+            $request->validate([
+                'no_sp2d' => 'required|unique:tb_sp2d,no_sp2d',
+                'file_sp2d' => 'required|mimes:pdf|max:10240',
+            ]);
 
-    private function updateSPP(Request $request)
-    {
-        $request->validate([
-            'no_spp' => 'required|alpha_dash'
-        ]);
+            $input = [
+                'no_sp2d' => $request->post('no_sp2d'),
+                'file' => base64_encode($request->file('file_sp2d')),
+            ];
+
+            $dokumen->sp2d()->create($input);
+        }
+
+        // redirect ke halaman perbarui/edit
+        echo 'redirect ke halaman tampilkan';
+//        return redirect()->route('upload-dokumen.edit', $newDokumen->id)->with([
+//            'message' => "SPP telah berhasil ditambahkan",
+//            'alert-type' => 'success',
+//        ]);
+
     }
 }

@@ -17,7 +17,8 @@
     <div class="page-content edit-add container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <form action="">
+                <form action="{{ route('upload-dokumen.update', $dokumen->id) }}" method="POST"
+                      enctype="multipart/form-data">
                     @csrf
                     <div class="panel panel-bordered">
                         <div class="panel-heading">
@@ -26,38 +27,16 @@
                         <div class="panel-body">
 
                             <!-- SPP -->
-                            <div class="panel panel-default border-success">
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <label class="">No SPP</label>
-                                        <input class="form-control" name="no_spp" type="text"
-                                               value="{{ $dokumen->spp->no_spp }}" placeholder="No SPP" disabled>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>File SPP</label>
-                                        <input type="file" name="file_spp">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Status</label>
-                                        <div style="margin-bottom: 0 !important;">
-                                            <div class="badge bg-success">
-                                                <i class="voyager-check"></i> Sudah Upload
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- SPP -->
+                        @include('vendor.voyager.upload.spp')
+                        <!-- SPP -->
 
                             <!-- SPM -->
-                            @include('vendor.voyager.upload.spm')
-                            <!-- ./SPM -->
+                        @include('vendor.voyager.upload.spm')
+                        <!-- ./SPM -->
 
                             <!-- SP2D -->
-                            @include('vendor.voyager.upload.sp2d')
-                            <!-- ./SP2D -->
+                        @include('vendor.voyager.upload.sp2d')
+                        <!-- ./SP2D -->
 
                             <button class="btn btn-primary">Simpan</button>
                         </div>
@@ -93,3 +72,13 @@
     </div>
 
 @stop
+
+@push('javascript')
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+@endpush
+
+

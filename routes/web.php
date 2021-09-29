@@ -22,10 +22,11 @@ Route::group(['prefix' => '/'], function () {
     Route::post('upload-dokumen', [\App\Http\Controllers\UploadController::class, 'upload'])
         ->name('upload-dokumen.store');
 
-    Route::get('upload-dokumen/{id}', [\App\Http\Controllers\UploadController::class, 'edit'])
+    Route::get('upload-dokumen/{dokumen}', [\App\Http\Controllers\UploadController::class, 'edit'])
         ->name('upload-dokumen.edit');
 
-    Route::post('upload-dokumen/{id}', [\App\Http\Controllers\UploadController::class, 'updateUpload'])
+    // route update dokumen
+    Route::post('upload-dokumen/{dokumen}', [\App\Http\Controllers\UploadController::class, 'update'])
         ->name('upload-dokumen.update');
 
     Route::get('dokumen/{status?}', [\App\Http\Controllers\DokumenController::class, 'index'])

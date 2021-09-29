@@ -26,6 +26,10 @@ use Illuminate\Support\Facades\Auth;
  * @method static \Illuminate\Database\Eloquent\Builder|Dokumen whereTahun($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dokumen whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Dinas $dinas
+ * @property-read \App\Models\Sp2d|null $sp2d
+ * @property-read \App\Models\Spm|null $spm
+ * @property-read \App\Models\Spp|null $spp
  */
 class Dokumen extends Model
 {
@@ -39,6 +43,11 @@ class Dokumen extends Model
             return $query->where('dinas_id', Auth::user()->dinas_id);
         }
         return $query;
+    }
+
+    public function dinas()
+    {
+        return $this->belongsTo(Dinas::class, 'dinas_id');
     }
 
     public function spp()

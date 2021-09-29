@@ -65,7 +65,8 @@ class UploadController extends Controller
     public function update(Request $request, Dokumen $dokumen)
     {
         // validate spm form
-        if ($request->post('spm_uploaded') === '0') {
+//        if ($request->post('spm_uploaded') === '0') {
+        if ($request->post('no_spm') or $request->post('file_spm')) {
             $request->validate([
                 'no_spm' => 'required|unique:tb_spm,no_spm',
                 'file_spm' => 'required|mimes:pdf|max:10240',
@@ -78,7 +79,7 @@ class UploadController extends Controller
         }
 
         // validate sp2d form
-        if ($request->post('sp2d_uploaded') === '0') {
+        if ($request->post('no_sp2d') or $request->post('file_sp2d')) {
             $request->validate([
                 'no_sp2d' => 'required|unique:tb_sp2d,no_sp2d',
                 'file_sp2d' => 'required|mimes:pdf|max:10240',
@@ -92,12 +93,17 @@ class UploadController extends Controller
             $dokumen->sp2d()->create($input);
         }
 
+        // check status
+        $status = (isset($dokumen->spm) and isset($dokumen->sp2d)) ? 'S' : 'B';
+        $dokumen->update(['status' => $status]);
+
         // redirect ke halaman perbarui/edit
-        echo 'redirect ke halaman tampilkan';
+        return redirect()->back();
 //        return redirect()->route('upload-dokumen.edit', $newDokumen->id)->with([
 //            'message' => "SPP telah berhasil ditambahkan",
 //            'alert-type' => 'success',
 //        ]);
 
     }
+
 }

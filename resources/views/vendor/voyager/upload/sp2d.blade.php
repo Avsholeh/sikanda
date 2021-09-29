@@ -2,7 +2,7 @@
     <!-- SP2D telah diupload -->
     <div class="panel panel-default border-success">
         <div class="panel-body">
-            <input type="hidden" name="sp2d_uploaded" value="1">
+
             <div class="form-group">
                 <label>No SP2D</label>
                 <input class="form-control" name="no_sp2d" type="text" value="{{ $dokumen->sp2d->no_sp2d }}"
@@ -11,26 +11,46 @@
 
             <div class="form-group">
                 <label>File SP2D</label>
-                @if(!isset($dokumen->sp2d->file))
-                    <input type="file" name="file_sp2d" accept="application/pdf">
-                @else
-                    <button class="btn btn-sm btn-success" style="display: block"><i class="voyager-file-text"></i> Tampilkan</button>
-                @endif
+                <br>
+                <button class="btn btn-sm btn-success"><i class="voyager-file-text"></i>
+                    Tampilkan
+                </button>
             </div>
 
-            <span class="form-group pull-right">
-                <a class="text-danger font-size-20" href="#" data-toggle="tooltip" data-placement="left"
-                   title="Hapus">
-                    <i class="voyager-trash"></i>
-                </a>
+            <span class="form-group pull-right" data-toggle="tooltip" title="Hapus">
+                <button type="button" class="btn btn-danger text-danger"
+                        data-toggle="modal" data-target="#sp2d_delete_modal" data-placement="left">
+                    <i class="voyager-trash"></i> Hapus
+                </button>
             </span>
+
+            <!-- Modal -->
+            <div class="modal fade modal-danger" id="sp2d_delete_modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title"><i class="voyager-warning"></i>Konfirmasi hapus</h4>
+                        </div>
+                        <div class="modal-body"><h4>Yakin untuk menghapus data ini?</h4></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                            <a type="button" class="btn btn-danger"
+                               href="{{ route('dokumen.sp2d.delete', $dokumen->sp2d->id) }}">Ya, Hapus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./Modal -->
         </div>
     </div>
 @else
     <!-- SP2D belum diupload -->
     <div class="panel panel-default border-danger">
         <div class="panel-body">
-            <input type="hidden" name="sp2d_uploaded" value="0">
+
             <div class="form-group">
                 <label>No SP2D</label>
                 <input class="form-control" name="no_sp2d" type="text"
@@ -47,10 +67,6 @@
                 <span class="text-danger">* {{ $message }}</span>
                 @enderror
             </div>
-
-            <span class="form-group pull-right">
-                <a class="text-danger font-size-20" href="#"><i class="voyager-trash"></i></a>
-            </span>
         </div>
     </div>
 @endif

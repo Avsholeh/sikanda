@@ -24,9 +24,15 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Spm whereNoSpm($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Spm whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Dokumen|null $dokumen
  */
 class Spm extends Model
 {
     protected $table = 'tb_spm';
     protected $guarded = [];
+
+    public function dokumen()
+    {
+        return $this->belongsTo(Dokumen::class, 'dokumen_id');
+    }
 }

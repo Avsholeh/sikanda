@@ -16,7 +16,7 @@
 @section('content')
     <div class="page-content edit-add container-fluid">
         <div class="row">
-            <form action="#" method="POST" enctype="multipart/form-data">
+            <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <div class="col-md-6">
                     @csrf
                     <div class="panel panel-bordered">

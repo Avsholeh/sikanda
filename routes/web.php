@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => '/'], function () {
     Voyager::routes();
 
+    // ================= UPLOAD DOKUMEN ================= //
+
     Route::get('upload-dokumen', [\App\Http\Controllers\UploadController::class, 'index'])
         ->name('upload-dokumen.index');
 
@@ -25,10 +27,29 @@ Route::group(['prefix' => '/'], function () {
     Route::get('upload-dokumen/{dokumen}', [\App\Http\Controllers\UploadController::class, 'edit'])
         ->name('upload-dokumen.edit');
 
-    // route update dokumen
     Route::post('upload-dokumen/{dokumen}', [\App\Http\Controllers\UploadController::class, 'update'])
         ->name('upload-dokumen.update');
 
+    // ================= DOKUMEN ================= //
+
     Route::get('dokumen/{status?}', [\App\Http\Controllers\DokumenController::class, 'index'])
         ->name('dokumen.index');
+
+    Route::get('dokumen/{dokumen}/delete', [\App\Http\Controllers\DokumenController::class, 'delete'])
+        ->name('dokumen.delete');
+
+//    Route::delete('dokumen/{status?}', [\App\Http\Controllers\DokumenController::class, 'delete'])
+//        ->name('dokumen.delete');
+
+    // delete spm
+//    Route::get('spp/{spp}/delete', [\App\Http\Controllers\DokumenController::class, 'deleteSpp'])
+//        ->name('dokumen.spp.delete');
+
+    // delete spm
+    Route::get('spm/{spm}/delete', [\App\Http\Controllers\DokumenController::class, 'deleteSpm'])
+        ->name('dokumen.spm.delete');
+
+    // delete sp2d
+    Route::get('sp2d/{sp2d}/delete', [\App\Http\Controllers\DokumenController::class, 'deleteSp2d'])
+        ->name('dokumen.sp2d.delete');
 });

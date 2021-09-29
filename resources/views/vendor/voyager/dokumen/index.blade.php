@@ -4,7 +4,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 
-@section('page_title', 'Upload Dokumen')
+@section('page_title', 'Dokumen Saya')
 
 @section('page_header')
     <h1 class="page-title">
@@ -32,13 +32,14 @@
                         <a href="{{ route('dokumen.index') }}">Semua</a>
                     </li>
                     <li role="presentation" @if($status === 'belum-tuntas') class="active" @endif>
-                        <a href="{{ route('dokumen.index', 'belum-tuntas') }}">Belum tuntas</a>
+                        <a href="{{ route('dokumen.index', 'belum-tuntas') }}">Belum Tuntas</a>
                     </li>
                     <li role="presentation" @if($status === 'sudah-tuntas') class="active" @endif>
-                        <a href="{{ route('dokumen.index', 'sudah-tuntas') }}">Sudah tuntas</a>
+                        <a href="{{ route('dokumen.index', 'sudah-tuntas') }}">Sudah Tuntas</a>
                     </li>
                 </ul>
 
+                <!-- table -->
                 <div class="panel panel-default">
                     <div class="panel-body">
 
@@ -152,9 +153,8 @@
                                                 <div>{{ $dokumen->updated_at }}</div>
                                             </td>
                                             <td class="no-sort no-click bread-actions">
-                                                <a href="#" title="Hapus"
-                                                   class="btn btn-sm btn-danger pull-right delete" data-id="1"
-                                                   id="delete-1">
+                                                <a data-toggle="modal" data-target="#dokumen_delete_modal" href="#" title="Hapus"
+                                                   class="btn btn-sm btn-danger pull-right delete">
                                                     <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">Hapus</span>
                                                 </a>
                                                 <a href="{{ route('upload-dokumen.edit', $dokumen->id) }}" title="Ubah"
@@ -162,7 +162,7 @@
                                                     <i class="voyager-edit"></i> <span
                                                             class="hidden-xs hidden-sm">Perbarui</span>
                                                 </a>
-                                                <a href="#" title="Lihat"
+                                                <a href="#" title="Lihat" disabled
                                                    class="btn btn-sm btn-warning pull-right view">
                                                     <i class="voyager-eye"></i> <span
                                                             class="hidden-xs hidden-sm">Lihat</span>
@@ -180,6 +180,33 @@
 
                     </div>
                 </div>
+                <!-- ./table -->
+
+                <!-- Modal -->
+                <div class="modal fade modal-danger" id="dokumen_delete_modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    &times;
+                                </button>
+                                <h4 class="modal-title"><i class="voyager-warning"></i>
+                                    Konfirmasi hapus
+                                </h4>
+                            </div>
+
+                            <div class="modal-body">
+                                <h4>Yakin untuk menghapus dokumen ini?</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                                <a type="button" class="btn btn-danger"
+                                   href="{{ route('dokumen.delete', $dokumen->id) }}">Ya, Hapus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./Modal -->
             </div>
         </div>
     </div>

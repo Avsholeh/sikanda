@@ -1,30 +1,34 @@
-@if(isset($dokumen->spm->no_spm))
-    <!-- SPM telah diupload -->
+@if(isset($dokumen->spp->no_spp))
+    <!-- SPP telah diupload -->
     <div class="panel panel-default border-success">
         <div class="panel-body">
-
             <div class="form-group">
-                <label>No SPM</label>
-                <input class="form-control" name="no_spm" type="text" value="{{ $dokumen->spm->no_spm }}"
-                       placeholder="No SPM" disabled>
+                <label class="">Tahun</label>
+                <input class="form-control" name="no_spp" type="text"
+                       value="{{ $dokumen->tahun }}" placeholder="No SPP" disabled>
             </div>
 
             <div class="form-group">
-                <label>File SPM</label>
+                <label class="">No SPP</label>
+                <input class="form-control" name="no_spp" type="text"
+                       value="{{ $dokumen->spp->no_spp }}" placeholder="No SPP" disabled>
+            </div>
+
+            <div class="form-group">
+                <label>File SPP</label>
                 <br>
                 <button class="btn btn-sm btn-success"><i class="voyager-file-text"></i>
                     Tampilkan
                 </button>
 
-                <span class="form-group pull-right" data-toggle="tooltip" data-placement="left" title="Hapus">
-                    <button type="button" class="btn btn-danger text-danger"
-                            data-toggle="modal" data-target="#spm_delete_modal">
+                <span class="form-group pull-right" data-toggle="tooltip" title="Hapus">
+                    <button type="button" class="btn btn-danger text-danger" data-toggle="modal"
+                            data-target="#spp_delete_modal" data-placement="left">
                         <i class="voyager-trash"></i> Hapus
                     </button>
                 </span>
-
                 <!-- Modal -->
-                <div class="modal fade modal-danger" id="spm_delete_modal">
+                <div class="modal fade modal-danger" id="spp_delete_modal">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -35,14 +39,11 @@
                                     Konfirmasi hapus
                                 </h4>
                             </div>
-
-                            <div class="modal-body">
-                                <h4>Yakin untuk menghapus data ini?</h4>
-                            </div>
+                            <div class="modal-body"><h4>Yakin untuk menghapus data ini?</h4></div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                                 <a type="button" class="btn btn-danger"
-                                   href="{{ route('dokumen.spm.delete', $dokumen->spm->id) }}">Ya, Hapus</a>
+                                   href="{{ route('dokumen.spp.delete', $dokumen->spp->id) }}">Ya, Hapus</a>
                             </div>
                         </div>
                     </div>
@@ -52,28 +53,29 @@
         </div>
     </div>
 
-
 @else
-    <!-- SPM belum diupload -->
+
+    <!-- SPP belum diupload -->
     <div class="panel panel-default border-danger">
         <div class="panel-body">
 
             <div class="form-group">
-                <label>No SPM</label>
-                <input class="form-control" name="no_spm" type="text"
-                       value="{{ old('no_spm') }}" placeholder="No SPM">
-                @error('no_spm')
+                <label>No SPP</label>
+                <input class="form-control" name="no_spp" type="text"
+                       value="{{ old('no_spp') }}" placeholder="No SPP">
+                @error('no_spp')
                 <span class="text-danger">* {{ $message }}</span>
                 @enderror
             </div>
 
-            <div class="form-group spm-group">
-                <label>File SPM</label>
-                <input type="file" name="file_spm" accept="application/pdf">
-                @error('file_spm')
+            <div class="form-group sp2d-group">
+                <label>File SPP</label>
+                <input type="file" name="file_spp" accept="application/pdf">
+                @error('file_spp')
                 <span class="text-danger">* {{ $message }}</span>
                 @enderror
             </div>
         </div>
     </div>
+
 @endif

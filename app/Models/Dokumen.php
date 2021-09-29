@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -43,6 +44,16 @@ class Dokumen extends Model
             return $query->where('dinas_id', Auth::user()->dinas_id);
         }
         return $query;
+    }
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->translatedFormat('l, d F Y');
+    }
+
+    public function getUpdatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['updated_at'])->translatedFormat('l, d F Y');
     }
 
     public function dinas()

@@ -24,9 +24,15 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Sp2d whereNoSp2d($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Sp2d whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Dokumen|null $dokumen
  */
 class Sp2d extends Model
 {
     protected $table = 'tb_sp2d';
     protected $guarded = [];
+
+    public function dokumen()
+    {
+        return $this->belongsTo(Dokumen::class, 'dokumen_id');
+    }
 }

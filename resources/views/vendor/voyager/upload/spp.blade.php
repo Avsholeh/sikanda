@@ -1,19 +1,52 @@
-<div class="panel panel-default border-success">
-    <div class="panel-body">
-        <div class="form-group">
-            <label class="">No SPP</label>
-            <input class="form-control" name="no_spp" type="text"
-                   value="{{ $dokumen->spp->no_spp }}" placeholder="No SPP" disabled>
-        </div>
+@if(isset($dokumen->spp->no_spp))
+    <!-- SPP telah diupload -->
+    <div class="panel panel-default border-success">
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="">Tahun</label>
+                <input class="form-control" name="no_spp" type="text"
+                       value="{{ $dokumen->tahun }}" placeholder="No SPP" disabled>
+            </div>
 
+            <div class="form-group">
+                <label class="">No SPP</label>
+                <input class="form-control" name="no_spp" type="text"
+                       value="{{ $dokumen->spp->no_spp }}" placeholder="No SPP" disabled>
+            </div>
 
-        <div class="form-group">
-            <label>File SPP</label>
-            @if(!isset($dokumen->spp->file))
-                <input type="file" name="file_spp" accept="application/pdf">
-            @else
-                <button class="btn btn-sm btn-success" style="display: block"><i class="voyager-file-text"></i> Tampilkan</button>
-            @endif
+            <div class="form-group">
+                <label>File SPP</label>
+                <br>
+                <button class="btn btn-sm btn-success"><i class="voyager-file-text"></i>
+                    Tampilkan
+                </button>
+            </div>
         </div>
     </div>
-</div>
+
+@else
+
+    <!-- SPP belum diupload -->
+    <div class="panel panel-default border-danger">
+        <div class="panel-body">
+
+            <div class="form-group">
+                <label>No SPP</label>
+                <input class="form-control" name="no_spp" type="text"
+                       value="{{ old('no_spp') }}" placeholder="No SPP">
+                @error('no_spp')
+                <span class="text-danger">* {{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group sp2d-group">
+                <label>File SPP</label>
+                <input type="file" name="file_spp" accept="application/pdf">
+                @error('file_spp')
+                <span class="text-danger">* {{ $message }}</span>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+@endif

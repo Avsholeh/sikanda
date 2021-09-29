@@ -45,6 +45,7 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereSettings($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Dinas|null $dinas
  */
 class User extends \TCG\Voyager\Models\User
 {
@@ -79,4 +80,14 @@ class User extends \TCG\Voyager\Models\User
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function custom_role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function dinas()
+    {
+        return $this->belongsTo(Dinas::class, 'dinas_id');
+    }
 }

@@ -17,8 +17,10 @@
     <div class="page-content edit-add container-fluid">
         <div class="row">
             <div class="col-md-6">
+
+                <!-- Upload dokumen-->
                 <form action="{{ route('upload-dokumen.update', $dokumen->id) }}" method="POST"
-                      enctype="multipart/form-data">
+                      enctype="multipart/form-data" autocomplete="off">
                     @csrf
                     <div class="panel panel-bordered">
                         <div class="panel-heading">

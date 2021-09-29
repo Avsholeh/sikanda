@@ -10,10 +10,31 @@ class DokumenController extends Controller
 {
     public function index($status = null)
     {
+        if (!in_array($status, ['', 'b', 's'])) {
+            abort(404);
+        }
+
+        $dokumens = null;
+
         if(auth()->user()->custom_role->id === 1) {
-            $dokumens = Dokumen::paginate(10);
+
+            if ($status) {
+                $dokumens = Dokumen::where('status', strtoupper($status))->paginate(10);
+            } else {
+                $dokumens = Dokumen::paginate(10);
+            }
+
         } else {
-            $dokumens = Dokumen::where('dinas_id', auth()->user()->dinas->id)->paginate(10);
+
+            if ($status) {
+                $dokumens = Dokumen::where([
+                    'status' => strtoupper($status),
+                    'dinas_id' => auth()->user()->dinas->id
+                ])->paginate(10);
+            } else {
+                $dokumens = Dokumen::where('dinas_id', auth()->user()->dinas->id)->paginate(10);
+            }
+
         }
         return view('vendor.voyager.dokumen.index', [
             'dokumens' => $dokumens,

@@ -31,11 +31,11 @@
                     <li role="presentation" @if(!$status) class="active" @endif>
                         <a href="{{ route('dokumen.index') }}">Semua</a>
                     </li>
-                    <li role="presentation" @if($status === 'belum-tuntas') class="active" @endif>
-                        <a href="{{ route('dokumen.index', 'belum-tuntas') }}">Belum Tuntas</a>
+                    <li role="presentation" @if($status === 'b') class="active" @endif>
+                        <a href="{{ route('dokumen.index', 'b') }}">Belum Tuntas</a>
                     </li>
-                    <li role="presentation" @if($status === 'sudah-tuntas') class="active" @endif>
-                        <a href="{{ route('dokumen.index', 'sudah-tuntas') }}">Sudah Tuntas</a>
+                    <li role="presentation" @if($status === 's') class="active" @endif>
+                        <a href="{{ route('dokumen.index', 's') }}">Sudah Tuntas</a>
                     </li>
                 </ul>
 

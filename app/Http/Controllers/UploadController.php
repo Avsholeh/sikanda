@@ -25,7 +25,7 @@ class UploadController extends Controller
         // validasi input user
         $request->validate([
             'tahun' => 'required|size:4',
-            'no_spp' => 'required|unique:tb_spp,no_spp',
+            'no_spp' => 'required|regex:/^\S*$/u|unique:tb_spp,no_spp',
             'file_spp' => 'required|mimes:pdf|max:10240',
         ]);
 
@@ -65,45 +65,39 @@ class UploadController extends Controller
     public function update(Request $request, Dokumen $dokumen)
     {
         // validate spm form
-//        if ($request->post('spm_uploaded') === '0') {
         if ($request->post('no_spm') or $request->post('file_spm')) {
             $request->validate([
-                'no_spm' => 'required|unique:tb_spm,no_spm',
+                'no_spm' => 'required|regex:/^\S*$/u|unique:tb_spm,no_spm',
                 'file_spm' => 'required|mimes:pdf|max:10240',
             ]);
-            $input = [
+            $dokumen->spm()->create([
                 'no_spm' => $request->post('no_spm'),
                 'file' => base64_encode($request->file('file_spm')),
-            ];
-            $dokumen->spm()->create($input);
+            ]);
         }
 
         // validate sp2d form
         if ($request->post('no_sp2d') or $request->post('file_sp2d')) {
             $request->validate([
-                'no_sp2d' => 'required|unique:tb_sp2d,no_sp2d',
+                'no_sp2d' => 'required|regex:/^\S*$/u|unique:tb_sp2d,no_sp2d',
                 'file_sp2d' => 'required|mimes:pdf|max:10240',
             ]);
-
-            $input = [
+            $dokumen->sp2d()->create([
                 'no_sp2d' => $request->post('no_sp2d'),
                 'file' => base64_encode($request->file('file_sp2d')),
-            ];
-
-            $dokumen->sp2d()->create($input);
+            ]);
         }
+
+        // validate dokumen pendukung form
+
 
         // check status
         $status = (isset($dokumen->spm) and isset($dokumen->sp2d)) ? 'S' : 'B';
         $dokumen->update(['status' => $status]);
-
-        // redirect ke halaman perbarui/edit
-        return redirect()->back();
-//        return redirect()->route('upload-dokumen.edit', $newDokumen->id)->with([
-//            'message' => "SPP telah berhasil ditambahkan",
-//            'alert-type' => 'success',
-//        ]);
-
+        return redirect()->route('dokumen.index')->with([
+            'message' => "Dokumen telah berhasil diperbarui",
+            'alert-type' => 'success',
+        ]);
     }
 
 }

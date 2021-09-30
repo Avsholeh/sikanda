@@ -10,32 +10,41 @@ class DokumenController extends Controller
 {
     public function index($status = null)
     {
-        if (!in_array($status, ['', 'b', 's'])) {
+        if (!in_array($status, ['semua', 'belum-tuntas', 'sudah-tuntas'])) {
             abort(404);
         }
 
-        $dokumens = null;
+        if ($status === 'belum-tuntas') $status = 'b';
+        if ($status === 'sudah-tuntas') $status = 's';
 
-        if(auth()->user()->custom_role->id === 1) {
+        $dokumens = [];
 
-            if ($status) {
-                $dokumens = Dokumen::where('status', strtoupper($status))->paginate(10);
+        if (auth()->user()->custom_role->id === 1) {
+            // dokumen untuk superadmin
+            if (in_array($status, ['b', 's'])) {
+                $dokumens = Dokumen::where('status', strtoupper($status))
+                    ->orderByDesc('created_at')
+                    ->paginate(10);
             } else {
-                $dokumens = Dokumen::paginate(10);
+                $dokumens = Dokumen::orderByDesc('created_at')->paginate(10);;
+
             }
-
         } else {
-
-            if ($status) {
+            // dokumen untuk admin dan user
+            if (in_array($status, ['b', 's'])) {
                 $dokumens = Dokumen::where([
                     'status' => strtoupper($status),
                     'dinas_id' => auth()->user()->dinas->id
-                ])->paginate(10);
+                ])
+                    ->orderByDesc('created_at')
+                    ->paginate(10);;
             } else {
-                $dokumens = Dokumen::where('dinas_id', auth()->user()->dinas->id)->paginate(10);
+                $dokumens = Dokumen::where('dinas_id', auth()->user()->dinas->id)
+                    ->orderByDesc('created_at')
+                    ->paginate(10);;
             }
-
         }
+
         return view('vendor.voyager.dokumen.index', [
             'dokumens' => $dokumens,
             'status' => $status
@@ -56,7 +65,7 @@ class DokumenController extends Controller
     public function deleteSpm(Spm $spm)
     {
         // Check permission
-        $this->authorize('delete', app('App\Models\Dokumen'));
+        $this->authorize('delete', app('App\Models\Spm'));
         $spm->dokumen->update(['status' => 'B']);
         $spm->delete();
         return redirect()->back()->with([
@@ -68,7 +77,7 @@ class DokumenController extends Controller
     public function deleteSp2d(Sp2d $sp2d)
     {
         // Check permission
-        $this->authorize('delete', app('App\Models\Dokumen'));
+        $this->authorize('delete', app('App\Models\Sp2d'));
         $sp2d->dokumen->update(['status' => 'B']);
         $sp2d->delete();
         return redirect()->back()->with([

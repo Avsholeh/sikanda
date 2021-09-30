@@ -48,7 +48,7 @@
 
                                     <div class="form-group">
                                         <label>File SPP <small class="text-danger">*</small></label>
-                                        <input type="file" name="file_spp">
+                                        <input type="file" name="file_spp" accept="application/pdf">
                                         @error('file_spp')
                                         <span class="text-danger">* {{ $message }}</span>
                                         @enderror

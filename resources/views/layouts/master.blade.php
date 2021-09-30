@@ -78,6 +78,10 @@
             /*vertical-align: baseline;*/
             border-radius: .25rem;
         }
+
+        .form-control {
+            font-weight: 500 !important;
+        }
     </style>
 
     @if(!empty(config('voyager.additional_css')))<!-- Additional CSS -->

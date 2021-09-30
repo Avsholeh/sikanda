@@ -52,7 +52,6 @@
         </div>
     </div>
 
-
 @else
     <!-- SPM belum diupload -->
     <div class="panel panel-default border-danger">

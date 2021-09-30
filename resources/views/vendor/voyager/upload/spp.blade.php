@@ -4,14 +4,20 @@
         <div class="panel-body">
             <div class="form-group">
                 <label class="">Tahun</label>
-                <input class="form-control" name="no_spp" type="text"
-                       value="{{ $dokumen->tahun }}" placeholder="No SPP" disabled>
+                <input class="form-control" name="tahun" type="number"
+                       value="{{ $dokumen->tahun }}" placeholder="Tahun" disabled>
+                @error('tahun')
+                <span class="text-danger">* {{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label class="">No SPP</label>
                 <input class="form-control" name="no_spp" type="text"
                        value="{{ $dokumen->spp->no_spp }}" placeholder="No SPP" disabled>
+                @error('no_spp')
+                <span class="text-danger">* {{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">
@@ -25,7 +31,6 @@
     </div>
 
 @else
-
     <!-- SPP belum diupload -->
     <div class="panel panel-default border-danger">
         <div class="panel-body">

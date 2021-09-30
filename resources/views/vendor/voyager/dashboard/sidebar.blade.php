@@ -31,23 +31,36 @@
         </div>
         <div id="adminmenu">
             <admin-menu :items="{{ menu('admin', '_json') }}"></admin-menu>
-
-                <form id="logout" action="{{ route('voyager.logout') }}" method="POST">
-                    @csrf
-                    <ul class="nav navbar-nav">
-                        <li class="">
-                            <a onclick="document.getElementById('logout').submit()"
-                                    href="#logout" style="background-color: #fa2a00; color: #fff">
-                                <span class="icon voyager-power"></span>
-                                <span class="title">Keluar</span>
-                            </a>
-                        </li>
-                    </ul>
-{{--                    <button type="submit" class="btn btn-danger btn-block">--}}
-{{--                        <i class="voyager-power"></i>--}}
-{{--                        Logout--}}
-{{--                    </button>--}}
-                </form>
+            <form id="logout" action="{{ route('voyager.logout') }}" method="POST">
+                @csrf
+                <ul class="nav navbar-nav">
+                    <li class="">
+                        <a href="#" data-toggle="modal" data-target="#logout_modal"
+                           style="background-color: #fa2a00; color: #fff">
+                            <span class="icon voyager-power"></span>
+                            <span class="title">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </form>
         </div>
     </nav>
 </div>
+<!-- Modal -->
+<div class="modal fade modal-danger" id="logout_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><i class="voyager-key"></i>Konfirmasi logout</h4>
+            </div>
+            <div class="modal-body"><h4>Yakin untuk logout dari sistem?</h4></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                <a type="button" class="btn btn-danger" onclick="document.getElementById('logout').submit()"
+                   href="#">Ya, Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ./Modal -->

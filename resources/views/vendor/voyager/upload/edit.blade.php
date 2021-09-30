@@ -9,7 +9,7 @@
 @section('page_header')
     <h1 class="page-title">
         <i class="voyager-upload"></i>
-        Upload Dokumen
+        Upload Dokumen (Perbarui)
     </h1>
 @stop
 
@@ -40,7 +40,7 @@
                         @include('vendor.voyager.upload.sp2d')
                         <!-- ./SP2D -->
 
-                            <button class="btn btn-primary">Simpan</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>
                 </form>
@@ -51,22 +51,22 @@
                         <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Dokumen Pendukung</p>
                     </div>
                     <div class="panel-body">
+                        <!-- dokumen pendukung -->
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <form action="#">
-                                    <div class="form-group">
-                                        <label>Nama Dokumen</label>
-                                        <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen"
-                                               placeholder="Nama Dokumen">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>File Dokumen</label>
-                                        <input type="file" placeholder="File Dokumen">
-                                    </div>
-                                </form>
-                                <button class="btn btn-warning">Tambahkan</button>
+                                <div class="form-group">
+                                    <label>Nama Dokumen</label>
+                                    <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen[]"
+                                           placeholder="Nama Dokumen">
+                                </div>
+                                <div class="form-group">
+                                    <label>File Dokumen</label>
+                                    <input type="file" name="file_dokumen[]" accept="application/pdf">
+                                </div>
                             </div>
                         </div>
+                        <!-- ./dokumen pendukung -->
+                        <button class="btn btn-warning">Tambahkan</button>
                     </div>
                 </div>
             </div>

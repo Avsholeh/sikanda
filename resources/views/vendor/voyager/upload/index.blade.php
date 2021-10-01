@@ -21,7 +21,7 @@
                     @csrf
                     <div class="panel panel-bordered">
                         <div class="panel-heading">
-                            <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Dokumen Utama</p>
+                            <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Form Dokumen Utama</p>
                         </div>
                         <div class="panel-body">
 
@@ -91,7 +91,7 @@
                 <div class="col-md-6">
                     <div class="panel panel-bordered">
                         <div class="panel-heading">
-                            <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Dokumen Pendukung</p>
+                            <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Form Dokumen Pendukung</p>
                         </div>
                         <div class="panel-body">
                             <div class="panel panel-default">

@@ -56,6 +56,11 @@ class Dokumen extends Model
         return Carbon::parse($this->attributes['updated_at'])->translatedFormat('l, d M Y');
     }
 
+    public function pendukung()
+    {
+        return $this->hasMany(Pendukung::class, 'dokumen_id');
+    }
+
     public function dinas()
     {
         return $this->belongsTo(Dinas::class, 'dinas_id');

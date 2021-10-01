@@ -11,7 +11,7 @@ class DokumenController extends Controller
     public function index($status = null)
     {
         if (!in_array($status, ['semua', 'belum-tuntas', 'sudah-tuntas'])) {
-            abort(404);
+            return redirect()->route('dokumen.index', 'semua');
         }
 
         if ($status === 'belum-tuntas') $status = 'b';

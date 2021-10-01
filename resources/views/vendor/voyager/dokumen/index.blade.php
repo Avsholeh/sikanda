@@ -66,7 +66,7 @@
                                                     @if(isset($dokumen->spp->id))
                                                         {{ $dokumen->spp->no_spp }}
                                                     @else
-                                                        <div class="badge bg-danger">
+                                                        <div class="badge bg-info">
                                                             <i class="voyager-x"></i>
                                                         </div>
                                                     @endif
@@ -75,7 +75,7 @@
                                                     @if(isset($dokumen->spm->id))
                                                         {{ $dokumen->spm->no_spm }}
                                                     @else
-                                                        <div class="badge bg-danger">
+                                                        <div class="badge bg-info">
                                                             <i class="voyager-x"></i>
                                                         </div>
                                                     @endif
@@ -84,7 +84,7 @@
                                                     @if(isset($dokumen->sp2d->id))
                                                         {{ $dokumen->sp2d->no_sp2d }}
                                                     @else
-                                                        <div class="badge bg-danger">
+                                                        <div class="badge bg-info">
                                                             <i class="voyager-x"></i>
                                                         </div>
                                                     @endif

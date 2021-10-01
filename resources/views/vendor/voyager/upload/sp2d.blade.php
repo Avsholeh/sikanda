@@ -16,10 +16,10 @@
                     Tampilkan
                 </button>
 
-                <span class="form-group pull-right" data-toggle="tooltip" title="Hapus">
+                <span class="form-group pull-right" title="Hapus">
                 <button type="button" class="btn btn-danger text-danger"
                         data-toggle="modal" data-target="#sp2d_delete_modal" data-placement="left">
-                    <i class="voyager-trash"></i> Hapus
+                    <i class="voyager-trash"></i>
                 </button>
             </span>
 

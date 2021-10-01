@@ -17,14 +17,13 @@
     <div class="page-content edit-add container-fluid">
         <div class="row">
             <div class="col-md-6">
-
                 <!-- Upload dokumen-->
                 <form action="{{ route('upload-dokumen.update', $dokumen->id) }}" method="POST"
                       enctype="multipart/form-data" autocomplete="off">
                     @csrf
                     <div class="panel panel-bordered">
                         <div class="panel-heading">
-                            <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Dokumen Utama</p>
+                            <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Form Dokumen Utama</p>
                         </div>
                         <div class="panel-body">
 
@@ -45,31 +44,9 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-6">
-                <div class="panel panel-bordered">
-                    <div class="panel-heading">
-                        <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Dokumen Pendukung</p>
-                    </div>
-                    <div class="panel-body">
-                        <!-- dokumen pendukung -->
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="form-group">
-                                    <label>Nama Dokumen</label>
-                                    <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen[]"
-                                           placeholder="Nama Dokumen">
-                                </div>
-                                <div class="form-group">
-                                    <label>File Dokumen</label>
-                                    <input type="file" name="file_dokumen[]" accept="application/pdf">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ./dokumen pendukung -->
-                        <button class="btn btn-warning">Tambahkan</button>
-                    </div>
-                </div>
-            </div>
+            <livewire:dokumen-pendukung dokumenId="{{ $dokumen->id }}"/>
+
+
         </div>
     </div>
 

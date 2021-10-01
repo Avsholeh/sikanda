@@ -14,12 +14,6 @@ class UploadController extends Controller
         return view('vendor.voyager.upload.index');
     }
 
-    public function image_base64($requestFile) // $request->file('nama_file')
-    {
-        $image = Image::make($requestFile->path())->encode('png');
-        return base64_encode($image);
-    }
-
     public function upload(Request $request)
     {
         // validasi input user

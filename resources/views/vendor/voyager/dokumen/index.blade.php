@@ -91,13 +91,9 @@
                                                 </td>
                                                 <td>
                                                     @if($dokumen->status === 'S')
-                                                        <div class="badge bg-success">
-                                                            <i class="voyager-check"></i>
-                                                        </div>
+                                                        <div class="badge bg-success">Sudah Tuntas</div>
                                                     @else
-                                                        <div class="badge bg-danger">
-                                                            <i class="voyager-x"></i>
-                                                        </div>
+                                                        <div class="badge bg-danger">Belum Tuntas</div>
                                                     @endif
                                                 </td>
                                                 <td class="hidden-xs hidden-sm">
@@ -112,20 +108,17 @@
                                                            href="#"
                                                            title="Hapus"
                                                            class="btn btn-sm btn-danger pull-right delete">
-                                                            <i class="voyager-trash"></i> <span
-                                                                    class="hidden-xs hidden-sm">Hapus</span>
+                                                            <i class="voyager-trash"></i>
                                                         </a>
                                                     @endcan
                                                     <a href="{{ route('upload-dokumen.edit', $dokumen->id) }}"
                                                        title="Ubah"
                                                        class="btn btn-sm btn-primary pull-right edit">
-                                                        <i class="voyager-edit"></i> <span
-                                                                class="hidden-xs hidden-sm">Perbarui</span>
+                                                        <i class="voyager-edit"></i>
                                                     </a>
                                                     <a href="#" title="Lihat" disabled
                                                        class="btn btn-sm btn-warning pull-right view">
-                                                        <i class="voyager-eye"></i> <span
-                                                                class="hidden-xs hidden-sm">Lihat</span>
+                                                        <i class="voyager-eye"></i>
                                                     </a>
                                                 </td>
                                             </tr>

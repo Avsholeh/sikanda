@@ -44,8 +44,7 @@
                     </div>
                 </form>
             </div>
-            <livewire:dokumen-pendukung dokumenId="{{ $dokumen->id }}"/>
-
+            <livewire:pendukung-list dokumenId="{{ $dokumen->id }}"/>
 
         </div>
     </div>

@@ -82,6 +82,11 @@
         .form-control {
             font-weight: 500 !important;
         }
+
+        .vertical-align {
+            display: flex;
+            align-items: center;
+        }
     </style>
 
     @if(!empty(config('voyager.additional_css')))<!-- Additional CSS -->

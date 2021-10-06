@@ -35,15 +35,9 @@ Route::group(['prefix' => '/'], function () {
     Route::get('dokumen/{status?}', [\App\Http\Controllers\DokumenController::class, 'index'])
         ->name('dokumen.index');
 
+    // delete dokumen
     Route::get('dokumen/{dokumen}/delete', [\App\Http\Controllers\DokumenController::class, 'delete'])
         ->name('dokumen.delete');
-
-//    Route::delete('dokumen/{status?}', [\App\Http\Controllers\DokumenController::class, 'delete'])
-//        ->name('dokumen.delete');
-
-    // delete spm
-//    Route::get('spp/{spp}/delete', [\App\Http\Controllers\DokumenController::class, 'deleteSpp'])
-//        ->name('dokumen.spp.delete');
 
     // delete spm
     Route::get('spm/{spm}/delete', [\App\Http\Controllers\DokumenController::class, 'deleteSpm'])
@@ -52,4 +46,11 @@ Route::group(['prefix' => '/'], function () {
     // delete sp2d
     Route::get('sp2d/{sp2d}/delete', [\App\Http\Controllers\DokumenController::class, 'deleteSp2d'])
         ->name('dokumen.sp2d.delete');
+
+    // ================= LAPORAN ================= //
+
+    Route::get('laporan', [\App\Http\Controllers\LaporanController::class, 'index'])
+        ->name('laporan.index');
+
+
 });

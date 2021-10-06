@@ -52,5 +52,8 @@ Route::group(['prefix' => '/'], function () {
     Route::get('laporan', [\App\Http\Controllers\LaporanController::class, 'index'])
         ->name('laporan.index');
 
+    Route::post('laporan', [\App\Http\Controllers\LaporanController::class, 'pencarian'])
+        ->name('laporan.pencarian');
+
 
 });

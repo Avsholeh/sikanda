@@ -73,9 +73,6 @@
             display: inline-block;
             padding: .35em .65em;
             color: #fff;
-            /*text-align: center;*/
-            /*white-space: nowrap;*/
-            /*vertical-align: baseline;*/
             border-radius: .25rem;
         }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dokumen;
 use App\Models\Sp2d;
 use App\Models\Spm;
+use App\Models\User;
 
 class DokumenController extends Controller
 {
@@ -19,7 +20,7 @@ class DokumenController extends Controller
 
         $dokumens = [];
 
-        if (auth()->user()->custom_role->id === 1) {
+        if (auth()->user()->custom_role->id === User::$ROLE_SUPERADMIN) {
             // dokumen untuk superadmin
             if (in_array($status, ['b', 's'])) {
                 $dokumens = Dokumen::where('status', strtoupper($status))
@@ -27,7 +28,6 @@ class DokumenController extends Controller
                     ->paginate(10);
             } else {
                 $dokumens = Dokumen::orderByDesc('created_at')->paginate(10);;
-
             }
         } else {
             // dokumen untuk admin dan user

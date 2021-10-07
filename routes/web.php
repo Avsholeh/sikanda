@@ -16,44 +16,45 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => '/'], function () {
     Voyager::routes();
 
-    // ================= UPLOAD DOKUMEN ================= //
+    Route::middleware(['admin.user'])->group(function () {
+        // ================= UPLOAD DOKUMEN ================= //
 
-    Route::get('upload-dokumen', [\App\Http\Controllers\UploadController::class, 'index'])
-        ->name('upload-dokumen.index');
+        Route::get('upload-dokumen', [\App\Http\Controllers\UploadController::class, 'index'])
+            ->name('upload-dokumen.index');
 
-    Route::post('upload-dokumen', [\App\Http\Controllers\UploadController::class, 'upload'])
-        ->name('upload-dokumen.store');
+        Route::post('upload-dokumen', [\App\Http\Controllers\UploadController::class, 'upload'])
+            ->name('upload-dokumen.store');
 
-    Route::get('upload-dokumen/{dokumen}', [\App\Http\Controllers\UploadController::class, 'edit'])
-        ->name('upload-dokumen.edit');
+        Route::get('upload-dokumen/{dokumen}', [\App\Http\Controllers\UploadController::class, 'edit'])
+            ->name('upload-dokumen.edit');
 
-    Route::post('upload-dokumen/{dokumen}', [\App\Http\Controllers\UploadController::class, 'update'])
-        ->name('upload-dokumen.update');
+        Route::post('upload-dokumen/{dokumen}', [\App\Http\Controllers\UploadController::class, 'update'])
+            ->name('upload-dokumen.update');
 
-    // ================= DOKUMEN ================= //
+        // ================= DOKUMEN ================= //
 
-    Route::get('dokumen/{status?}', [\App\Http\Controllers\DokumenController::class, 'index'])
-        ->name('dokumen.index');
+        Route::get('dokumen/{status?}', [\App\Http\Controllers\DokumenController::class, 'index'])
+            ->name('dokumen.index');
 
-    // delete dokumen
-    Route::get('dokumen/{dokumen}/delete', [\App\Http\Controllers\DokumenController::class, 'delete'])
-        ->name('dokumen.delete');
+        // delete dokumen
+        Route::get('dokumen/{dokumen}/delete', [\App\Http\Controllers\DokumenController::class, 'delete'])
+            ->name('dokumen.delete');
 
-    // delete spm
-    Route::get('spm/{spm}/delete', [\App\Http\Controllers\DokumenController::class, 'deleteSpm'])
-        ->name('dokumen.spm.delete');
+        // delete spm
+        Route::get('spm/{spm}/delete', [\App\Http\Controllers\DokumenController::class, 'deleteSpm'])
+            ->name('dokumen.spm.delete');
 
-    // delete sp2d
-    Route::get('sp2d/{sp2d}/delete', [\App\Http\Controllers\DokumenController::class, 'deleteSp2d'])
-        ->name('dokumen.sp2d.delete');
+        // delete sp2d
+        Route::get('sp2d/{sp2d}/delete', [\App\Http\Controllers\DokumenController::class, 'deleteSp2d'])
+            ->name('dokumen.sp2d.delete');
 
-    // ================= LAPORAN ================= //
+        // ================= LAPORAN ================= //
 
-    Route::get('laporan', [\App\Http\Controllers\LaporanController::class, 'index'])
-        ->name('laporan.index');
+        Route::get('laporan', [\App\Http\Controllers\LaporanController::class, 'index'])
+            ->name('laporan.index');
 
-    Route::post('laporan', [\App\Http\Controllers\LaporanController::class, 'pencarian'])
-        ->name('laporan.pencarian');
+        Route::post('laporan', [\App\Http\Controllers\LaporanController::class, 'pencarian'])
+            ->name('laporan.pencarian');
 
-
+    });
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dokumen;
+use App\Models\Pendukung;
 use App\Models\Sp2d;
 use App\Models\Spm;
 use App\Models\Spp;
@@ -52,22 +53,6 @@ class DokumenController extends Controller
         ]);
     }
 
-    public function pdf(Request $request)
-    {
-        $jenisDokumen = $request->post('jenis_dokumen');
-        $noDokumen = $request->post('no_dokumen');
-        switch ($jenisDokumen) {
-            case 'spp':
-                return Spp::where('no_spp', $noDokumen)->first();
-            case 'spm':
-                return Spm::where('no_spm', $noDokumen)->first();
-            case 'sp2d':
-                return Sp2d::where('no_sp2d', $noDokumen)->first();
-            default:
-                abort(404);
-        }
-    }
-
     public function delete(Dokumen $dokumen)
     {
         // Check permission
@@ -101,5 +86,10 @@ class DokumenController extends Controller
             'message' => "SP2D telah berhasil dihapus",
             'alert-type' => 'success',
         ]);
+    }
+
+    public function deletePendukung(Pendukung $pendukung)
+    {
+        // @TODO delete dokumen pendukung
     }
 }

@@ -61,7 +61,6 @@
                         </div>
                         <div class="modal-body" style="padding: .3em">
                             <iframe id="modal-file-dokumen" src="" height="600" width="100%"></iframe>
-                            {{--                                <canvas id="pdf_renderer"></canvas>--}}
                         </div>
                     </div>
                 </div>
@@ -73,27 +72,29 @@
 @stop
 
 @push('javascript')
-    {{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>--}}
-    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script>
         $(function () {
-            let baseSrc = "data:application/pdf;base64,";
-            let fileDokumen = "";
+            // let baseSrc = "data:application/pdf;base64,";
+            let baseSrc = "{{route('voyager.dashboard')}}/ViewerJS/#{{route('voyager.dashboard')}}/viewer/";
             $('[data-toggle="tooltip"]').tooltip()
             $(".tampilkan").click(function (e) {
+                let dataId = $(e.target).data('id');
                 let dataNo = $(e.target).data('no');
                 let dataJenis = $(e.target).data('jenis');
-                let request = $.ajax({
-                    url: "{{ route('viewer.pdf') }}",
-                    method: "POST",
-                    data: {jenis_dokumen: dataJenis, no_dokumen: dataNo}
-                })
-                request.done(function (response, textStatus, jqXHR) {
-                    // $("#modal-file-dokumen").attr('src', baseSrc + response.file);
-                    // $("#modal-file-dokumen").attr('src', baseSrc + response.file);
-                });
-                request.fail(function (jqXHR, textStatus, errorThrown) {
 
+                $("#modal-file-dokumen").attr('src', '');
+
+                let req = $.ajax({
+                    url: "{{ route('viewer.generate') }}",
+                    method: "POST",
+                    data: { dokumen_id: dataId, jenis_dokumen: dataJenis }
+                })
+                req.done(function (response, textStatus, jqXHR) {
+                    console.log(response);
+                    $("#modal-file-dokumen").attr('src', baseSrc + dataId + '/' + dataJenis + '/' + response);
+                });
+                req.fail(function (jqXHR, textStatus, errorThrown) {
+                    console.log(errorThrown)
                 })
                 $("#modal-title-dokumen").text(dataNo);
             });

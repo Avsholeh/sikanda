@@ -36,6 +36,9 @@ Route::group(['prefix' => '/'], function () {
         Route::get('dokumen/{status?}', [\App\Http\Controllers\DokumenController::class, 'index'])
             ->name('dokumen.index');
 
+        Route::get('viewer/pdf', [\App\Http\Controllers\PDFViewerController::class, 'index'])
+            ->name('viewer.pdf');
+
         // delete dokumen
         Route::get('dokumen/{dokumen}/delete', [\App\Http\Controllers\DokumenController::class, 'delete'])
             ->name('dokumen.delete');
@@ -55,6 +58,9 @@ Route::group(['prefix' => '/'], function () {
 
         Route::post('laporan', [\App\Http\Controllers\LaporanController::class, 'pencarian'])
             ->name('laporan.pencarian');
+
+        Route::post('viewer', [\App\Http\Controllers\PDFViewerController::class, 'index'])
+            ->name('viewer.index');
 
     });
 });

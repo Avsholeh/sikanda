@@ -56,9 +56,6 @@
                                         @foreach($dokumens as $dokumen)
                                             <tr style="cursor: pointer">
                                                 <td>{{ $loop->iteration }}</td>
-                                                {{--                                                <td class="hidden-xs hidden-sm">--}}
-                                                {{--                                                    <div>{{ $dokumen->dinas->nm_dinas ?? '-' }}</div>--}}
-                                                {{--                                                </td>--}}
                                                 <td class="hidden-xs hidden-sm">
                                                     <div>{{ $dokumen->tahun }}</div>
                                                 </td>
@@ -66,27 +63,21 @@
                                                     @if(isset($dokumen->spp->id))
                                                         {{ $dokumen->spp->no_spp }}
                                                     @else
-                                                        <div class="badge bg-info">
-                                                            <i class="voyager-x"></i>
-                                                        </div>
+                                                        <span>-</span>
                                                     @endif
                                                 </td>
                                                 <td class="hidden-xs hidden-sm">
                                                     @if(isset($dokumen->spm->id))
                                                         {{ $dokumen->spm->no_spm }}
                                                     @else
-                                                        <div class="badge bg-info">
-                                                            <i class="voyager-x"></i>
-                                                        </div>
+                                                        <span>-</span>
                                                     @endif
                                                 </td>
                                                 <td class="hidden-xs hidden-sm">
                                                     @if(isset($dokumen->sp2d->id))
                                                         {{ $dokumen->sp2d->no_sp2d }}
                                                     @else
-                                                        <div class="badge bg-info">
-                                                            <i class="voyager-x"></i>
-                                                        </div>
+                                                        <span>-</span>
                                                     @endif
                                                 </td>
                                                 <td>
@@ -106,11 +97,9 @@
                                                     @if($dokumen->status === 'B')
                                                         @can('delete', $dokumen)
                                                             <a data-toggle="modal" data-target="#dokumen_delete_modal"
-                                                               href="#"
-                                                               title="Hapus"
-                                                               class="btn btn-sm btn-danger pull-right delete">
+                                                               href="#" title="Hapus" class="btn btn-sm btn-danger pull-right delete">
                                                                 <i class="voyager-trash"></i>
-                                                                <span class="hidden-xs hidden-sm">Hapus</span>
+{{--                                                                <span class="hidden-xs hidden-sm">Hapus</span>--}}
                                                             </a>
                                                         @endcan
                                                     @endif
@@ -118,7 +107,7 @@
                                                        title="Ubah"
                                                        class="btn btn-sm btn-primary pull-right edit">
                                                         <i class="voyager-edit"></i>
-                                                        <span class="hidden-xs hidden-sm">Ubah</span>
+{{--                                                        <span class="hidden-xs hidden-sm">Ubah</span>--}}
                                                     </a>
                                                     {{--<a href="#" title="Lihat" disabled
                                                        class="btn btn-sm btn-warning pull-right view">

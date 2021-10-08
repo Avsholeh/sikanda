@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Dokumen;
 use App\Models\Sp2d;
 use App\Models\Spm;
+use App\Models\Spp;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class DokumenController extends Controller
 {
@@ -44,11 +46,26 @@ class DokumenController extends Controller
                     ->paginate(10);;
             }
         }
-
         return view('vendor.voyager.dokumen.index', [
             'dokumens' => $dokumens,
             'status' => $status
         ]);
+    }
+
+    public function pdf(Request $request)
+    {
+        $jenisDokumen = $request->post('jenis_dokumen');
+        $noDokumen = $request->post('no_dokumen');
+        switch ($jenisDokumen) {
+            case 'spp':
+                return Spp::where('no_spp', $noDokumen)->first();
+            case 'spm':
+                return Spm::where('no_spm', $noDokumen)->first();
+            case 'sp2d':
+                return Sp2d::where('no_sp2d', $noDokumen)->first();
+            default:
+                abort(404);
+        }
     }
 
     public function delete(Dokumen $dokumen)

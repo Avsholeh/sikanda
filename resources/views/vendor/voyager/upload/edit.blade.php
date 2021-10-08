@@ -44,18 +44,61 @@
                     </div>
                 </form>
             </div>
+
             <livewire:pendukung-list dokumenId="{{ $dokumen->id }}"/>
 
+            <!-- Modal -->
+            <div class="modal fade modal-primary" id="pdf_modal" data-backdrop="static">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title"><i class="voyager-documentation"></i>
+                                <span id="modal-title-dokumen"></span>
+                            </h4>
+                        </div>
+                        <div class="modal-body" style="padding: .3em">
+                            <iframe id="modal-file-dokumen" src="" height="600" width="100%"></iframe>
+                            {{--                                <canvas id="pdf_renderer"></canvas>--}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./Modal -->
         </div>
     </div>
 
 @stop
 
 @push('javascript')
+    {{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>--}}
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script>
         $(function () {
+            let baseSrc = "data:application/pdf;base64,";
+            let fileDokumen = "";
             $('[data-toggle="tooltip"]').tooltip()
-        })
+            $(".tampilkan").click(function (e) {
+                let dataNo = $(e.target).data('no');
+                let dataJenis = $(e.target).data('jenis');
+                let request = $.ajax({
+                    url: "{{ route('viewer.pdf') }}",
+                    method: "POST",
+                    data: {jenis_dokumen: dataJenis, no_dokumen: dataNo}
+                })
+                request.done(function (response, textStatus, jqXHR) {
+                    // $("#modal-file-dokumen").attr('src', baseSrc + response.file);
+                    // $("#modal-file-dokumen").attr('src', baseSrc + response.file);
+                });
+                request.fail(function (jqXHR, textStatus, errorThrown) {
+
+                })
+                $("#modal-title-dokumen").text(dataNo);
+            });
+        });
+
     </script>
 @endpush
 

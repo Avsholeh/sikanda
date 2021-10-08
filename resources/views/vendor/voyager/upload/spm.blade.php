@@ -12,7 +12,8 @@
             <div class="form-group">
                 <label>File SPM</label>
                 <br>
-                <button class="btn btn-sm btn-success"><i class="voyager-file-text"></i>
+                <button type="button" onclick="document.getElementById('form_spm').submit()"
+                        class="btn btn-sm btn-success"><i class="voyager-file-text"></i>
                     Tampilkan
                 </button>
 
@@ -56,7 +57,6 @@
     <!-- SPM belum diupload -->
     <div class="panel panel-default border-danger">
         <div class="panel-body">
-
             <div class="form-group">
                 <label>No SPM</label>
                 <input class="form-control" name="no_spm" type="text"

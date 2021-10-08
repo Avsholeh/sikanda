@@ -41,7 +41,7 @@ class UploadController extends Controller
         Spp::create([
             'dokumen_id' => $newDokumen->id,
             'no_spp' => $request->post('no_spp'),
-            'file' => base64_encode($request->post('file_spp')),
+            'file' =>  $this->pdfEncode($request->file('file_spp')),
         ]);
 
         // redirect ke halaman perbarui/edit
@@ -66,7 +66,7 @@ class UploadController extends Controller
             ]);
             $dokumen->spm()->create([
                 'no_spm' => $request->post('no_spm'),
-                'file' => base64_encode($request->file('file_spm')),
+                'file' => $this->pdfEncode($request->file('file_spm')),
             ]);
         }
 
@@ -78,12 +78,12 @@ class UploadController extends Controller
             ]);
             $dokumen->sp2d()->create([
                 'no_sp2d' => $request->post('no_sp2d'),
-                'file' => base64_encode($request->file('file_sp2d')),
+                'file' => $this->pdfEncode($request->file('file_sp2d')),
             ]);
         }
 
         // validate dokumen pendukung form
-
+        // @TODO tambah validasi dokumen pendukung
 
         // check status
         $status = (isset($dokumen->spm) and isset($dokumen->sp2d)) ? 'S' : 'B';
@@ -92,6 +92,11 @@ class UploadController extends Controller
             'message' => "Dokumen telah berhasil diperbarui",
             'alert-type' => 'success',
         ]);
+    }
+
+    private function pdfEncode($requestFile)
+    {
+        return base64_encode(file_get_contents($requestFile->path()));
     }
 
 }

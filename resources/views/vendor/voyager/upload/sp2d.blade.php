@@ -12,7 +12,8 @@
             <div class="form-group">
                 <label>File SP2D</label>
                 <br>
-                <button class="btn btn-sm btn-success"><i class="voyager-file-text"></i>
+                <button type="button" onclick="document.getElementById('form_sp2d').submit()"
+                        class="btn btn-sm btn-success"><i class="voyager-file-text"></i>
                     Tampilkan
                 </button>
 

@@ -137,6 +137,11 @@
       <path value="$PROJECT_DIR$/vendor/larapack/voyager-hooks" />
       <path value="$PROJECT_DIR$/vendor/larapack/hooks" />
       <path value="$PROJECT_DIR$/vendor/livewire/livewire" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-dompdf" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
     </include_path>
   </component>
   <component name="ProjectId" id="1tW9wa6p3T4rd7uXpyQUzP0CpB4" />
@@ -147,7 +152,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/storage/app/public/settings" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -157,11 +162,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\projects\sikanda\public" />
       <recent name="D:\projects\sikanda\storage\app\public\settings" />
       <recent name="D:\projects\sikanda\resources\views\vendor\voyager\upload" />
       <recent name="D:\projects\sikanda\resources\views\vendor\voyager\dashboard" />
       <recent name="D:\projects\sikanda\resources\views\vendor\voyager" />
-      <recent name="D:\projects\sikanda\app\Models" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\projects\sikanda\resources\views\layouts" />

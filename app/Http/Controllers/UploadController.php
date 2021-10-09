@@ -20,7 +20,7 @@ class UploadController extends Controller
         $request->validate([
             'tahun' => 'required|size:4',
             'no_spp' => 'required|regex:/^\S*$/u|unique:tb_spp,no_spp',
-            'file_spp' => 'required|mimes:pdf|max:10240',
+            'file_spp' => 'required|max:' . (setting('dokumen.max_upload_size') * 1024) . '|mimes:pdf',
         ]);
 
         // set dinas sesuai user kecuali superadmin
@@ -62,7 +62,7 @@ class UploadController extends Controller
         if ($request->post('no_spm') or $request->post('file_spm')) {
             $request->validate([
                 'no_spm' => 'required|regex:/^\S*$/u|unique:tb_spm,no_spm',
-                'file_spm' => 'required|mimes:pdf|max:10240',
+                'file_spm' => 'required|max:' . (setting('dokumen.max_upload_size') * 1024) . '|mimes:pdf',
             ]);
             $dokumen->spm()->create([
                 'no_spm' => $request->post('no_spm'),
@@ -74,7 +74,7 @@ class UploadController extends Controller
         if ($request->post('no_sp2d') or $request->post('file_sp2d')) {
             $request->validate([
                 'no_sp2d' => 'required|regex:/^\S*$/u|unique:tb_sp2d,no_sp2d',
-                'file_sp2d' => 'required|mimes:pdf|max:10240',
+                'file_sp2d' => 'required|max:' . (setting('dokumen.max_upload_size') * 1024) . '|mimes:pdf',
             ]);
             $dokumen->sp2d()->create([
                 'no_sp2d' => $request->post('no_sp2d'),

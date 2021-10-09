@@ -27,6 +27,7 @@ class PendukungList extends Component
     public function mount()
     {
         $this->dokumens = Dokumen::find($this->dokumenId);
+        $this->rules['fileDokumen'] = 'required|max:' . (setting('dokumen.max_upload_size') * 1024) . '|mimes:pdf';
     }
 
     public function updated()

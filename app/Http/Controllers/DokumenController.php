@@ -91,5 +91,13 @@ class DokumenController extends Controller
     public function deletePendukung(Pendukung $pendukung)
     {
         // @TODO delete dokumen pendukung
+        // Check permission
+        $this->authorize('delete', app('App\Models\Pendukung'));
+        $pendukung->dokumen->update(['status' => 'B']);
+        $pendukung->delete();
+        return redirect()->back()->with([
+            'message' => "Pendukung telah berhasil dihapus",
+            'alert-type' => 'success',
+        ]);
     }
 }

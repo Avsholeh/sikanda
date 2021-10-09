@@ -25,8 +25,7 @@
                 <br>
                 <button type="button" data-toggle="modal" data-target="#pdf_modal"
                         data-jenis="spp" data-id="{{ $dokumen->spp->id }}" data-no="{{ $dokumen->spp->no_spp }}"
-                        class="btn btn-sm btn-success tampilkan">
-                    <i class="voyager-file-text"></i> Tampilkan
+                        class="btn btn-sm btn-success tampilkan"><i class="voyager-file-text"></i> Tampilkan
                 </button>
             </div>
         </div>

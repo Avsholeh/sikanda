@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pendukung;
 use App\Models\Sp2d;
 use App\Models\Spm;
 use App\Models\Spp;
@@ -24,6 +25,9 @@ class ViewerController extends Controller
                 break;
             case 'sp2d':
                 $document =  Sp2d::where('id', $dokumenId)->first();
+                break;
+            case 'pendukung':
+                $document =  Pendukung::where('id', $dokumenId)->first();
                 break;
         }
         $data = base64_decode($document->file);

@@ -12,8 +12,9 @@
             <div class="form-group">
                 <label>File SPM</label>
                 <br>
-                <button type="button" onclick="document.getElementById('form_spm').submit()"
-                        class="btn btn-sm btn-success"><i class="voyager-file-text"></i>
+                <button type="button" data-toggle="modal" data-target="#pdf_modal"
+                        data-jenis="spm" data-id="{{ $dokumen->spm->id }}" data-no="{{ $dokumen->spm->no_spm }}"
+                        class="btn btn-sm btn-success tampilkan"><i class="voyager-file-text"></i>
                     Tampilkan
                 </button>
 

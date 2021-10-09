@@ -12,17 +12,18 @@
             <div class="form-group">
                 <label>File SP2D</label>
                 <br>
-                <button type="button" onclick="document.getElementById('form_sp2d').submit()"
-                        class="btn btn-sm btn-success"><i class="voyager-file-text"></i>
-                    Tampilkan
+
+                <button type="button" data-toggle="modal" data-target="#pdf_modal"
+                        data-jenis="sp2d" data-id="{{ $dokumen->sp2d->id }}" data-no="{{ $dokumen->sp2d->no_sp2d }}"
+                        class="btn btn-sm btn-success tampilkan"><i class="voyager-file-text"></i> Tampilkan
                 </button>
 
                 <span class="form-group pull-right" title="Hapus">
-                <button type="button" class="btn btn-danger text-danger"
-                        data-toggle="modal" data-target="#sp2d_delete_modal" data-placement="left">
-                    <i class="voyager-trash"></i>
-                </button>
-            </span>
+                    <button type="button" class="btn btn-danger text-danger"
+                            data-toggle="modal" data-target="#sp2d_delete_modal" data-placement="left">
+                        <i class="voyager-trash"></i>
+                    </button>
+                </span>
 
                 <!-- Modal -->
                 <div class="modal fade modal-danger" id="sp2d_delete_modal">

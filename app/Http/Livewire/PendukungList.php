@@ -15,6 +15,7 @@ class PendukungList extends Component
     public $dokumens;
     public $namaDokumen;
     public $fileDokumen;
+    public $canTambahkan;
 
     protected $rules = [
         'namaDokumen' => 'required',
@@ -26,6 +27,11 @@ class PendukungList extends Component
     public function mount()
     {
         $this->dokumens = Dokumen::find($this->dokumenId);
+    }
+
+    public function updated()
+    {
+        if ($this->namaDokumen && $this->fileDokumen) $this->canTambahkan = true;
     }
 
     public function tambahkan()
@@ -42,7 +48,7 @@ class PendukungList extends Component
             Pendukung::create([
                 'dokumen_id' => $this->dokumenId,
                 'nama_dokumen' => $this->namaDokumen,
-                'file' => base64_encode($this->fileDokumen),
+                'file' => $this->pdfEncode($this->fileDokumen),
             ]);
         } else {
             $this->errorNamaDokumen = "Nama dokumen tidak boleh sama.";
@@ -50,6 +56,11 @@ class PendukungList extends Component
 
         $this->mount();
         $this->reset(['namaDokumen', 'fileDokumen']);
+    }
+
+    private function pdfEncode($requestFile)
+    {
+        return base64_encode(file_get_contents($requestFile->path()));
     }
 
     public function render()

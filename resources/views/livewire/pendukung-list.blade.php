@@ -11,14 +11,14 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <label>Nama Dokumen</label>
-                            <input wire:model="namaDokumen" type="text" class="form-control"
+                            <input wire:model.lazy="namaDokumen" type="text" class="form-control"
                                    placeholder="Nama Dokumen">
                             @error('namaDokumen')<span class="text-danger">* {{ $message }}</span>@enderror
                             @if($errorNamaDokumen)<span class="text-danger">* {{ $errorNamaDokumen }}</span>@endif
                         </div>
                         <div class="form-group">
                             <label>File Dokumen</label>
-                            <input wire:model="fileDokumen" type="file" accept="application/pdf">
+                            <input wire:model.lazy="fileDokumen" type="file" accept="application/pdf">
                             @error('fileDokumen')
                             <span class="text-danger">* {{ $message }}</span>
                             @enderror
@@ -26,7 +26,10 @@
                     </div>
                 </div>
                 <!-- ./dokumen pendukung -->
-                <button wire:click="tambahkan" class="btn btn-warning">Tambahkan</button>
+                <button wire:click="tambahkan"
+                        class="btn btn-@if(!$canTambahkan){{ 'default' }}@else{{ 'warning' }}@endif"
+                @if(!$canTambahkan){{ "disabled='disabled'" }}@endif>Tambahkan
+                </button>
                 <span wire:loading wire:target="tambahkan">Sedang menambahkan ....</span>
             </div>
         </div>

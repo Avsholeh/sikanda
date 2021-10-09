@@ -90,7 +90,6 @@
                     data: { dokumen_id: dataId, jenis_dokumen: dataJenis }
                 })
                 req.done(function (response, textStatus, jqXHR) {
-                    console.log(response);
                     $("#modal-file-dokumen").attr('src', baseSrc + dataId + '/' + dataJenis + '/' + response);
                 });
                 req.fail(function (jqXHR, textStatus, errorThrown) {

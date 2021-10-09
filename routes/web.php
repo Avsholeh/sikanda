@@ -56,6 +56,10 @@ Route::group(['prefix' => '/'], function () {
         Route::get('sp2d/{sp2d}/delete', [\App\Http\Controllers\DokumenController::class, 'deleteSp2d'])
             ->name('dokumen.sp2d.delete');
 
+        // delete pendukung
+        Route::get('pendukung/{pendukung}/delete', [\App\Http\Controllers\DokumenController::class, 'deletePendukung'])
+            ->name('dokumen.pendukung.delete');
+
         // ================= VIEWER ================= //
 
         Route::post('viewer/generate', [\App\Http\Controllers\ViewerController::class, 'generate'])

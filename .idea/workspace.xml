@@ -152,7 +152,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/vendor/voyager/dashboard" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -162,10 +162,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\projects\sikanda\resources\views\vendor\voyager\dashboard" />
       <recent name="D:\projects\sikanda\public" />
       <recent name="D:\projects\sikanda\storage\app\public\settings" />
       <recent name="D:\projects\sikanda\resources\views\vendor\voyager\upload" />
-      <recent name="D:\projects\sikanda\resources\views\vendor\voyager\dashboard" />
       <recent name="D:\projects\sikanda\resources\views\vendor\voyager" />
     </key>
     <key name="MoveFile.RECENT_KEYS">

@@ -38,4 +38,9 @@ class Pendukung extends Model
     {
         return Carbon::parse($this->attributes['updated_at'])->translatedFormat('l, d M Y');
     }
+
+    public function dokumen()
+    {
+        return $this->belongsTo(Dokumen::class, 'dokumen_id');
+    }
 }

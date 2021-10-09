@@ -94,20 +94,19 @@
                                                     <div>{{ $dokumen->updated_at }}</div>
                                                 </td>
                                                 <td class="no-sort no-click bread-actions">
-                                                    @if($dokumen->status === 'B')
-                                                        @can('delete', $dokumen)
-                                                            <a data-toggle="modal" data-target="#dokumen_delete_modal"
-                                                               href="#" title="Hapus" class="btn btn-sm btn-danger pull-right delete">
-                                                                <i class="voyager-trash"></i>
-{{--                                                                <span class="hidden-xs hidden-sm">Hapus</span>--}}
-                                                            </a>
-                                                        @endcan
-                                                    @endif
+                                                    @can('delete', $dokumen)
+                                                        <a data-toggle="modal" data-target="#dokumen_delete_modal"
+                                                           href="#" title="Hapus"
+                                                           class="btn btn-sm btn-danger pull-right delete">
+                                                            <i class="voyager-trash"></i>
+                                                            {{--<span class="hidden-xs hidden-sm">Hapus</span>--}}
+                                                        </a>
+                                                    @endcan
                                                     <a href="{{ route('upload-dokumen.edit', $dokumen->id) }}"
                                                        title="Ubah"
                                                        class="btn btn-sm btn-primary pull-right edit">
                                                         <i class="voyager-edit"></i>
-{{--                                                        <span class="hidden-xs hidden-sm">Ubah</span>--}}
+                                                        {{--<span class="hidden-xs hidden-sm">Ubah</span>--}}
                                                     </a>
                                                     {{--<a href="#" title="Lihat" disabled
                                                        class="btn btn-sm btn-warning pull-right view">

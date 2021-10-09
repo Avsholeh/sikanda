@@ -29,7 +29,7 @@
                                                 <span class="badge bg-danger">Belum Tuntas</span>
                                             </p>
                                         @endif
-                                        <p><strong>Dinas: </strong> {{ $dokumen->dinas->nm_dinas }}
+                                        <p><strong>Dinas: </strong> {{ $dokumen->dinas->nm_dinas ?? '-' }}
                                         </p>
                                     </div>
                                     <div class="col-md-6">

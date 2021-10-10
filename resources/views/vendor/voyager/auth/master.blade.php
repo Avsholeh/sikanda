@@ -16,7 +16,7 @@
     @endif
     <style>
         body {
-            background-image: url('{{ asset('bg.jpg') }}');
+            background-image: url('{{ setting('admin.bg_image') }}');
             background-repeat: no-repeat;
             background-size: cover;
         }

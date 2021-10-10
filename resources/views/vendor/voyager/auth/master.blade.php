@@ -16,7 +16,7 @@
     @endif
     <style>
         body {
-            background-image: url('{{ setting('admin.bg_image') }}');
+            background-image: url('{{ asset('bg-karimun.jpg') }}');
             background-repeat: no-repeat;
             background-size: cover;
         }

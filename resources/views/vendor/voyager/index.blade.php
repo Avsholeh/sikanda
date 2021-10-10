@@ -90,8 +90,11 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="panel">
-                    <div class="panel-heading">
-                        <p style="padding-left: 20px; padding-top: 10px; font-weight: bold">Akses Cepat</p>
+                    <div class="panel-heading" style="padding-bottom: 15px">
+                        <p style="padding-left: 20px; padding-top: 10px; margin-bottom:0; font-weight: bold">Akses Cepat</p>
+                        <small style="padding-left: 20px; padding-top: 4px;">
+                            Form ini memungkinkan anda mengunggah dokumen secara langsung.
+                        </small>
                     </div>
                     <div class="panel-body">
                         <form action="{{ route('upload-dokumen.store') }}" method="POST" enctype="multipart/form-data"
@@ -136,10 +139,11 @@
 
             <div class="col-md-6">
                 <div class="panel">
-                    <div class="panel-heading">
-                        <p style="padding-left: 20px; padding-top: 10px; font-weight: bold">
+                    <div class="panel-heading" style="padding-bottom: 15px">
+                        <p style="padding-left: 20px; padding-top: 10px; margin-bottom:0; font-weight: bold">
                             Dokumen Belum Tuntas
                         </p>
+                        <small style="padding-left: 20px; padding-top: 4px;">Menampilkan 5 dokumen terbaru yang belum tuntas.</small>
                     </div>
                     <div class="panel-body">
                         @php
@@ -158,11 +162,9 @@
                             <thead>
                             <tr>
                                 <th>No</th>
-                                {{--                                            <th class="hidden-xs hidden-sm">Dinas</th>--}}
-                                <th class="hidden-xs hidden-sm">Tahun</th>
                                 <th>SPP</th>
-                                <th class="hidden-xs hidden-sm">SPM</th>
-                                <th class="hidden-xs hidden-sm">SP2D</th>
+                                <th>SPM</th>
+                                <th>SP2D</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -170,9 +172,6 @@
                             @forelse($dokumens as $dokumen)
                                 <tr style="cursor: pointer">
                                     <td>{{ $loop->iteration }}</td>
-                                    <td class="hidden-xs hidden-sm">
-                                        <div>{{ $dokumen->tahun }}</div>
-                                    </td>
                                     <td>
                                         @if(isset($dokumen->spp->id))
                                             {{ $dokumen->spp->no_spp }}
@@ -180,14 +179,14 @@
                                             <span>-</span>
                                         @endif
                                     </td>
-                                    <td class="hidden-xs hidden-sm">
+                                    <td>
                                         @if(isset($dokumen->spm->id))
                                             {{ $dokumen->spm->no_spm }}
                                         @else
                                             <span>-</span>
                                         @endif
                                     </td>
-                                    <td class="hidden-xs hidden-sm">
+                                    <td>
                                         @if(isset($dokumen->sp2d->id))
                                             {{ $dokumen->sp2d->no_sp2d }}
                                         @else

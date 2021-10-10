@@ -28,6 +28,7 @@
                             <div class="col-12 col-md-8">
                                 <div class="row">
                                     <div class="col-md-6">
+                                        <p><strong>No: </strong> {{ ++$loop->index }}</p>
                                         <p><strong>Tanggal: </strong> {{ $dokumen->created_at }}</p>
                                         @if($dokumen->status === 'S')
                                             <p><strong>Status: </strong>
@@ -63,8 +64,6 @@
                 </div>
 
             @endforelse
-
-            {{ $dokumens->links() }}
         @else
             <div class="text-center">
                 <i class="voyager-search" style="font-size: 3em"></i>

@@ -47,4 +47,9 @@ class Spp extends Model
     {
         return $this->attributes['no_spp'] ?? '-';
     }
+
+    public function dokumen()
+    {
+        return $this->belongsTo(Dokumen::class, 'dokumen_id');
+    }
 }

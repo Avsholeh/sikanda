@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Dinas;
 use App\Models\Dokumen;
 use App\Models\Spp;
 use Illuminate\Database\Seeder;
@@ -19,9 +20,35 @@ class DatabaseSeeder extends Seeder
 
         Dokumen::factory(20)
             ->hasSpp(1, [
-                'file' => base64_encode(file_get_contents(__DIR__ . 'docs/sample-spp.pdf'))
+                'file' => base64_encode(file_get_contents(storage_path('\app\sample-spp.pdf')))
             ])
-            ->create();
+            ->hasSpm(1, [
+                'file' => base64_encode(file_get_contents(storage_path('\app\sample-spm.pdf')))
+            ])
+            ->hasSp2d(1, [
+                'file' => base64_encode(file_get_contents(storage_path('\app\sample-sp2d.pdf')))
+            ])
+            ->hasPendukung(2, [
+                'file' => base64_encode(file_get_contents(storage_path('\app\sample-pendukung.pdf')))
+            ])
+            ->create([
+                'dinas_id' => 1,
+                'status' => 'S',
+                'tahun' => 2021
+            ]);
+
+        Dokumen::factory(20)
+            ->hasSpp(1, [
+                'file' => base64_encode(file_get_contents(storage_path('\app\sample-spp.pdf')))
+            ])
+            ->hasSpm(1, [
+                'file' => base64_encode(file_get_contents(storage_path('\app\sample-spm.pdf')))
+            ])
+            ->create([
+                'dinas_id' => 1,
+                'status' => 'B',
+                'tahun' => 2021
+            ]);
 
     }
 }

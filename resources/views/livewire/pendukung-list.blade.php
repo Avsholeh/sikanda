@@ -30,6 +30,7 @@
                         class="btn btn-@if(!$canTambahkan){{ 'default' }}@else{{ 'warning' }}@endif"
                 @if(!$canTambahkan){{ "disabled='disabled'" }}@endif>Tambahkan
                 </button>
+                <span wire:loading wire:target="fileDokumen">Loading ....</span>
                 <span wire:loading wire:target="tambahkan">Sedang menambahkan ....</span>
             </div>
         </div>

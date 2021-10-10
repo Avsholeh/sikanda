@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dokumen;
 use App\Models\Spp;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -53,11 +54,22 @@ class UploadController extends Controller
 
     public function edit(Dokumen $dokumen)
     {
+        if (auth()->user()->custom_role->id  !== User::$ROLE_SUPERADMIN) {
+            if ($dokumen and $dokumen->dinas_id !== auth()->user()->dinas_id) {
+                abort(401);
+            }
+        }
         return view('vendor.voyager.upload.edit', compact('dokumen'));
     }
 
     public function update(Request $request, Dokumen $dokumen)
     {
+        if (auth()->user()->custom_role->id  !== User::$ROLE_SUPERADMIN) {
+            if ($dokumen and $dokumen->dinas_id !== auth()->user()->dinas_id) {
+                abort(401);
+            }
+        }
+        
         // validate spm form
         if ($request->post('no_spm') or $request->post('file_spm')) {
             $request->validate([

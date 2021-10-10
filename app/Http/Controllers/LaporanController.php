@@ -48,17 +48,16 @@ class LaporanController extends Controller
                 return $query->where('no_' . $type, 'like', "%$pencarianText%");
             })
                 ->where('status', 'S')
-                ->paginate(10);
+                ->take(10)->get();
         } else {
             $dokumens = Dokumen::whereHas($type, function (Builder $query) use ($pencarianText, $type) {
                 return $query->where('no_' . $type, 'like', "%$pencarianText%");
             })
                 ->where('status', 'S')
                 ->where('dinas_id', auth()->user()->dinas->id)
-                ->paginate(10);
+                ->take(10)->get();
         }
 
-//        dd($dokumens);
         return view('vendor.voyager.laporan.index', compact('dokumens', 'pencarianText'));
     }
 

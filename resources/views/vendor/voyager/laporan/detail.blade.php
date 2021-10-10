@@ -33,6 +33,9 @@
                                 class="btn btn-sm btn-success tampilkan"><i class="voyager-file-text"></i>
                             Tampilkan
                         </button>
+                        <a  class="btn btn-sm btn-primary" href="{{ route('viewer.download', ['spp', $dokumen->spp->id]) }}">
+                        <i class="voyager-download"></i> Download
+                        </a>
                     </div>
                 </div>
             </div>
@@ -52,6 +55,9 @@
                                 class="btn btn-sm btn-success tampilkan"><i class="voyager-file-text"></i>
                             Tampilkan
                         </button>
+                        <a  class="btn btn-sm btn-primary" href="{{ route('viewer.download', ['spm', $dokumen->spm->id]) }}">
+                            <i class="voyager-download"></i> Download
+                        </a>
                     </div>
                 </div>
             </div>
@@ -67,16 +73,46 @@
                     </div>
                     <div class="col-md-4 text-right">
                         <button type="button" data-toggle="modal" data-target="#pdf_modal"
-                                data-jenis="sp2d" data-id="{{ $dokumen->sp2d->id }}" data-no="{{ $dokumen->sp2d->no_sp2d }}"
+                                data-jenis="sp2d" data-id="{{ $dokumen->sp2d->id }}"
+                                data-no="{{ $dokumen->sp2d->no_sp2d }}"
                                 class="btn btn-sm btn-success tampilkan"><i class="voyager-file-text"></i>
                             Tampilkan
                         </button>
+                        <a  class="btn btn-sm btn-primary" href="{{ route('viewer.download', ['sp2d', $dokumen->sp2d->id]) }}">
+                            <i class="voyager-download"></i> Download
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Modal -->
+        @forelse($dokumen->pendukung as $pendukung)
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <strong>Dokumen Pendukung ({{ ++$loop->index }})</strong><br>
+                            {{ $pendukung->nama_dokumen }}<br>
+                            <small><i>diupload pada {{ $pendukung->created_at }}</i></small>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <button type="button" data-toggle="modal" data-target="#pdf_modal"
+                                    data-jenis="pendukung" data-id="{{ $pendukung->id }}"
+                                    data-no="{{ $pendukung->nama_dokumen }}"
+                                    class="btn btn-sm btn-success tampilkan"><i class="voyager-file-text"></i>
+                                Tampilkan
+                            </button>
+                            <a  class="btn btn-sm btn-primary" href="{{ route('viewer.download', ['pendukung', $pendukung->id]) }}">
+                                <i class="voyager-download"></i> Download
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @empty
+        @endforelse
+
+    <!-- Modal -->
         <div class="modal fade modal-primary" id="pdf_modal" data-backdrop="static">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -115,7 +151,7 @@
                 let req = $.ajax({
                     url: "{{ route('viewer.generate') }}",
                     method: "POST",
-                    data: { dokumen_id: dataId, jenis_dokumen: dataJenis }
+                    data: {dokumen_id: dataId, jenis_dokumen: dataJenis}
                 })
                 req.done(function (response, textStatus, jqXHR) {
                     $("#modal-file-dokumen").attr('src', baseSrc + dataId + '/' + dataJenis + '/' + response);

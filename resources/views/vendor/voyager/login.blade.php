@@ -6,7 +6,8 @@
         <div class="row">
             <div class="col text-center">
                 <img style="margin-bottom: 10px" src="{{ asset('logo.gif') }}" alt="logo" width="150">
-                <h4 class="text-center">Sistem Kearsipan Keuangan Daerah Karimun</h4>
+                <h3 class="text-center">Sistem Kearsipan Keuangan Daerah</h3>
+                <h3 class="text-center">Kabupaten Karimun</h3>
             </div>
         </div>
 

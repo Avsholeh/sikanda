@@ -57,6 +57,8 @@ class LaporanController extends Controller
                 ->where('dinas_id', auth()->user()->dinas->id)
                 ->paginate(10);
         }
+
+//        dd($dokumens);
         return view('vendor.voyager.laporan.index', compact('dokumens', 'pencarianText'));
     }
 

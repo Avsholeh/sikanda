@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 
 /**
@@ -27,6 +29,22 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Spp extends Model
 {
+    use HasFactory;
     protected $table = 'tb_spp';
     protected $guarded = [];
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->translatedFormat('l, F M Y');
+    }
+
+    public function getUpdatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['updated_at'])->translatedFormat('l, F M Y');
+    }
+
+    public function getNoSppAttribute()
+    {
+        return $this->attributes['no_spp'] ?? '-';
+    }
 }

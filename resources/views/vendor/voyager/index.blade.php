@@ -3,12 +3,12 @@
 @section('pre_css')
     <style>
         .card-grad-primary {
-            background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
+            background: linear-gradient(90deg, #8572d7 0%, #A8C0FF 100%);
             color: white;
         }
 
         .card-grad-secondary {
-            background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%);
+            background: linear-gradient(90deg, #FDBB2D 0%, #9cd94f 100%);
             color: white;
         }
 
@@ -94,10 +94,10 @@
                         <p style="padding-left: 20px; padding-top: 10px; font-weight: bold">Akses Cepat</p>
                     </div>
                     <div class="panel-body">
-                        <form action="{{ route('upload-dokumen.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+                        <form action="{{ route('upload-dokumen.store') }}" method="POST" enctype="multipart/form-data"
+                              autocomplete="off">
                         @csrf
-
-                            <!-- SPP -->
+                        <!-- SPP -->
                             <div class="panel panel-default border-primary">
                                 <div class="panel-body">
                                     <div class="form-group">
@@ -143,10 +143,16 @@
                     </div>
                     <div class="panel-body">
                         @php
-                            $dokumens = \App\Models\Dokumen::where([
-                                'dinas_id'=> auth()->user()->dinas->id,
-                                'status' => 'B'
-                            ])->orderByDesc('created_at')->take(5)->get();
+                            if (auth()->user()->custom_role->id === \App\Models\User::$ROLE_SUPERADMIN) {
+                                $dokumens = \App\Models\Dokumen::where([
+                                    'status' => 'B'
+                                ])->orderByDesc('created_at')->take(5)->get();
+                            } else {
+                                $dokumens = \App\Models\Dokumen::where([
+                                    'dinas_id'=> auth()->user()->dinas->id,
+                                    'status' => 'B'
+                                ])->orderByDesc('created_at')->take(5)->get();
+                            }
                         @endphp
                         <table id="dataTable" class="table table-hover">
                             <thead>

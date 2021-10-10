@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 
 /**
@@ -28,11 +30,27 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Spm extends Model
 {
+    use HasFactory;
     protected $table = 'tb_spm';
     protected $guarded = [];
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->translatedFormat('l, F M Y');
+    }
+
+    public function getUpdatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['updated_at'])->translatedFormat('l, F M Y');
+    }
 
     public function dokumen()
     {
         return $this->belongsTo(Dokumen::class, 'dokumen_id');
+    }
+
+    public function getNoSpmAttribute()
+    {
+        return $this->attributes['no_spm'] ?? '-';
     }
 }

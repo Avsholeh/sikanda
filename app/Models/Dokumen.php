@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,8 @@ use Illuminate\Support\Facades\Auth;
  */
 class Dokumen extends Model
 {
+    use HasFactory;
+
     protected $table = 'tb_dokumen';
 
     protected $guarded = [];
@@ -48,12 +51,12 @@ class Dokumen extends Model
 
     public function getCreatedAtAttribute()
     {
-        return Carbon::parse($this->attributes['created_at'])->translatedFormat('l, d M Y');
+        return Carbon::parse($this->attributes['created_at'])->translatedFormat('l, F M Y');
     }
 
     public function getUpdatedAtAttribute()
     {
-        return Carbon::parse($this->attributes['updated_at'])->translatedFormat('l, d M Y');
+        return Carbon::parse($this->attributes['updated_at'])->translatedFormat('l, F M Y');
     }
 
     public function pendukung()

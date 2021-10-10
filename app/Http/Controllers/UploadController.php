@@ -69,7 +69,7 @@ class UploadController extends Controller
                 abort(401);
             }
         }
-        
+
         // validate spm form
         if ($request->post('no_spm') or $request->post('file_spm')) {
             $request->validate([

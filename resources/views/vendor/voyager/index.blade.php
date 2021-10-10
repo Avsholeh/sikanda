@@ -5,16 +5,22 @@
         .card-grad-primary {
             background: linear-gradient(90deg, #8572d7 0%, #A8C0FF 100%);
             color: white;
+            border-radius: 10px !important;
+            height: 140px;
         }
 
         .card-grad-secondary {
             background: linear-gradient(90deg, #FDBB2D 0%, #9cd94f 100%);
             color: white;
+            border-radius: 10px !important;
+            height: 140px;
         }
 
         .card-grad-danger {
             background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
             color: white;
+            border-radius: 10px !important;
+            height: 140px;
         }
 
         .page-content > .row > [class*=col-] {
@@ -35,11 +41,11 @@
                     <div class="panel-body">
                         <h4>Dinas</h4>
                         @if (auth()->user()->custom_role->id === \App\Models\User::$ROLE_SUPERADMIN)
-                            <p style="font-size: 1.5rem; font-weight: bold">
+                            <p style="font-size: 1.2rem; font-weight: bold">
                                 SuperAdmin
                             </p>
                         @else
-                            <p style="font-size: 1.5rem; font-weight: bold">
+                            <p style="font-size: 1.2rem; font-weight: bold">
                                 {{ \App\Models\Dinas::where('id', auth()->user()->dinas->id)->first()->nm_dinas ?? '' }}
                             </p>
                         @endif

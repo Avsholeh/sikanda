@@ -36,7 +36,7 @@
                 <ul class="nav navbar-nav">
                     <li class="">
                         <a href="#" data-toggle="modal" data-target="#logout_modal"
-                           style="background-color: #fa2a00; color: #fff">
+                           style="background-color: rgb(145 24 0); color: #fff">
                             <span class="icon voyager-power"></span>
                             <span class="title">Logout</span>
                         </a>

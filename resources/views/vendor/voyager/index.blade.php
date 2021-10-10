@@ -1,25 +1,222 @@
-@extends('voyager::master')
+@extends('layouts.master')
+
+@section('pre_css')
+    <style>
+        .card-grad-primary {
+            background: linear-gradient(90deg, #3F2B96 0%, #A8C0FF 100%);
+            color: white;
+        }
+
+        .card-grad-secondary {
+            background: linear-gradient(90deg, #FDBB2D 0%, #22C1C3 100%);
+            color: white;
+        }
+
+        .card-grad-danger {
+            background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+            color: white;
+        }
+
+        .page-content > .row > [class*=col-] {
+            /*padding: 0 4px 0 4px;*/
+            margin: 0;
+        }
+    </style>
+@endsection
 
 @section('content')
     <div class="page-content">
         @include('voyager::alerts')
         @include('voyager::dimmers')
 
-        <div class="row" style="margin-left: 5px">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        Sedang dalam pengembangan.
+        <div class="row">
+            <div class="col-md-4" style="">
+                <div class="panel panel-default card-grad-primary">
+                    <div class="panel-body">
+                        <h4>Dinas</h4>
+                        @if (auth()->user()->custom_role->id === \App\Models\User::$ROLE_SUPERADMIN)
+                            <p style="font-size: 1.5rem; font-weight: bold">
+                                SuperAdmin
+                            </p>
+                        @else
+                            <p style="font-size: 1.5rem; font-weight: bold">
+                                {{ \App\Models\Dinas::where('id', auth()->user()->dinas->id)->first()->nm_dinas ?? '' }}
+                            </p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="panel panel-default card-grad-secondary">
+                    <div class="panel-body">
+                        <h4>Total Dokumen</h4>
+                        @if (auth()->user()->custom_role->id === \App\Models\User::$ROLE_SUPERADMIN)
+                            <p style="font-size: 1.5rem; font-weight: bold">
+                                {{ \App\Models\Dokumen::count() }}
+                            </p>
+                        @else
+                            <p style="font-size: 1.5rem; font-weight: bold">
+                                {{ \App\Models\Dokumen::where('dinas_id', auth()->user()->dinas->id)->count() }}
+                            </p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 ">
+                <div class="panel panel-default card-grad-danger">
+                    <div class="panel-body">
+                        <h4>Dokumen Tuntas</h4>
+                        @if (auth()->user()->custom_role->id === \App\Models\User::$ROLE_SUPERADMIN)
+                            <p style="font-size: 1.5rem; font-weight: bold">
+                                {{ \App\Models\Dokumen::where('status', 'S')->count() }}
+                            </p>
+                        @else
+                            <p style="font-size: 1.5rem; font-weight: bold">
+                                @php
+                                    echo \App\Models\Dokumen::where([
+                                        'dinas_id'=> auth()->user()->dinas->id,
+                                        'status' => 'S'
+                                    ])->count()
+                                @endphp
+                            </p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <p style="padding-left: 20px; padding-top: 10px; font-weight: bold">Akses Cepat</p>
+                    </div>
+                    <div class="panel-body">
+                        <form action="{{ route('upload-dokumen.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+                        @csrf
+
+                            <!-- SPP -->
+                            <div class="panel panel-default border-primary">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label class="">Tahun <small class="text-danger">*</small></label>
+                                        <input class="form-control" name="tahun" type="number"
+                                               value="{{ old('tahun') }}" placeholder="Tahun">
+                                        @error('tahun')
+                                        <span class="text-danger">* {{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="">No SPP <small class="text-danger">*</small></label>
+                                        <input class="form-control" name="no_spp" type="text"
+                                               value="{{ old('no_spp') }}" placeholder="No SPP">
+                                        @error('no_spp')
+                                        <span class="text-danger">* {{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>File SPP <small class="text-danger">*</small></label>
+                                        <input type="file" name="file_spp" accept="application/pdf">
+                                        @error('file_spp')
+                                        <span class="text-danger">* {{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <p style="padding-left: 20px; padding-top: 10px; font-weight: bold">
+                            Dokumen Belum Tuntas
+                        </p>
+                    </div>
+                    <div class="panel-body">
+                        @php
+                            $dokumens = \App\Models\Dokumen::where([
+                                'dinas_id'=> auth()->user()->dinas->id,
+                                'status' => 'B'
+                            ])->orderByDesc('created_at')->take(5)->get();
+                        @endphp
+                        <table id="dataTable" class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                {{--                                            <th class="hidden-xs hidden-sm">Dinas</th>--}}
+                                <th class="hidden-xs hidden-sm">Tahun</th>
+                                <th>SPP</th>
+                                <th class="hidden-xs hidden-sm">SPM</th>
+                                <th class="hidden-xs hidden-sm">SP2D</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse($dokumens as $dokumen)
+                                <tr style="cursor: pointer">
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td class="hidden-xs hidden-sm">
+                                        <div>{{ $dokumen->tahun }}</div>
+                                    </td>
+                                    <td>
+                                        @if(isset($dokumen->spp->id))
+                                            {{ $dokumen->spp->no_spp }}
+                                        @else
+                                            <span>-</span>
+                                        @endif
+                                    </td>
+                                    <td class="hidden-xs hidden-sm">
+                                        @if(isset($dokumen->spm->id))
+                                            {{ $dokumen->spm->no_spm }}
+                                        @else
+                                            <span>-</span>
+                                        @endif
+                                    </td>
+                                    <td class="hidden-xs hidden-sm">
+                                        @if(isset($dokumen->sp2d->id))
+                                            {{ $dokumen->sp2d->no_sp2d }}
+                                        @else
+                                            <span>-</span>
+                                        @endif
+                                    </td>
+                                    <td class="no-sort no-click bread-actions">
+                                        <a href="{{ route('upload-dokumen.edit', $dokumen->id) }}"
+                                           title="Ubah"
+                                           class="btn btn-sm btn-primary pull-right edit">
+                                            <i class="voyager-edit"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center">Tidak Ada</td>
+                                </tr>
+                            @endforelse
+
+                            </tbody>
+
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
+
 @stop
 
 @section('javascript')
-{{-- should start with <script> tag  --}}
+    {{-- should start with <script> tag  --}}
 
 
 @stop

@@ -84,6 +84,33 @@
             display: flex;
             align-items: center;
         }
+
+        /*.container-fluid {*/
+        /*    padding-left: 5px;*/
+        /*    padding-right: 5px;*/
+        /*}*/
+
+        /*.page-content>.row>[class*=col-]:not(:last-child) {*/
+        /*    padding: 0;*/
+        /*}*/
+
+        /*.page-content>.row>[class*=col-]:not(:first-child) {*/
+        /*    padding: 0;*/
+        /*}*/
+
+        /*.page-content>.row>[class*=col-] {*/
+        /*    padding: 0 4px 0 4px;*/
+        /*    margin: 0;*/
+        /*}*/
+
+        /*.page-content>.row {*/
+        /*    padding: 0 4px 0 4px;*/
+        /*    margin: 0 4px 0 4px;*/
+        /*}*/
+
+        .page-content {
+            margin-left: 1.5em;
+        }
     </style>
 
     @if(!empty(config('voyager.additional_css')))<!-- Additional CSS -->
@@ -92,6 +119,7 @@
 
     @yield('head')
     @livewireStyles
+    @yield('pre_css')
 </head>
 
 <body class="voyager @if(isset($dataType) && isset($dataType->slug)){{ $dataType->slug }}@endif">

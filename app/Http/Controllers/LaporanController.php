@@ -13,7 +13,7 @@ class LaporanController extends Controller
 
     public function __construct()
     {
-        $this->authenticated = [User::$ROLE_ADMIN, User::$ROLE_SUPERADMIN];
+        $this->authenticated = [User::$ROLE_SUPERADMIN];
     }
 
     public function index()
@@ -58,5 +58,10 @@ class LaporanController extends Controller
                 ->paginate(10);
         }
         return view('vendor.voyager.laporan.index', compact('dokumens', 'pencarianText'));
+    }
+
+    public function detail(Dokumen $dokumen)
+    {
+        return view('vendor.voyager.laporan.index', compact('dokumen', 'dokumen'));
     }
 }

@@ -1,3 +1,11 @@
+@section('pre_css')
+    <style>
+        .row>[class*=col-] {
+            margin-bottom: 0 !important;
+        }
+    </style>
+@endsection
+
 <div class="panel panel-bordered">
     <div class="panel-heading">
         <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Hasil Pencarian</p>
@@ -11,14 +19,15 @@
             @forelse($dokumens as $dokumen)
                 <div class="panel panel-default border-primary">
                     <div class="panel-body">
-                        <div class="row" style="margin: 0; padding-top: 2em">
-                            <div class="col-12 col-md-2 text-center"
-                                 style="margin-bottom: 0">
+                        <div class="row" style="">
+                            <div class="col-12 col-md-4 text-center">
                                 <i class="voyager-documentation" style="font-size: 4em"></i>
+                                <a href="{{ route('laporan.detail', $dokumen->id) }}" class="btn btn-default btn-block">
+                                    <i class="voyager-eye" style="font-size: .8em"></i> Lihat Detail</a>
                             </div>
-                            <div class="col-12 col-md-10" style="margin-bottom: 0">
-                                <div class="row" style="margin: 0">
-                                    <div class="col-md-6" style="margin-bottom: 0">
+                            <div class="col-12 col-md-8">
+                                <div class="row">
+                                    <div class="col-md-6">
                                         <p><strong>Tanggal: </strong> {{ $dokumen->created_at }}</p>
                                         @if($dokumen->status === 'S')
                                             <p><strong>Status: </strong>

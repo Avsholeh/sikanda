@@ -15,15 +15,16 @@
 @section('content')
     <div class="page-content edit-add container-fluid">
         <div class="row">
-            <form action="{{ route('laporan.pencarian') }}" method="POST" enctype="multipart/form-data"
-                  autocomplete="off">
-                <div class="col-md-4">
-                    @csrf
-                    @include('vendor.voyager.laporan.form_pencarian')
-                </div>
-                <div class="col-md-8">
-                    @include('vendor.voyager.laporan.form_hasil')
-                </div>
+            <div class="col-md-4">
+                @include('vendor.voyager.laporan.form_pencarian')
+            </div>
+            <div class="col-md-8">
+                @if(request()->route('dokumen'))
+                    @include('vendor.voyager.laporan.detail')
+                @else
+                    @include('vendor.voyager.laporan.hasil_pencarian')
+                @endif
+            </div>
             </form>
         </div>
     </div>
@@ -40,7 +41,7 @@
                     .val("");
             });
 
-            $("#bersihkan").click(function() {
+            $("#bersihkan").click(function () {
                 $("input[name=kolom_pencarian]").val("");
             });
         });

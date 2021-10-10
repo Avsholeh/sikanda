@@ -99,7 +99,7 @@
                     <div class="panel-heading" style="padding-bottom: 15px">
                         <p style="padding-left: 20px; padding-top: 10px; margin-bottom:0; font-weight: bold">Akses Cepat</p>
                         <small style="padding-left: 20px; padding-top: 4px;">
-                            Form ini memungkinkan anda mengunggah dokumen secara langsung.
+                            Anda dapat mengunggah dokumen secara langsung.
                         </small>
                     </div>
                     <div class="panel-body">

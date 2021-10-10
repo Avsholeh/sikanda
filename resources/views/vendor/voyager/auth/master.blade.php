@@ -41,7 +41,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="row" style="margin-top: 3rem">
+    <div class="row" style="margin-top: 8rem">
         <div class="col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
             <div style="margin: auto">
                 <div class="panel panel-rounded">

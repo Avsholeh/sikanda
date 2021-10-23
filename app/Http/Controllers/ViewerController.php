@@ -69,10 +69,10 @@ class ViewerController extends Controller
         }
 
         $data = base64_decode($document->file);
-        $documentHash = strtoupper($this->documentHash($dokumenId, $jenisDokumen, 'adler32'));
+        $documentHash = strtoupper($this->documentHash($dokumenId, 1, 'adler32'));
         $jenisDokumen = strtoupper($jenisDokumen);
         header("Content-type:application/pdf");
-        header("Content-Disposition:attachment;filename={$jenisDokumen}-{$documentHash}.pdf");
+        header("Content-Disposition:attachment;filename={$documentHash}-{$jenisDokumen}.pdf");
         echo $data;
     }
 

@@ -123,8 +123,13 @@
         /*    margin: 0 4px 0 4px;*/
         /*}*/
 
+        .app-container .side-body .container-fluid {
+            padding-right: 0;
+            padding-left: 0;
+        }
+
         .page-content {
-            margin-left: 1.5em;
+            margin-left: 1em;
         }
     </style>
 

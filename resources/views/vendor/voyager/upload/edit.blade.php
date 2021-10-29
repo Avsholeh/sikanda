@@ -60,7 +60,7 @@
                             </h4>
                         </div>
                         <div class="modal-body" style="padding: .3em">
-                            <iframe id="modal-file-dokumen" src="" height="600" width="100%"></iframe>
+                            <div id="modal-file-dokumen" style="height: 80vh"></div>
                         </div>
                     </div>
                 </div>
@@ -72,11 +72,16 @@
 @stop
 
 @push('javascript')
+
+    <script src='{{ asset('pdfobject/pdfobject.min.js') }}'></script>
     <script>
         $(function () {
             // let baseSrc = "data:application/pdf;base64,";
-            let baseSrc = "{{route('voyager.dashboard')}}/ViewerJS/#{{route('voyager.dashboard')}}/viewer/";
-            $('[data-toggle="tooltip"]').tooltip()
+            let baseSrc = "{{route('voyager.dashboard')}}/viewer/";
+            var options = {
+                pdfOpenParams: {toolbar: '0', navpanes: '0'}
+            };
+
             $(".tampilkan").click(function (e) {
                 let dataId = $(e.target).data('id');
                 let dataNo = $(e.target).data('no');
@@ -87,10 +92,11 @@
                 let req = $.ajax({
                     url: "{{ route('viewer.generate') }}",
                     method: "POST",
-                    data: { dokumen_id: dataId, jenis_dokumen: dataJenis }
+                    data: {dokumen_id: dataId, jenis_dokumen: dataJenis}
                 })
                 req.done(function (response, textStatus, jqXHR) {
-                    $("#modal-file-dokumen").attr('src', baseSrc + dataId + '/' + dataJenis + '/' + response);
+                    var pdfLink = baseSrc + dataId + '/' + dataJenis + '/' + response;
+                    PDFObject.embed(pdfLink, "#modal-file-dokumen", options);
                 });
                 req.fail(function (jqXHR, textStatus, errorThrown) {
                     console.log(errorThrown)
@@ -100,6 +106,7 @@
         });
 
     </script>
+
 @endpush
 
 

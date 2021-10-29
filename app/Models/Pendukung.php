@@ -24,6 +24,10 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|Pendukung whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Pendukung whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $nama_dokumen
+ * @property-read \App\Models\Dokumen|null $dokumen
+ * @method static \Database\Factories\PendukungFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pendukung whereNamaDokumen($value)
  */
 class Pendukung extends Model
 {

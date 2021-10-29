@@ -32,6 +32,9 @@ use Illuminate\Support\Facades\Auth;
  * @property-read \App\Models\Sp2d|null $sp2d
  * @property-read \App\Models\Spm|null $spm
  * @property-read \App\Models\Spp|null $spp
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Pendukung[] $pendukung
+ * @property-read int|null $pendukung_count
+ * @method static \Database\Factories\DokumenFactory factory(...$parameters)
  */
 class Dokumen extends Model
 {

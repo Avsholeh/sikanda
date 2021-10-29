@@ -27,6 +27,7 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|Sp2d whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property-read \App\Models\Dokumen|null $dokumen
+ * @method static \Database\Factories\Sp2dFactory factory(...$parameters)
  */
 class Sp2d extends Model
 {

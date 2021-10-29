@@ -46,6 +46,7 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property-read \App\Models\Dinas|null $dinas
+ * @property-read \App\Models\Role|null $custom_role
  */
 class User extends \TCG\Voyager\Models\User
 {

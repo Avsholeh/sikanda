@@ -26,6 +26,8 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|Spp whereNoSpp($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Spp whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Dokumen|null $dokumen
+ * @method static \Database\Factories\SppFactory factory(...$parameters)
  */
 class Spp extends Model
 {

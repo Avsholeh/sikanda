@@ -27,6 +27,7 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|Spm whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property-read \App\Models\Dokumen|null $dokumen
+ * @method static \Database\Factories\SpmFactory factory(...$parameters)
  */
 class Spm extends Model
 {

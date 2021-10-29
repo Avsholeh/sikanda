@@ -14,7 +14,7 @@ class ViewerController extends Controller
     public function index($dokumenId, $jenisDokumen, $documentHash)
     {
         if (!$this->documentVerify($dokumenId, $jenisDokumen, $documentHash)) {
-            return 'access denied.';
+            return 'Anda tidak memiliki izin akses.';
         }
         $document = $this->findDocument($jenisDokumen, $dokumenId);
         $data = base64_decode($document->file);

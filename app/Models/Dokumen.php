@@ -42,6 +42,10 @@ class Dokumen extends Model
 
     protected $table = 'tb_dokumen';
 
+    const BELUM_TUNTAS = 'B';
+    const SUDAH_TUNTAS = 'S';
+    const VERIFIKASI = 'V';
+
     protected $guarded = [];
 
     public function scopeCurrentUser($query)

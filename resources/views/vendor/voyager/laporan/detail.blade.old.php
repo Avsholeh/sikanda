@@ -33,9 +33,8 @@
                                 class="btn btn-sm btn-success tampilkan"><i class="voyager-file-text"></i>
                             Tampilkan
                         </button>
-                        <a class="btn btn-sm btn-primary"
-                           href="{{ route('viewer.download', ['spp', $dokumen->spp->id]) }}">
-                            <i class="voyager-download"></i> Download
+                        <a  class="btn btn-sm btn-primary" href="{{ route('viewer.download', ['spp', $dokumen->spp->id]) }}">
+                        <i class="voyager-download"></i> Download
                         </a>
                     </div>
                 </div>
@@ -56,8 +55,7 @@
                                 class="btn btn-sm btn-success tampilkan"><i class="voyager-file-text"></i>
                             Tampilkan
                         </button>
-                        <a class="btn btn-sm btn-primary"
-                           href="{{ route('viewer.download', ['spm', $dokumen->spm->id]) }}">
+                        <a  class="btn btn-sm btn-primary" href="{{ route('viewer.download', ['spm', $dokumen->spm->id]) }}">
                             <i class="voyager-download"></i> Download
                         </a>
                     </div>
@@ -80,8 +78,7 @@
                                 class="btn btn-sm btn-success tampilkan"><i class="voyager-file-text"></i>
                             Tampilkan
                         </button>
-                        <a class="btn btn-sm btn-primary"
-                           href="{{ route('viewer.download', ['sp2d', $dokumen->sp2d->id]) }}">
+                        <a  class="btn btn-sm btn-primary" href="{{ route('viewer.download', ['sp2d', $dokumen->sp2d->id]) }}">
                             <i class="voyager-download"></i> Download
                         </a>
                     </div>
@@ -105,16 +102,15 @@
                                     class="btn btn-sm btn-success tampilkan"><i class="voyager-file-text"></i>
                                 Tampilkan
                             </button>
-                            <a class="btn btn-sm btn-primary"
-                               href="{{ route('viewer.download', ['pendukung', $pendukung->id]) }}">
+                            <a  class="btn btn-sm btn-primary" href="{{ route('viewer.download', ['pendukung', $pendukung->id]) }}">
                                 <i class="voyager-download"></i> Download
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-    @empty
-    @endforelse
+        @empty
+        @endforelse
 
     <!-- Modal -->
         <div class="modal fade modal-primary" id="pdf_modal" data-backdrop="static">
@@ -125,30 +121,26 @@
                             &times;
                         </button>
                         <h4 class="modal-title"><i class="voyager-documentation"></i>
-                            <span id="modal-title-dokumen">Loading...</span>
+                            <span id="modal-title-dokumen"></span>
                         </h4>
                     </div>
                     <div class="modal-body" style="padding: .3em">
-                        <div id="modal-file-dokumen" style="height: 80vh"></div>
+                        <iframe id="modal-file-dokumen" src="" height="600" width="100%"></iframe>
                     </div>
                 </div>
             </div>
         </div>
         <!-- ./Modal -->
+
     </div>
 </div>
 
-@push('javascript')
 
-    <script src='{{ asset('pdfobject/pdfobject.min.js') }}'></script>
+@push('javascript')
     <script>
         $(function () {
             // let baseSrc = "data:application/pdf;base64,";
-            let baseSrc = "{{route('voyager.dashboard')}}/viewer/";
-            var options = {
-                pdfOpenParams: {toolbar: '0', navpanes: '0'}
-            };
-
+            let baseSrc = "{{route('voyager.dashboard')}}/ViewerJS/#{{route('voyager.dashboard')}}/viewer/";
             $(".tampilkan").click(function (e) {
                 let dataId = $(e.target).data('id');
                 let dataNo = $(e.target).data('no');
@@ -162,8 +154,7 @@
                     data: {dokumen_id: dataId, jenis_dokumen: dataJenis}
                 })
                 req.done(function (response, textStatus, jqXHR) {
-                    var pdfLink = baseSrc + dataId + '/' + dataJenis + '/' + response;
-                    PDFObject.embed(pdfLink, "#modal-file-dokumen", options);
+                    $("#modal-file-dokumen").attr('src', baseSrc + dataId + '/' + dataJenis + '/' + response);
                 });
                 req.fail(function (jqXHR, textStatus, errorThrown) {
                     console.log(errorThrown)
@@ -173,6 +164,4 @@
         });
 
     </script>
-
 @endpush
-

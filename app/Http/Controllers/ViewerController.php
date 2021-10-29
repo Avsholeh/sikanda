@@ -19,7 +19,7 @@ class ViewerController extends Controller
         $document = $this->findDocument($jenisDokumen, $dokumenId);
         $data = base64_decode($document->file);
         header("Content-type:application/pdf");
-        header("Content-Disposition:inline;filename='document.pdf'");
+        header("Content-Disposition:inline;filename=document.pdf");
         echo $data;
     }
 

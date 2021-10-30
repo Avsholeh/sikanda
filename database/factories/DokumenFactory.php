@@ -22,6 +22,8 @@ class DokumenFactory extends Factory
     public function definition()
     {
         return [
+            'created_at' => $this->faker->dateTimeThisYear,
+            'updated_at' => $this->faker->dateTimeThisYear,
         ];
     }
 }

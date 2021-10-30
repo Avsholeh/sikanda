@@ -47,6 +47,13 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="roles">Role</label>
+                                <input type="text" class="form-control" id="roles"
+                                       placeholder="{{ __('voyager::generic.name') }}"
+                                       value="{{ old('name', auth()->user()->custom_role->display_name ?? '') }}" disabled>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="email">{{ __('voyager::generic.email') }}</label>
                                 <input type="email" class="form-control" id="email" name="email"
                                        placeholder="{{ __('voyager::generic.email') }}"

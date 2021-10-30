@@ -70,11 +70,8 @@ Route::group(['prefix' => '/'], function () {
 
         // ================= VIEWER ================= //
 
-        Route::post('viewer/generate', [\App\Http\Controllers\ViewerController::class, 'generate'])
-            ->name('viewer.generate');
-
-        Route::get('viewer/{dokumenId}/{jenisDokumen}/{documentHash}', [\App\Http\Controllers\ViewerController::class, 'index'])
-            ->name('viewer.index');
+        Route::get('viewer-preview/{jenisDokumen}/{dokumenId}', [\App\Http\Controllers\ViewerController::class, 'preview'])
+            ->name('viewer.preview');
 
         Route::get('viewer-download/{jenisDokumen}/{dokumenId}', [\App\Http\Controllers\ViewerController::class, 'download'])
             ->name('viewer.download');

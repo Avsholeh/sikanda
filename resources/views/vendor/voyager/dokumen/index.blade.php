@@ -129,7 +129,10 @@
                                                             </a>
                                                         @endif
                                                     @else
-                                                        @if(auth()->user()->custom_role->id === \App\Models\User::$ROLE_SUPERADMIN)
+                                                        @if(in_array(auth()->user()->custom_role->id, [
+                                                            \App\Models\User::$ROLE_SUPERADMIN,
+                                                            \App\Models\User::$ROLE_DEV
+                                                        ]))
                                                             <a data-toggle="modal" data-target="#dokumen_delete_modal"
                                                                href="#" title="Hapus"
                                                                class="btn btn-sm btn-danger pull-right delete">

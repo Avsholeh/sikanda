@@ -22,8 +22,9 @@ class DokumenController extends Controller
         $dokumens = [];
         $statusList = [Dokumen::BELUM_TUNTAS, Dokumen::SUDAH_TUNTAS, Dokumen::VERIFIKASI];
 
-        // dokumen untuk superadmin
-        if (auth()->user()->custom_role->id === User::$ROLE_SUPERADMIN) {
+        // dokumen untuk dev & superadmin
+        $highPrivileges = [User::$ROLE_DEV, User::$ROLE_SUPERADMIN];
+        if (in_array(auth()->user()->custom_role->id, $highPrivileges)) {
             if (in_array($status, $statusList)) {
                 $dokumens = Dokumen::where('status', $status)
                     ->orderByDesc('created_at')->paginate(10);

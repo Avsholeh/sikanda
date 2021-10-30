@@ -52,9 +52,10 @@ class User extends \TCG\Voyager\Models\User
 {
     use HasFactory, Notifiable;
 
-    public static $ROLE_SUPERADMIN = 1;
-    public static $ROLE_ADMIN = 2;
-    public static $ROLE_USER = 3;
+    public static $ROLE_DEV = 1;
+    public static $ROLE_SUPERADMIN = 2;
+    public static $ROLE_ADMIN = 3;
+    public static $ROLE_USER = 4;
 
     protected $fillable = [
         'name',

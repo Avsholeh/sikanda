@@ -138,41 +138,5 @@
     </div>
 </div>
 
-@push('javascript')
-
-    <script src='{{ asset('pdfobject/pdfobject.min.js') }}'></script>
-    <script>
-        $(function () {
-            // let baseSrc = "data:application/pdf;base64,";
-            let baseSrc = "{{route('voyager.dashboard')}}/viewer/";
-            var options = {
-                pdfOpenParams: {toolbar: '0', navpanes: '0'}
-            };
-
-            $(".tampilkan").click(function (e) {
-                let dataId = $(e.target).data('id');
-                let dataNo = $(e.target).data('no');
-                let dataJenis = $(e.target).data('jenis');
-
-                $("#modal-file-dokumen").attr('src', '');
-
-                let req = $.ajax({
-                    url: "{{ route('viewer.generate') }}",
-                    method: "POST",
-                    data: {dokumen_id: dataId, jenis_dokumen: dataJenis}
-                })
-                req.done(function (response, textStatus, jqXHR) {
-                    var pdfLink = baseSrc + dataId + '/' + dataJenis + '/' + response;
-                    PDFObject.embed(pdfLink, "#modal-file-dokumen", options);
-                });
-                req.fail(function (jqXHR, textStatus, errorThrown) {
-                    console.log(errorThrown)
-                })
-                $("#modal-title-dokumen").text(dataNo);
-            });
-        });
-
-    </script>
-
-@endpush
+@include('vendor.voyager.partials.script_preview')
 

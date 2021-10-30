@@ -35,14 +35,18 @@
         @include('voyager::alerts')
         @include('voyager::dimmers')
 
+        @php
+        $highPrivileges = [\App\Models\User::$ROLE_DEV,\App\Models\User::$ROLE_SUPERADMIN];
+        @endphp
+
         <div class="row">
             <div class="col-md-4" style="">
                 <div class="panel panel-default card-grad-primary">
                     <div class="panel-body">
                         <h4>Dinas</h4>
-                        @if (auth()->user()->custom_role->id === \App\Models\User::$ROLE_SUPERADMIN)
+                        @if (in_array(auth()->user()->custom_role->id, $highPrivileges))
                             <p style="font-size: 1.2rem; font-weight: bold">
-                                SuperAdmin
+                                <i class="voyager-check"></i>
                             </p>
                         @else
                             <p style="font-size: 1.2rem; font-weight: bold">
@@ -57,7 +61,7 @@
                 <div class="panel panel-default card-grad-secondary">
                     <div class="panel-body">
                         <h4>Total Dokumen</h4>
-                        @if (auth()->user()->custom_role->id === \App\Models\User::$ROLE_SUPERADMIN)
+                        @if (in_array(auth()->user()->custom_role->id, $highPrivileges))
                             <p style="font-size: 1.5rem; font-weight: bold">
                                 {{ \App\Models\Dokumen::count() }}
                             </p>
@@ -74,7 +78,7 @@
                 <div class="panel panel-default card-grad-danger">
                     <div class="panel-body">
                         <h4>Dokumen Tuntas</h4>
-                        @if (auth()->user()->custom_role->id === \App\Models\User::$ROLE_SUPERADMIN)
+                        @if (in_array(auth()->user()->custom_role->id, $highPrivileges))
                             <p style="font-size: 1.5rem; font-weight: bold">
                                 {{ \App\Models\Dokumen::where('status', 'S')->count() }}
                             </p>
@@ -153,7 +157,7 @@
                     </div>
                     <div class="panel-body">
                         @php
-                            if (auth()->user()->custom_role->id === \App\Models\User::$ROLE_SUPERADMIN) {
+                            if (in_array(auth()->user()->custom_role->id, $highPrivileges)) {
                                 $dokumens = \App\Models\Dokumen::where([
                                     'status' => 'B'
                                 ])->orderByDesc('created_at')->take(5)->get();

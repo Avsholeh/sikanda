@@ -21,11 +21,14 @@
                     <li role="presentation" @if($status === 'semua') class="active" @endif>
                         <a href="{{ route('dokumen.index', 'semua') }}">Semua</a>
                     </li>
-                    <li role="presentation" @if($status === 's') class="active" @endif>
+                    <li role="presentation" @if($status === \App\Models\Dokumen::SUDAH_TUNTAS) class="active" @endif>
                         <a href="{{ route('dokumen.index', 'sudah-tuntas') }}">Sudah Tuntas</a>
                     </li>
-                    <li role="presentation" @if($status === 'b') class="active" @endif>
+                    <li role="presentation" @if($status === \App\Models\Dokumen::BELUM_TUNTAS) class="active" @endif>
                         <a href="{{ route('dokumen.index', 'belum-tuntas') }}">Belum Tuntas</a>
+                    </li>
+                    <li role="presentation" @if($status === \App\Models\Dokumen::VERIFIKASI) class="active" @endif>
+                        <a href="{{ route('dokumen.index', 'verifikasi') }}">Verifikasi</a>
                     </li>
                 </ul>
 

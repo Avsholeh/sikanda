@@ -6,7 +6,6 @@ use App\Models\Dokumen;
 use App\Models\Spp;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 
 class UploadController extends Controller
 {

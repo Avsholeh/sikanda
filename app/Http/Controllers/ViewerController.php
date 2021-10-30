@@ -1,13 +1,12 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Pendukung;
 use App\Models\Sp2d;
 use App\Models\Spm;
 use App\Models\Spp;
 use App\Models\User;
 use Illuminate\Http\Request;
+use ZipArchive;
 
 class ViewerController extends Controller
 {
@@ -43,6 +42,9 @@ class ViewerController extends Controller
 
     public function downloadAll()
     {
+        $zip = new \ZipArchive;
+        $zip->open('file.zip', ZipArchive::CREATE);
+
 
     }
 

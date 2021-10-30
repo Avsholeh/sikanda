@@ -49,6 +49,14 @@ class DokumenController extends Controller
         ]);
     }
 
+    public function prosesVerifikasi()
+    {
+        $authenticated = [User::$ROLE_SUPERADMIN, User::$ROLE_ADMIN];
+        if (!in_array(auth()->user()->custom_role, $authenticated)) abort(501);
+
+
+    }
+
     public function delete(Dokumen $dokumen)
     {
         // Check permission

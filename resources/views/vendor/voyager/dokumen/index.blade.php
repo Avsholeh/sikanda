@@ -84,11 +84,19 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if($dokumen->status === 'S')
-                                                        <div class="badge bg-success">Sudah Tuntas</div>
-                                                    @else
-                                                        <div class="badge bg-danger">Belum Tuntas</div>
-                                                    @endif
+                                                    @switch($dokumen->status)
+                                                        @case(\App\Models\Dokumen::SUDAH_TUNTAS)
+                                                        <div class="badge badge-primary">Sudah Tuntas</div>
+                                                        @break
+                                                        @case(\App\Models\Dokumen::BELUM_TUNTAS)
+                                                        <div class="badge badge-danger">Belum Tuntas</div>
+                                                        @break
+                                                        @case(\App\Models\Dokumen::VERIFIKASI)
+                                                        <div class="badge badge-success">
+                                                            <i class="voyager-check"></i>&nbsp;&nbsp;Verifikasi
+                                                        </div>
+                                                        @break
+                                                    @endswitch
                                                 </td>
                                                 <td class="hidden-xs hidden-sm">
                                                     <div>{{ $dokumen->created_at }}</div>
@@ -97,24 +105,37 @@
                                                     <div>{{ $dokumen->updated_at }}</div>
                                                 </td>
                                                 <td class="no-sort no-click bread-actions">
-                                                    @can('delete', $dokumen)
-                                                        <a data-toggle="modal" data-target="#dokumen_delete_modal"
-                                                           href="#" title="Hapus"
-                                                           class="btn btn-sm btn-danger pull-right delete">
-                                                            <i class="voyager-trash"></i>
-                                                            {{--<span class="hidden-xs hidden-sm">Hapus</span>--}}
+                                                    @if($dokumen->status !== \App\Models\Dokumen::VERIFIKASI)
+                                                        @can('delete', $dokumen)
+                                                            <a data-toggle="modal" data-target="#dokumen_delete_modal"
+                                                               href="#" title="Hapus"
+                                                               class="btn btn-sm btn-danger pull-right delete">
+                                                                <i class="voyager-trash"></i>
+                                                                <!-- Delete -->
+                                                            </a>
+                                                        @endcan
+                                                            <a href="{{ route('upload-dokumen.edit', $dokumen->id) }}"
+                                                               title="Ubah"
+                                                               class="btn btn-sm btn-primary pull-right edit">
+                                                                <i class="voyager-edit"></i>
+                                                                <!-- Edit -->
+                                                            </a>
+
+                                                            @if($dokumen->status === \App\Models\Dokumen::SUDAH_TUNTAS)
+                                                                <a href="{{ route('verifikasi.show', $dokumen->id) }}"
+                                                                   title="Verifikasi"
+                                                                   class="btn btn-sm btn-success pull-right edit">
+                                                                    <i class="voyager-check"></i>
+                                                                    <!-- Verifikasi -->
+                                                                </a>
+                                                            @endif
+                                                    @else
+                                                        <a href="#" title="Lihat"
+                                                           class="btn btn-sm btn-primary pull-right view">
+                                                            <i class="voyager-eye"></i>
                                                         </a>
-                                                    @endcan
-                                                    <a href="{{ route('upload-dokumen.edit', $dokumen->id) }}"
-                                                       title="Ubah"
-                                                       class="btn btn-sm btn-primary pull-right edit">
-                                                        <i class="voyager-edit"></i>
-                                                        {{--<span class="hidden-xs hidden-sm">Ubah</span>--}}
-                                                    </a>
-                                                    {{--<a href="#" title="Lihat" disabled
-                                                       class="btn btn-sm btn-warning pull-right view">
-                                                        <i class="voyager-eye"></i>
-                                                    </a>--}}
+                                                    @endif
+
                                                 </td>
                                             </tr>
                                         @endforeach

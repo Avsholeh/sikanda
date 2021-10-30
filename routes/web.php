@@ -19,12 +19,13 @@ Route::group(['prefix' => '/'], function () {
         Artisan::call('route:clear');
         Artisan::call('config:clear');
         Artisan::call('view:clear');
-        return "cleared.";
+        echo json_encode(['cleared']);
     });
 
     Voyager::routes();
 
     Route::middleware(['admin.user'])->group(function () {
+
         // ================= UPLOAD DOKUMEN ================= //
 
         Route::get('upload-dokumen', [\App\Http\Controllers\UploadController::class, 'index'])
@@ -41,8 +42,15 @@ Route::group(['prefix' => '/'], function () {
 
         // ================= DOKUMEN ================= //
 
+        // status dokumen
         Route::get('dokumen/{status?}', [\App\Http\Controllers\DokumenController::class, 'index'])
             ->name('dokumen.index');
+
+        Route::get('verifikasi/{dokumen}', [\App\Http\Controllers\VerifikasiController::class, 'show'])
+            ->name('verifikasi.show');
+
+        Route::post('verifikasi/proses', [\App\Http\Controllers\VerifikasiController::class, 'proses'])
+            ->name('verifikasi.proses');
 
         // delete dokumen
         Route::get('dokumen/{dokumen}/delete', [\App\Http\Controllers\DokumenController::class, 'delete'])

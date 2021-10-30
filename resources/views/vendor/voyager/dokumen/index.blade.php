@@ -44,7 +44,6 @@
                                         <thead>
                                         <tr>
                                             <th>No</th>
-                                            {{--                                            <th class="hidden-xs hidden-sm">Dinas</th>--}}
                                             <th class="hidden-xs hidden-sm">Tahun</th>
                                             <th>SPP</th>
                                             <th class="hidden-xs hidden-sm">SPM</th>
@@ -56,9 +55,9 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($dokumens as $dokumen)
+                                        @foreach($dokumens as $index => $dokumen)
                                             <tr style="cursor: pointer">
-                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{($dokumens->currentPage() - 1) * $dokumens->perPage() + $loop->iteration}}</td>
                                                 <td class="hidden-xs hidden-sm">
                                                     <div>{{ $dokumen->tahun }}</div>
                                                 </td>
@@ -114,24 +113,32 @@
                                                                 <!-- Delete -->
                                                             </a>
                                                         @endcan
-                                                            <a href="{{ route('upload-dokumen.edit', $dokumen->id) }}"
-                                                               title="Ubah"
-                                                               class="btn btn-sm btn-primary pull-right edit">
-                                                                <i class="voyager-edit"></i>
-                                                                <!-- Edit -->
-                                                            </a>
+                                                        <a href="{{ route('upload-dokumen.edit', $dokumen->id) }}"
+                                                           title="Ubah"
+                                                           class="btn btn-sm btn-primary pull-right edit">
+                                                            <i class="voyager-edit"></i>
+                                                            <!-- Edit -->
+                                                        </a>
 
-                                                            @if($dokumen->status === \App\Models\Dokumen::SUDAH_TUNTAS)
-                                                                <a href="{{ route('verifikasi.show', $dokumen->id) }}"
-                                                                   title="Verifikasi"
-                                                                   class="btn btn-sm btn-success pull-right edit">
-                                                                    <i class="voyager-check"></i>
-                                                                    <!-- Verifikasi -->
-                                                                </a>
-                                                            @endif
+                                                        @if($dokumen->status === \App\Models\Dokumen::SUDAH_TUNTAS)
+                                                            <a href="{{ route('verifikasi.show', $dokumen->id) }}"
+                                                               title="Verifikasi"
+                                                               class="btn btn-sm btn-success pull-right edit">
+                                                                <i class="voyager-check"></i>
+                                                                <!-- Verifikasi -->
+                                                            </a>
+                                                        @endif
                                                     @else
+                                                        @if(auth()->user()->custom_role->id === \App\Models\User::$ROLE_SUPERADMIN)
+                                                            <a data-toggle="modal" data-target="#dokumen_delete_modal"
+                                                               href="#" title="Hapus"
+                                                               class="btn btn-sm btn-danger pull-right delete">
+                                                                <i class="voyager-trash"></i>
+                                                                <!-- Delete -->
+                                                            </a>
+                                                        @endif
                                                         <a href="#" title="Lihat"
-                                                           class="btn btn-sm btn-primary pull-right view">
+                                                           class="btn btn-sm btn-warning pull-right view">
                                                             <i class="voyager-eye"></i>
                                                         </a>
                                                     @endif

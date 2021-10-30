@@ -23,7 +23,7 @@
                 <div class="col-md-6">
                     <div class="panel panel-bordered">
                         <div class="panel-heading">
-                            <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Form Dokumen Utama</p>
+                            <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Dokumen Utama</p>
                         </div>
                         <div class="panel-body">
                             <!-- SPP -->
@@ -48,7 +48,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>File SPP</label>
+                                        <label>File</label>
                                         <br>
                                         <button type="button" data-toggle="modal" data-target="#pdf_modal"
                                                 data-jenis="spp" data-id="{{ $dokumen->spp->id }}"
@@ -58,13 +58,12 @@
                                         </button>
 
                                         <span class="form-group pull-right" title="Verifikasi">
-                                            <input type="checkbox">
+                                            <input type="checkbox" name="check_spp">
                                             <label for="">Telah diperiksa</label>
                                         </span>
                                     </div>
                                 </div>
                             </div><!-- SPP -->
-
                             <!-- SPM -->
                             <div class="panel panel-default border-success">
                                 <div class="panel-body">
@@ -78,7 +77,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>File SPM</label>
+                                        <label>File</label>
                                         <br>
                                         <button type="button" data-toggle="modal" data-target="#pdf_modal"
                                                 data-jenis="spm" data-id="{{ $dokumen->spm->id }}"
@@ -88,13 +87,12 @@
                                         </button>
 
                                         <span class="form-group pull-right" title="Verifikasi">
-                                            <input type="checkbox">
+                                            <input type="checkbox" name="check_spm">
                                             <label for="">Telah diperiksa</label>
                                         </span>
                                     </div>
                                 </div>
                             </div><!-- SPM -->
-
                             <!-- SP2D -->
                             <div class="panel panel-default border-success">
                                 <div class="panel-body">
@@ -108,7 +106,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>File SPM</label>
+                                        <label>File</label>
                                         <br>
                                         <button type="button" data-toggle="modal" data-target="#pdf_modal"
                                                 data-jenis="sp2d" data-id="{{ $dokumen->sp2d->id }}"
@@ -118,7 +116,7 @@
                                         </button>
 
                                         <span class="form-group pull-right" title="Verifikasi">
-                                            <input type="checkbox">
+                                            <input type="checkbox" name="check_sp2d">
                                             <label for="">Telah diperiksa</label>
                                         </span>
                                     </div>
@@ -128,18 +126,51 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="panel-heading">
-                        <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Form Dokumen Utama</p>
-                    </div>
-                    <div class="panel-body">
+                    <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                            <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Dokumen Pendukung</p>
+                        </div>
+                        <div class="panel-body">
+                        @forelse($dokumen->pendukung as $pendukung)
+                            <!-- SPP -->
+                                <div class="panel panel-default border-success">
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label class="">Nama Dokumen</label>
+                                            <input class="form-control" type="text"
+                                                   value="{{ $pendukung->nama_dokumen }}" placeholder="No SPP" disabled>
+                                            @error('no_spp')
+                                            <span class="text-danger">* {{ $message }}</span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>File</label>
+                                            <br>
+                                            <button type="button" data-toggle="modal" data-target="#pdf_modal"
+                                                    data-jenis="pendukung" data-id="{{ $pendukung->id }}"
+                                                    data-no="{{ $pendukung->nama_dokumen }}"
+                                                    class="btn btn-sm btn-success tampilkan"><i
+                                                        class="voyager-file-text"></i> Tampilkan
+                                            </button>
+
+                                            <span class="form-group pull-right" title="Verifikasi">
+                                            <input type="checkbox" name="check_pendukung[]">
+                                            <label for="">Telah diperiksa</label>
+                                        </span>
+                                        </div>
+                                    </div>
+                                </div><!-- SPP -->
+                            @empty
+                            @endforelse
+                        </div>
                     </div>
                 </div>
             </div>
         </form>
 
         <!-- END ROW -->
-
-        <button type="submit" class="btn btn-primary">Proses Verifikasi</button>
+        <button type="submit" class="btn btn-primary btn-block" style="margin-left: 1.5rem">Proses Verifikasi</button>
 
         <!-- Modal -->
         <div class="modal fade modal-primary" id="pdf_modal" data-backdrop="static">
@@ -180,7 +211,7 @@
                 let dataNo = $(e.target).data('no');
                 let dataJenis = $(e.target).data('jenis');
 
-                $("#modal-file-dokumen").attr('src', '');
+                $("#modal-file-dokumen").empty();
 
                 let req = $.ajax({
                     url: "{{ route('viewer.generate') }}",

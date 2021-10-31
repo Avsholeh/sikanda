@@ -12,7 +12,12 @@ class DokumenController extends Controller
 {
     public function index($status = null)
     {
-        if (!in_array($status, ['semua', 'belum-tuntas', 'sudah-tuntas', 'verifikasi']))
+        if (!in_array($status, [
+            'semua',
+            'belum-tuntas',
+            'sudah-tuntas',
+            'verifikasi',
+        ]))
             return redirect()->route('dokumen.index', 'semua');
 
         if ($status === 'belum-tuntas') $status = Dokumen::BELUM_TUNTAS;
@@ -36,7 +41,7 @@ class DokumenController extends Controller
             if (in_array($status, $statusList)) {
                 $dokumens = Dokumen::where([
                     'status' => $status,
-                    'dinas_id' => auth()->user()->dinas->id
+                    'dinas_id' => auth()->user()->dinas->id,
                 ])->orderByDesc('created_at')->paginate(10);;
             } else {
                 $dokumens = Dokumen::where('dinas_id', auth()->user()->dinas->id)

@@ -9,6 +9,17 @@ use Illuminate\Http\Request;
 
 class UploadController extends Controller
 {
+
+    public function checkPermission(Dokumen $dokumen)
+    {
+        $auth = [User::$ROLE_SUPERADMIN, User::$ROLE_DEV];
+        if (!in_array(auth()->user()->custom_role->id, $auth)) {
+            if ($dokumen and $dokumen->dinas_id !== auth()->user()->dinas_id) {
+                abort(401);
+            }
+        }
+    }
+
     public function index()
     {
         return view('vendor.voyager.upload.index');
@@ -24,8 +35,8 @@ class UploadController extends Controller
         ]);
 
         // set dinas sesuai user kecuali superadmin
-        if (auth()->user()->role_id === 1) {
-            $dinas_id = 00;
+        if (auth()->user()->role_id === User::$ROLE_DEV || auth()->user()->role_id === User::$ROLE_SUPERADMIN) {
+            $dinas_id = 0;
         } else {
             $dinas_id = auth()->user()->dinas_id;
         }
@@ -53,21 +64,13 @@ class UploadController extends Controller
 
     public function edit(Dokumen $dokumen)
     {
-        if (auth()->user()->custom_role->id  !== User::$ROLE_SUPERADMIN) {
-            if ($dokumen and $dokumen->dinas_id !== auth()->user()->dinas_id) {
-                abort(401);
-            }
-        }
+        $this->checkPermission($dokumen);
         return view('vendor.voyager.upload.edit', compact('dokumen'));
     }
 
     public function update(Request $request, Dokumen $dokumen)
     {
-        if (auth()->user()->custom_role->id  !== User::$ROLE_SUPERADMIN) {
-            if ($dokumen and $dokumen->dinas_id !== auth()->user()->dinas_id) {
-                abort(401);
-            }
-        }
+        $this->checkPermission($dokumen);
 
         // validate spm form
         if ($request->post('no_spm') or $request->post('file_spm')) {

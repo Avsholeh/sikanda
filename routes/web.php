@@ -46,11 +46,9 @@ Route::group(['prefix' => '/'], function () {
         Route::get('dokumen/{status?}', [\App\Http\Controllers\DokumenController::class, 'index'])
             ->name('dokumen.index');
 
-        Route::get('verifikasi/{dokumen}', [\App\Http\Controllers\VerifikasiController::class, 'show'])
-            ->name('verifikasi.show');
-
-        Route::post('verifikasi/proses', [\App\Http\Controllers\VerifikasiController::class, 'proses'])
-            ->name('verifikasi.proses');
+        // show dokumen
+        Route::get('dokumen/lihat/{dokumen}', [\App\Http\Controllers\DokumenController::class, 'show'])
+            ->name('dokumen.show');
 
         // delete dokumen
         Route::get('dokumen/{dokumen}/delete', [\App\Http\Controllers\DokumenController::class, 'delete'])
@@ -67,6 +65,14 @@ Route::group(['prefix' => '/'], function () {
         // delete pendukung
         Route::get('pendukung/{pendukung}/delete', [\App\Http\Controllers\DokumenController::class, 'deletePendukung'])
             ->name('dokumen.pendukung.delete');
+
+        // ================= VERIFIKASI ================= //
+
+        Route::get('verifikasi/{dokumen}', [\App\Http\Controllers\VerifikasiController::class, 'show'])
+            ->name('verifikasi.show');
+
+        Route::post('verifikasi/proses', [\App\Http\Controllers\VerifikasiController::class, 'proses'])
+            ->name('verifikasi.proses');
 
         // ================= VIEWER ================= //
 

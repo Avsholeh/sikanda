@@ -30,7 +30,7 @@ Sistem kearsipan daerah
 - Perbaiki fitur admin bisa menambahkan user biasa saja.
 - Tambahkan fitur laporan dokumen masing2 dinas
 - Tambahkan fitur download semua
-- Tambahkan fitur verifikasi
+- Tambahkan fitur verifikasi [ok]
 
 ## Contributing
 

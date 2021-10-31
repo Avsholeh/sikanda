@@ -51,7 +51,9 @@
                                             <th>Status</th>
                                             <th class="hidden-xs hidden-sm">Dibuat</th>
                                             <th class="hidden-xs hidden-sm">Diperbarui</th>
-                                            <th></th>
+                                            @if($status === \App\Models\Dokumen::VERIFIKASI)
+                                            <th>Verifikasi oleh</th>
+                                            @endif
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -103,6 +105,11 @@
                                                 <td class="hidden-xs hidden-sm">
                                                     <div>{{ $dokumen->updated_at }}</div>
                                                 </td>
+                                                @if($status === \App\Models\Dokumen::VERIFIKASI)
+                                                    <td class="hidden-xs hidden-sm">
+                                                        <div>{{ $dokumen->verifikasi_oleh }}</div>
+                                                    </td>
+                                                @endif
                                                 <td class="no-sort no-click bread-actions">
                                                     @if($dokumen->status !== \App\Models\Dokumen::VERIFIKASI)
                                                         @can('delete', $dokumen)
@@ -140,7 +147,7 @@
                                                                 <!-- Delete -->
                                                             </a>
                                                         @endif
-                                                        <a href="#" title="Lihat"
+                                                        <a href="{{ route('dokumen.show', $dokumen->id) }}" title="Lihat"
                                                            class="btn btn-sm btn-warning pull-right view">
                                                             <i class="voyager-eye"></i>
                                                         </a>

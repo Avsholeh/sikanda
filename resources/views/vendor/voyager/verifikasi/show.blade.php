@@ -20,9 +20,11 @@
                 <!-- Upload dokumen-->
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form action="{{ route('upload-dokumen.update', $dokumen->id) }}" method="POST"
+                        <form action="{{ route('verifikasi.proses') }}" method="POST"
                               enctype="multipart/form-data" autocomplete="off">
                             @csrf
+
+                            <input type="hidden" name="dokumen_id" value="{{ $dokumen->id }}">
 
                             <table class="table table-hover table-striped table-responsive">
                                 <thead>
@@ -33,7 +35,6 @@
                                     <th>Jenis</th>
                                     <th>No</th>
                                     <th>File</th>
-                                    <th width="30%">Status</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -51,12 +52,6 @@
                                                     class="voyager-file-text"></i>
                                         </button>
                                     </td>
-                                    <td>
-                                <span class="form-group" title="Verifikasi">
-                                    <input type="checkbox" name="check_spp">
-                                    <label for="">Verifikasi</label>
-                                </span>
-                                    </td>
                                 </tr>
 
                                 <tr>
@@ -73,12 +68,6 @@
                                                     class="voyager-file-text"></i>
                                         </button>
                                     </td>
-                                    <td>
-                                <span class="form-group" title="Verifikasi">
-                                    <input type="checkbox" name="check_spp">
-                                    <label for="">Verifikasi</label>
-                                </span>
-                                    </td>
                                 </tr>
 
                                 <tr>
@@ -94,12 +83,6 @@
                                                 class="btn btn-sm btn-danger tampilkan">
                                             <i class="voyager-file-text"></i>
                                         </button>
-                                    </td>
-                                    <td>
-                                <span class="form-group" title="Verifikasi">
-                                    <input type="checkbox" name="check_spp">
-                                    <label for="">Verifikasi</label>
-                                </span>
                                     </td>
                                 </tr>
 
@@ -118,18 +101,11 @@
                                                 <i class="voyager-file-text"></i>
                                             </button>
                                         </td>
-                                        <td>
-                                <span class="form-group" title="Verifikasi">
-                                    <input type="checkbox" name="check_spp">
-                                    <label for="">Verifikasi</label>
-                                </span>
-                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-
-                            <button type="submit" class="btn btn-lg btn-primary">Simpan Perubahan</button>
+                            <button type="submit" class="btn btn-lg btn-success">Verifikasi</button>
                         </form>
                     </div>
                 </div>

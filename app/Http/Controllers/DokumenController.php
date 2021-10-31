@@ -55,12 +55,14 @@ class DokumenController extends Controller
         ]);
     }
 
-    public function prosesVerifikasi()
+    public function show(Dokumen $dokumen)
     {
-        $authenticated = [User::$ROLE_SUPERADMIN, User::$ROLE_ADMIN];
-        if (!in_array(auth()->user()->custom_role, $authenticated)) abort(501);
+        $auth = [User::$ROLE_SUPERADMIN, User::$ROLE_DEV];
+        if (!in_array(auth()->user()->custom_role->id, $auth))
+            if ($dokumen->dinas_id !== auth()->user()->dinas_id)
+                abort(401);
 
-
+        return view('vendor.voyager.dokumen.show', compact('dokumen'));
     }
 
     public function delete(Dokumen $dokumen)

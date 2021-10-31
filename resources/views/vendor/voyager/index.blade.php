@@ -107,10 +107,10 @@
                         </small>
                     </div>
                     <div class="panel-body">
-                        <form action="{{ route('upload-dokumen.store') }}" method="POST" enctype="multipart/form-data"
-                              autocomplete="off">
-                        @csrf
-                        <!-- SPP -->
+                        <form action="{{ route('upload-dokumen.store') }}" method="POST"
+                              enctype="multipart/form-data" autocomplete="off">
+                            @csrf
+                            <!-- SPP -->
                             <div class="panel panel-default border-primary">
                                 <div class="panel-body">
                                     <div class="form-group">
@@ -140,7 +140,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>
                     </div>

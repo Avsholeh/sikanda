@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokumen;
 use App\Models\Pendukung;
 use App\Models\Sp2d;
 use App\Models\Spm;
@@ -11,13 +12,18 @@ use ZipArchive;
 
 class ViewerController extends Controller
 {
+    public function checkPermission($dokumen)
+    {
+        $auth = [User::$ROLE_SUPERADMIN, User::$ROLE_DEV];
+        if (!in_array(auth()->user()->custom_role->id, $auth))
+            if ($dokumen->dokumen and $dokumen->dokumen->dinas_id !== auth()->user()->dinas_id)
+                abort(401);
+    }
+
     public function preview($jenisDokumen, $dokumenId)
     {
         $document = $this->findDocument($jenisDokumen, $dokumenId);
-        if (auth()->user()->custom_role->id !== User::$ROLE_SUPERADMIN)
-            if ($document->dokumen and $document->dokumen->dinas_id !== auth()->user()->dinas_id)
-                abort(401);
-
+        $this->checkPermission($document);
         $data = base64_decode($document->file);
         header("Content-type:application/pdf");
         header("Content-Disposition:inline;filename=document.pdf");
@@ -27,10 +33,7 @@ class ViewerController extends Controller
     public function download($jenisDokumen, $dokumenId)
     {
         $document = $this->findDocument($jenisDokumen, $dokumenId);
-        if (auth()->user()->custom_role->id !== User::$ROLE_SUPERADMIN)
-            if ($document->dokumen and $document->dokumen->dinas_id !== auth()->user()->dinas_id)
-                abort(401);
-
+        $this->checkPermission($document);
         $data = base64_decode($document->file);
         $documentHash = strtoupper($this->documentHash($dokumenId, $jenisDokumen, 'adler32'));
         $jenisDokumen = strtoupper($jenisDokumen);

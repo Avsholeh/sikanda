@@ -46,12 +46,14 @@
                                        value="{{ old('name', $dataTypeContent->name ?? '') }}">
                             </div>
 
-                            <div class="form-group">
-                                <label for="roles">Role</label>
-                                <input type="text" class="form-control" id="roles"
-                                       placeholder="{{ __('voyager::generic.name') }}"
-                                       value="{{ old('name', auth()->user()->custom_role->display_name ?? '') }}" disabled>
-                            </div>
+{{--                            @if(request()->routeIs('voyager.users.edit'))--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label for="roles">Role</label>--}}
+{{--                                <input type="text" class="form-control" id="roles"--}}
+{{--                                       placeholder="{{ __('voyager::generic.name') }}"--}}
+{{--                                       value="{{ old('name', auth()->user()->custom_role->display_name ?? '') }}" disabled>--}}
+{{--                            </div>--}}
+{{--                            @endif--}}
 
                             <div class="form-group">
                                 <label for="email">{{ __('voyager::generic.email') }}</label>

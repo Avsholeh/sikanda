@@ -22,6 +22,7 @@ class DokumenFactory extends Factory
     public function definition()
     {
         return [
+            'dinas_id' => $this->faker->randomNumber(1),
             'created_at' => $this->faker->dateTimeThisYear,
             'updated_at' => $this->faker->dateTimeThisYear,
         ];

@@ -43,6 +43,7 @@
                         <div class="profile-body">
                             <h5>{{ Auth::user()->name }}</h5>
                             <h6>{{ Auth::user()->email }}</h6>
+                            <h6>{{ Auth::user()->dinas->nm_dinas ?? '' }}</h6>
                         </div>
                     </li>
                     <li class="divider"></li>

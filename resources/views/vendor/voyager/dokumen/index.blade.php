@@ -4,12 +4,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 
-@section('page_title', 'Dokumen Saya')
+@section('page_title', 'Dokumen')
 
 @section('page_header')
     <h1 class="page-title">
-        <i class="voyager-upload"></i>
-        Dokumen Saya
+        <i class="voyager-upload"></i> @yield('page_title')
     </h1>
 @stop
 
@@ -52,7 +51,7 @@
                                             <th class="hidden-xs hidden-sm">Dibuat</th>
                                             <th class="hidden-xs hidden-sm">Diperbarui</th>
                                             @if($status === \App\Models\Dokumen::VERIFIKASI)
-                                            <th>Verifikasi oleh</th>
+                                                <th>Verifikasi oleh</th>
                                             @endif
                                         </tr>
                                         </thead>
@@ -115,7 +114,8 @@
                                                         @can('delete', $dokumen)
                                                             <a data-toggle="modal" data-target="#dokumen_delete_modal"
                                                                href="#" title="Hapus"
-                                                               class="btn btn-sm btn-danger pull-right delete">
+                                                               data-url="{{ route('dokumen.delete', $dokumen->id) }}"
+                                                               class="btn btn-sm btn-danger pull-right btn-delete">
                                                                 <i class="voyager-trash"></i>
                                                                 <!-- Delete -->
                                                             </a>
@@ -142,17 +142,17 @@
                                                         ]))
                                                             <a data-toggle="modal" data-target="#dokumen_delete_modal"
                                                                href="#" title="Hapus"
-                                                               class="btn btn-sm btn-danger pull-right delete">
+                                                               data-url="{{ route('dokumen.delete', $dokumen->id) }}"
+                                                               class="btn btn-sm btn-danger pull-right btn-delete">
                                                                 <i class="voyager-trash"></i>
-                                                                <!-- Delete -->
                                                             </a>
                                                         @endif
-                                                        <a href="{{ route('dokumen.show', $dokumen->id) }}" title="Lihat"
+                                                        <a href="{{ route('dokumen.show', $dokumen->id) }}"
+                                                           title="Lihat"
                                                            class="btn btn-sm btn-warning pull-right view">
                                                             <i class="voyager-eye"></i>
                                                         </a>
                                                     @endif
-
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -161,7 +161,7 @@
                                     </table>
                                     {{ $dokumens->links() }}
                                 @else
-                                    Data belum tersedia.
+                                    Dokumen belum tersedia.
                                 @endif
 
                             </div>
@@ -189,16 +189,9 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                                @if(count($dokumens))
-                                    <a type="button" class="btn btn-danger"
-                                       href="{{ route('dokumen.delete', $dokumen->id) }}">
-                                        Ya, Hapus
-                                    </a>
-                                @else
-                                    <a type="button" class="btn btn-danger" href="#">
-                                        Ya, Hapus
-                                    </a>
-                                @endif
+                                <a id="btn-delete-modal" type="button" class="btn btn-danger" href="#">
+                                    Ya, Hapus
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -208,3 +201,14 @@
         </div>
     </div>
 @stop
+
+@push('javascript')
+    <script>
+        $(document).ready(function () {
+            $(".btn-delete").click(function () {
+                $url = $(this).data('url');
+                $("#btn-delete-modal").attr('href', $url)
+            });
+        });
+    </script>
+@endpush

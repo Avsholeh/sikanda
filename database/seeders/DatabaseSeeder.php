@@ -32,7 +32,6 @@ class DatabaseSeeder extends Seeder
                 'file' => base64_encode(file_get_contents(storage_path('\app\sample-pendukung.pdf')))
             ])
             ->create([
-                'dinas_id' => 1,
                 'status' => 'S',
                 'tahun' => 2021
             ]);
@@ -45,7 +44,6 @@ class DatabaseSeeder extends Seeder
                 'file' => base64_encode(file_get_contents(storage_path('\app\sample-spm.pdf')))
             ])
             ->create([
-                'dinas_id' => 1,
                 'status' => 'B',
                 'tahun' => 2021
             ]);

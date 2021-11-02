@@ -29,9 +29,16 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Dinas whereNmDinas($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dinas whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Dokumen[] $dokumen
+ * @property-read int|null $dokumen_count
  */
 class Dinas extends Model
 {
     use HasFactory;
     protected $table = 'tb_dinas';
+
+    public function dokumen()
+    {
+        return $this->hasMany(Dokumen::class, 'dinas_id', 'id');
+    }
 }

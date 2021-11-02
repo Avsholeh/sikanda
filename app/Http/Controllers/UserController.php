@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use TCG\Voyager\Events\BreadDataAdded;
@@ -10,6 +11,17 @@ use TCG\Voyager\Http\Controllers\VoyagerBaseController;
 
 class UserController extends VoyagerBaseController
 {
+//    public function index(Request $request)
+//    {
+//        $authenticated = [User::$ROLE_DEV];
+//        if (in_array(auth()->user()->custom_role->id, $authenticated)) {
+//            $users = User::all();
+//        } else {
+//            $users = User::where('role_id', '!=', User::$ROLE_DEV)->get();
+//        }
+//        return view('vendor.voyager.users.index', compact('users'));
+//    }
+
     /**
      * POST BRE(A)D - Store data.
      *

@@ -4,11 +4,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 
-@section('page_title', 'Laporan')
+@section('page_title', 'Laporan Data Dokumen')
 
 @section('page_header')
     <h1 class="page-title">
-        <i class="voyager-paperclip"></i> Laporan
+        <i class="voyager-paperclip"></i> @yield('page_title')
     </h1>
 @stop
 
@@ -16,13 +16,13 @@
     <div class="page-content edit-add container-fluid">
         <div class="row">
             <div class="col-md-4">
-                @include('vendor.voyager.laporan.form_pencarian')
+                @include('vendor.voyager.laporan.data_pencarian')
             </div>
             <div class="col-md-8">
                 @if(request()->route('dokumen'))
-                    @include('vendor.voyager.laporan.detail')
+                    @include('vendor.voyager.laporan.data_detail')
                 @else
-                    @include('vendor.voyager.laporan.hasil_pencarian')
+                    @include('vendor.voyager.laporan.data_hasil_pencarian')
                 @endif
             </div>
             </form>

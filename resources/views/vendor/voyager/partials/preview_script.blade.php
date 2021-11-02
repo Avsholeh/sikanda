@@ -10,7 +10,7 @@
             var dataJenis, dataId, dataNo;
 
             $(".tampilkan").click(function (e) {
-                $("#modal-file-dokumen").empty();
+                $("#modal-file-dokumen").text('');
                 dataJenis = $(this).data('jenis');
                 dataId = $(this).data('id');
                 dataNo = $(this).data('no');

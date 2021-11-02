@@ -35,6 +35,8 @@ use Illuminate\Support\Facades\Auth;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Pendukung[] $pendukung
  * @property-read int|null $pendukung_count
  * @method static \Database\Factories\DokumenFactory factory(...$parameters)
+ * @property string|null $verifikasi_oleh
+ * @method static \Illuminate\Database\Eloquent\Builder|Dokumen whereVerifikasiOleh($value)
  */
 class Dokumen extends Model
 {

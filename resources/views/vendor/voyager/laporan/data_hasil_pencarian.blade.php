@@ -28,17 +28,25 @@
                             <div class="col-12 col-md-8">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <p><strong>No: </strong> {{ ++$loop->index }}</p>
+                                        <p><strong>ID: </strong> {{ $dokumen->id }}</p>
                                         <p><strong>Tanggal: </strong> {{ $dokumen->created_at }}</p>
-                                        @if($dokumen->status === 'S')
-                                            <p><strong>Status: </strong>
-                                                <span class="badge bg-success">Sudah Tuntas</span>
-                                            </p>
-                                        @else
+                                        @switch($dokumen->status)
+                                            @case(\App\Models\Dokumen::BELUM_TUNTAS)
                                             <p><strong>Status: </strong>
                                                 <span class="badge bg-danger">Belum Tuntas</span>
                                             </p>
-                                        @endif
+                                            @break
+                                            @case(\App\Models\Dokumen::SUDAH_TUNTAS)
+                                            <p><strong>Status: </strong>
+                                                <span class="badge badge-primary">Sudah Tuntas</span>
+                                            </p>
+                                            @break
+                                            @case(\App\Models\Dokumen::VERIFIKASI)
+                                            <p><strong>Status: </strong>
+                                                <span class="badge badge-success">Verifikasi</span>
+                                            </p>
+                                            @break
+                                        @endswitch
                                         <p><strong>Dinas: </strong> {{ $dokumen->dinas->nm_dinas ?? '-' }}
                                         </p>
                                     </div>
@@ -46,9 +54,7 @@
                                         <p><strong>SPP: </strong> {{ $dokumen->spp->no_spp }}</p>
                                         <p><strong>SPM: </strong> {{ $dokumen->spm->no_spm }}</p>
                                         <p><strong>SP2D: </strong> {{ $dokumen->sp2d->no_sp2d }}</p>
-                                        <p>
-                                            <strong>Pendukung: </strong> {{ $dokumen->pendukung->count() }}
-                                        </p>
+                                        <p><strong>Pendukung: </strong> {{ $dokumen->pendukung->count() }}</p>
                                     </div>
                                 </div>
                             </div>

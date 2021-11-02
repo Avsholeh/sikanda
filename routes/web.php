@@ -84,14 +84,28 @@ Route::group(['prefix' => '/'], function () {
 
         // ================= LAPORAN ================= //
 
-        Route::get('laporan', [\App\Http\Controllers\LaporanController::class, 'index'])
-            ->name('laporan.index');
+        Route::get('laporan', function() {
+            return redirect()->route('laporan.data_dokumen');
+        });
+
+        // ================= DATA DOKUMEN
+
+        Route::get('laporan/data_dokumen', [\App\Http\Controllers\LaporanController::class, 'dataDokumen'])
+            ->name('laporan.data_dokumen');
 
         Route::get('laporan/detail/{dokumen}', [\App\Http\Controllers\LaporanController::class, 'detail'])
             ->name('laporan.detail');
 
         Route::post('laporan', [\App\Http\Controllers\LaporanController::class, 'pencarian'])
             ->name('laporan.pencarian');
+
+        // ================= REKAP DOKUMEN
+
+        Route::get('laporan/rekap_dokumen', [\App\Http\Controllers\LaporanController::class, 'rekapDokumen'])
+            ->name('laporan.rekap_dokumen');
+
+        Route::post('laporan/rekap_pencarian', [\App\Http\Controllers\LaporanController::class, 'rekapDokumen'])
+            ->name('laporan.rekap_pencarian');
 
     });
 });

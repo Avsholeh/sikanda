@@ -44,6 +44,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th class="hidden-xs hidden-sm">Tahun</th>
+                                            <th class="hidden-xs hidden-sm">Dinas</th>
                                             <th>SPP</th>
                                             <th class="hidden-xs hidden-sm">SPM</th>
                                             <th class="hidden-xs hidden-sm">SP2D</th>
@@ -61,6 +62,9 @@
                                                 <td>{{($dokumens->currentPage() - 1) * $dokumens->perPage() + $loop->iteration}}</td>
                                                 <td class="hidden-xs hidden-sm">
                                                     <div>{{ $dokumen->tahun }}</div>
+                                                </td>
+                                                <td class="hidden-xs hidden-sm">
+                                                    <div>{{ $dokumen->dinas->nm_dinas }}</div>
                                                 </td>
                                                 <td>
                                                     @if(isset($dokumen->spp->id))
@@ -115,14 +119,16 @@
                                                             <a data-toggle="modal" data-target="#dokumen_delete_modal"
                                                                href="#" title="Hapus"
                                                                data-url="{{ route('dokumen.delete', $dokumen->id) }}"
-                                                               class="btn btn-sm btn-danger pull-right btn-delete">
+                                                               class="btn btn-sm btn-danger pull-right btn-delete"
+                                                               style="margin-right: .2em;margin-left: .2em">
                                                                 <i class="voyager-trash"></i>
                                                                 <!-- Delete -->
                                                             </a>
                                                         @endcan
                                                         <a href="{{ route('upload-dokumen.edit', $dokumen->id) }}"
                                                            title="Ubah"
-                                                           class="btn btn-sm btn-primary pull-right edit">
+                                                           class="btn btn-sm btn-primary pull-right"
+                                                        style="margin-right: .2em;margin-left: .2em">
                                                             <i class="voyager-edit"></i>
                                                             <!-- Edit -->
                                                         </a>
@@ -130,7 +136,8 @@
                                                         @if($dokumen->status === \App\Models\Dokumen::SUDAH_TUNTAS)
                                                             <a href="{{ route('verifikasi.show', $dokumen->id) }}"
                                                                title="Verifikasi"
-                                                               class="btn btn-sm btn-success pull-right edit">
+                                                               class="btn btn-sm btn-success pull-right"
+                                                               style="margin-right: .2em;margin-left: .2em">
                                                                 <i class="voyager-check"></i>
                                                                 <!-- Verifikasi -->
                                                             </a>
@@ -143,13 +150,15 @@
                                                             <a data-toggle="modal" data-target="#dokumen_delete_modal"
                                                                href="#" title="Hapus"
                                                                data-url="{{ route('dokumen.delete', $dokumen->id) }}"
-                                                               class="btn btn-sm btn-danger pull-right btn-delete">
+                                                               class="btn btn-sm btn-danger pull-right btn-delete"
+                                                               style="margin-right: .2em;margin-left: .2em">
                                                                 <i class="voyager-trash"></i>
                                                             </a>
                                                         @endif
                                                         <a href="{{ route('dokumen.show', $dokumen->id) }}"
                                                            title="Lihat"
-                                                           class="btn btn-sm btn-warning pull-right view">
+                                                           class="btn btn-sm btn-warning pull-right view"
+                                                           style="margin-right: .2em;margin-left: .2em">
                                                             <i class="voyager-eye"></i>
                                                         </a>
                                                     @endif

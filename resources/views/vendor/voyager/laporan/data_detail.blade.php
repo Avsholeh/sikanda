@@ -7,12 +7,10 @@
 @endsection
 <div class="panel panel-bordered">
     <div class="panel-heading">
-        <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Detail Laporan
-
-        </p>
-
+        <p style="margin-left: 20px; margin-top: 10px; font-weight: bold">Detail Laporan</p>
     </div>
-    <div class="panel-body" style="margin-top: 0">
+    <div class="panel-body" style="padding-top: 1em">
+
         <div class="row" style="margin-bottom: 1em">
             <div class="col-md-12">
                 <a class="btn btn-primary " href="{{ route('viewer.download_semua', $dokumen->id) }}">

@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class UploadController extends Controller
 {
-
     public function checkPermission(Dokumen $dokumen)
     {
         $auth = [User::$ROLE_SUPERADMIN, User::$ROLE_DEV];
@@ -45,6 +44,7 @@ class UploadController extends Controller
         $newDokumen = Dokumen::create([
             'dinas_id' => $dinas_id,
             'status' => 'B', // belum tuntas
+            'verifikasi_oleh' => 'B',
             'tahun' => $request->post('tahun'),
         ]);
 
@@ -95,9 +95,6 @@ class UploadController extends Controller
                 'file' => $this->pdfEncode($request->file('file_sp2d')),
             ]);
         }
-
-        // validate dokumen pendukung form
-        // @TODO tambah validasi dokumen pendukung
 
         // check status
         $status = (isset($dokumen->spm) and isset($dokumen->sp2d)) ? 'S' : 'B';

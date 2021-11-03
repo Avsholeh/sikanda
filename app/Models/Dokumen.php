@@ -60,12 +60,12 @@ class Dokumen extends Model
 
     public function getCreatedAtAttribute()
     {
-        return Carbon::parse($this->attributes['created_at'])->translatedFormat('l, F M Y');
+        return Carbon::parse($this->attributes['created_at'])->translatedFormat('l, j M Y');
     }
 
     public function getUpdatedAtAttribute()
     {
-        return Carbon::parse($this->attributes['updated_at'])->translatedFormat('l, F M Y');
+        return Carbon::parse($this->attributes['updated_at'])->translatedFormat('l, j M Y');
     }
 
     public function pendukung()

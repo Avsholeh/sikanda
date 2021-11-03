@@ -40,10 +40,10 @@ class ViewerController extends Controller
         $dokumen = $this->findDocument($jenisDokumen, $dokumenId);
         $this->checkPermission($dokumen);
         $data = base64_decode($dokumen->file);
-        $documentHash = strtoupper($this->documentHash($dokumenId, $jenisDokumen, 'adler32'));
+        $dokumenHash = strtoupper($this->documentHash($dokumenId, $jenisDokumen, 'adler32'));
         $jenisDokumen = strtoupper($jenisDokumen);
         header("Content-type:application/pdf");
-        header("Content-Disposition:attachment;filename={$jenisDokumen}-{$documentHash}.pdf");
+        header("Content-Disposition:attachment;filename={$jenisDokumen}-{$dokumenHash}.pdf");
         echo $data;
     }
 
@@ -78,40 +78,40 @@ class ViewerController extends Controller
             file_put_contents($pendukungPath, base64_decode($pendukung->file));
         }
 
-        $zipfilename = 'DOKUMEN_' . time() . '.zip';
+        $zipfile = 'DOKUMEN_' . time() . '.zip';
+        $zipfilepath = storage_path($zipfile);
         $zip = new ZipArchive;
-        $zip->open(storage_path($zipfilename), ZipArchive::CREATE);
-        foreach ($files as $file) {
-            $zip->addFile($file);
-        }
+        $zip->open($zipfilepath, ZipArchive::CREATE);
+        foreach ($files as $file) $zip->addFile($file);
         $zip->close();
 
         header('Content-Type: application/zip');
-        header("Content-disposition: attachment; filename=$zipfilename");
-        header('Content-Length: ' . filesize(storage_path($zipfilename)));
-        readfile(storage_path($zipfilename));
-        unlink(storage_path($zipfilename));
+        header("Content-disposition: attachment; filename=$zipfile");
+        header('Content-Length: ' . filesize($zipfilepath));
+        readfile($zipfilepath);
+        unlink($zipfilepath);
+        foreach ($files as $file) unlink(public_path($file));
         exit();
     }
 
     private function findDocument($jenisDokumen, $dokumenId)
     {
-        $document = null;
+        $dokumen = null;
         switch ($jenisDokumen) {
             case 'spp':
-                $document = Spp::where('id', $dokumenId)->first();
+                $dokumen = Spp::where('id', $dokumenId)->first();
                 break;
             case 'spm':
-                $document = Spm::where('id', $dokumenId)->first();
+                $dokumen = Spm::where('id', $dokumenId)->first();
                 break;
             case 'sp2d':
-                $document = Sp2d::where('id', $dokumenId)->first();
+                $dokumen = Sp2d::where('id', $dokumenId)->first();
                 break;
             case 'pendukung':
-                $document = Pendukung::where('id', $dokumenId)->first();
+                $dokumen = Pendukung::where('id', $dokumenId)->first();
                 break;
         }
-        return $document;
+        return $dokumen;
     }
 
     private function documentHash($dokumenId, $jenisDokumen, $algo = 'gost')

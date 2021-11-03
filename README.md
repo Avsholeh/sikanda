@@ -29,7 +29,7 @@ Sistem kearsipan daerah
 #### Things @TODO 
 - Perbaiki fitur admin bisa menambahkan user biasa saja. [x]
 - Tambahkan fitur laporan dokumen masing2 dinas. [ok]
-- Tambahkan fitur download semua.
+- Tambahkan fitur download semua. [ok]
 - Tambahkan fitur verifikasi. [ok]
 
 ## Contributing

@@ -82,6 +82,9 @@ Route::group(['prefix' => '/'], function () {
         Route::get('viewer-download/{jenisDokumen}/{dokumenId}', [\App\Http\Controllers\ViewerController::class, 'download'])
             ->name('viewer.download');
 
+        Route::get('viewer-download-semua/{dokumenId}', [\App\Http\Controllers\ViewerController::class, 'downloadSemua'])
+            ->name('viewer.download_semua');
+
         // ================= LAPORAN ================= //
 
         Route::get('laporan', function() {

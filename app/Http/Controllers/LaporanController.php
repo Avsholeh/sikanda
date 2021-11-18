@@ -50,8 +50,6 @@ class LaporanController extends Controller
             $dokumens = Dokumen::whereHas($type, function (Builder $query) use ($pencarianText, $type) {
                 return $query->where('no_' . $type, 'like', "%$pencarianText%");
             })
-//                ->where('status', Dokumen::SUDAH_TUNTAS)
-//                ->orWhere('status', Dokumen::VERIFIKASI)
                 ->whereIn('status', [Dokumen::SUDAH_TUNTAS, Dokumen::VERIFIKASI])
                 ->take(10)->get();
         } else {
@@ -60,8 +58,6 @@ class LaporanController extends Controller
                 return $query->where('no_' . $type, 'like', "%$pencarianText%");
             })
                 ->where('dinas_id', auth()->user()->dinas->id)
-//                ->where('status', '=', Dokumen::SUDAH_TUNTAS)
-//                ->orWhere('status', '=', Dokumen::VERIFIKASI)
                 ->whereIn('status', [Dokumen::SUDAH_TUNTAS, Dokumen::VERIFIKASI])
                 ->take(10)->get();
         }

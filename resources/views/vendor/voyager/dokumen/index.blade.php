@@ -64,7 +64,7 @@
                                                     <div>{{ $dokumen->tahun }}</div>
                                                 </td>
                                                 <td class="hidden-xs hidden-sm">
-                                                    <div>{{ $dokumen->dinas->nm_dinas }}</div>
+                                                    <div>{{ $dokumen->dinas->nm_dinas ?? '-' }}</div>
                                                 </td>
                                                 <td>
                                                     @if(isset($dokumen->spp->id))

@@ -24,6 +24,9 @@ Route::group(['prefix' => '/'], function () {
 
     Voyager::routes();
 
+    Route::post('login', [\App\Http\Controllers\AuthController::class, 'postlogin'])
+        ->name('postLogin');
+
     Route::middleware(['admin.user'])->group(function () {
 
         // ================= UPLOAD DOKUMEN ================= //
@@ -87,7 +90,7 @@ Route::group(['prefix' => '/'], function () {
 
         // ================= LAPORAN ================= //
 
-        Route::get('laporan', function() {
+        Route::get('laporan', function () {
             return redirect()->route('laporan.data_dokumen');
         });
 
@@ -109,6 +112,11 @@ Route::group(['prefix' => '/'], function () {
 
         Route::post('laporan/rekap_pencarian', [\App\Http\Controllers\LaporanController::class, 'rekapDokumen'])
             ->name('laporan.rekap_pencarian');
+
+        // ================= Activity Log ================= //
+
+        Route::get('activity_log', [\App\Http\Controllers\ActivityLogController::class, 'index'])
+            ->name('activity_log.index');
 
     });
 });

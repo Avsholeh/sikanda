@@ -8,7 +8,7 @@
 
 @section('page_header')
     <h1 class="page-title">
-        <i class="voyager-upload"></i> @yield('page_title')
+        <i class="icon voyager-file-text"></i> @yield('page_title')
     </h1>
 @stop
 

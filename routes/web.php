@@ -118,5 +118,8 @@ Route::group(['prefix' => '/'], function () {
         Route::get('activity_log', [\App\Http\Controllers\ActivityLogController::class, 'index'])
             ->name('activity_log.index');
 
+        Route::post('activity_log/clear', [\App\Http\Controllers\ActivityLogController::class, 'clear'])
+            ->name('activity_log.clear');
+
     });
 });

@@ -13,6 +13,12 @@ class ActivityLogService
             'data' => json_encode($data),
             'ip_addr' => $ipAddr,
             'hostname' => $hostname,
+            'created_at' => now(),
         ]);
+    }
+
+    public function empty()
+    {
+        ActivityLog::truncate();
     }
 }

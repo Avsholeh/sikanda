@@ -26,8 +26,7 @@ Sistem kearsipan daerah
     - Tanggal
     - File
 
-#### Things @TODO 
-- Perbaiki fitur admin bisa menambahkan user biasa saja. [x]
+#### Things @TODO
 - Tambahkan fitur laporan dokumen masing2 dinas. [ok]
 - Tambahkan fitur download semua. [ok]
 - Tambahkan fitur verifikasi. [ok]

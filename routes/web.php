@@ -121,5 +121,10 @@ Route::group(['prefix' => '/'], function () {
         Route::post('activity_log/clear', [\App\Http\Controllers\ActivityLogController::class, 'clear'])
             ->name('activity_log.clear');
 
+        // ================= Panduan ================= //
+
+        Route::get('panduan/{userRole?}', [\App\Http\Controllers\PanduanController::class, 'index'])
+            ->name('panduan.index');
+
     });
 });

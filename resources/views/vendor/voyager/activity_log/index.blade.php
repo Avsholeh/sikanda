@@ -64,7 +64,6 @@
                                     <th>Aksi</th>
                                     <th>Data</th>
                                     <th>Alamat IP</th>
-                                    <th>Hostname</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -75,7 +74,6 @@
                                         <td>{{ $activityLog->action }}</td>
                                         <td>{{ $activityLog->data }}</td>
                                         <td>{{ $activityLog->ip_addr }}</td>
-                                        <td>{{ $activityLog->hostname }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

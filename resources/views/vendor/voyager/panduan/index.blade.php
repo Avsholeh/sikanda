@@ -31,17 +31,17 @@
                     @endif
 
                     @if(in_array(auth()->user()->custom_role->id, [\App\Models\User::$ROLE_ADMIN]))
-                        <li role="presentation" class="">
-                            <a href="#">Admin</a>
+                        <li role="presentation" @if($userRole == \App\Models\User::$ROLE_ADMIN) class="active" @endif>
+                            <a href="{{ route('panduan.index', \App\Models\User::$ROLE_ADMIN) }}">Admin</a>
                         </li>
-                        <li role="presentation" class="">
-                            <a href="#">User</a>
+                        <li role="presentation" @if($userRole == \App\Models\User::$ROLE_USER) class="active" @endif>
+                            <a href="{{ route('panduan.index', \App\Models\User::$ROLE_USER) }}">User</a>
                         </li>
                     @endif
 
                     @if(in_array(auth()->user()->custom_role->id, [\App\Models\User::$ROLE_USER]))
-                        <li role="presentation" class="">
-                            <a href="#">User</a>
+                        <li role="presentation" @if($userRole == \App\Models\User::$ROLE_USER) class="active" @endif>
+                            <a href="{{ route('panduan.index', \App\Models\User::$ROLE_USER) }}">User</a>
                         </li>
                     @endif
                 </ul>

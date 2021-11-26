@@ -9,6 +9,9 @@ class ActivityLogController extends Controller
 {
     public function index()
     {
+        // Check permission
+        $this->authorize('browse', app('App\Models\ActivityLog'));
+
         $activityLogs = ActivityLog::paginate(10);
         return view('vendor.voyager.activity_log.index', compact('activityLogs'));
     }

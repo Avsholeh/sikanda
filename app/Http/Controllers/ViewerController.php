@@ -23,11 +23,7 @@ class ViewerController extends Controller
 
     public function preview($jenisDokumen, $dokumenId)
     {
-        //$document = $this->findDocument($jenisDokumen, $dokumenId);
-        $document = Cache::remember($jenisDokumen.$dokumenId, 300, function() use ($jenisDokumen, $dokumenId){
-            return $this->findDocument($jenisDokumen, $dokumenId);
-        });
-
+        $document = $this->findDocument($jenisDokumen, $dokumenId);
         $this->checkPermission($document);
         $data = base64_decode($document->file);
         header("Content-type:application/pdf");
@@ -50,7 +46,7 @@ class ViewerController extends Controller
     public function downloadSemua($dokumenId)
     {
         $dokumen = Dokumen::findOrFail($dokumenId);
-        $this->checkPermission($dokumenId);
+        $this->checkPermission($dokumen);
         $files = [];
 
         // generate spp pdf

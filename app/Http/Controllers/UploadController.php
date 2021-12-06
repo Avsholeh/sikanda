@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dinas;
 use App\Models\Dokumen;
 use App\Models\Spp;
 use App\Models\User;
@@ -21,21 +22,30 @@ class UploadController extends Controller
 
     public function index()
     {
-        return view('vendor.voyager.upload.index');
+        $dinas = Dinas::all();
+        $currentYear = date('Y');
+        $tahun = range($currentYear, $currentYear-30);
+        return view('vendor.voyager.upload.index', compact('dinas', 'tahun'));
     }
 
     public function upload(Request $request)
     {
-        // validasi input user
-        $request->validate([
+        $validate = [
             'tahun' => 'required|size:4',
             'no_spp' => 'required|regex:/^\S*$/u|unique:tb_spp,no_spp',
             'file_spp' => 'required|max:' . (setting('dokumen.max_upload_size') * 1024) . '|mimes:pdf',
-        ]);
+        ];
+
+        if (auth()->user()->role_id === User::$ROLE_DEV || auth()->user()->role_id === User::$ROLE_SUPERADMIN) {
+            $validate['dinas'] = 'required';
+        }
+
+        // validasi input user
+        $request->validate($validate);
 
         // set dinas sesuai user kecuali superadmin
         if (auth()->user()->role_id === User::$ROLE_DEV || auth()->user()->role_id === User::$ROLE_SUPERADMIN) {
-            $dinas_id = 0;
+            $dinas_id = $request->post('dinas');
         } else {
             $dinas_id = auth()->user()->dinas_id;
         }

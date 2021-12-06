@@ -16,7 +16,8 @@
 @section('content')
     <div class="page-content edit-add container-fluid">
         <div class="row">
-            <form action="{{ route('upload-dokumen.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <form action="{{ route('upload-dokumen.store') }}" method="POST" enctype="multipart/form-data"
+                  autocomplete="off">
                 <div class="col-md-6">
                     @csrf
                     <div class="panel panel-bordered">
@@ -28,10 +29,35 @@
                             <!-- SPP -->
                             <div class="panel panel-default border-primary">
                                 <div class="panel-body">
+                                    @if(in_array(auth()->user()->custom_role->id,
+                                        [App\Models\User::$ROLE_DEV,
+                                        App\Models\User::$ROLE_SUPERADMIN]))
+                                        <div class="form-group">
+                                            <label class="">Dinas</label>
+                                            <select name="dinas" class="form-control">
+                                                <option value="" selected disabled>Pilih Dinas</option>
+                                                @foreach($dinas as $dns)
+                                                    <option value="{{ $dns->id }}" @if(old('dinas') == $dns->id){{ 'selected' }}@endif>
+                                                        {{ $dns->nm_dinas }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('dinas')
+                                            <span class="text-danger">* {{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    @endif
+
                                     <div class="form-group">
-                                        <label class="">Tahun <small class="text-danger">*</small></label>
-                                        <input class="form-control" name="tahun" type="number"
-                                               value="{{ old('tahun') }}" placeholder="Tahun">
+                                        <label class="">Tahun</label>
+                                        <select name="tahun" class="form-control">
+                                            <option value="" selected disabled>Pilih Tahun</option>
+                                            @foreach($tahun as $thn)
+                                                <option value="{{ $thn }}" @if(old('dinas') == $thn){{ 'selected' }}@endif>
+                                                    {{ $thn }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                         @error('tahun')
                                         <span class="text-danger">* {{ $message }}</span>
                                         @enderror
@@ -99,7 +125,7 @@
                                     <div class="form-group">
                                         <label>Nama Dokumen</label>
                                         <input class="form-control" name="nama_dokumen" type="text"
-                                              placeholder="Nama Dokumen" disabled>
+                                               placeholder="Nama Dokumen" disabled>
                                         <div class="text-muted" style="margin-top: .5em">
                                             * Silahkan upload SPP terlebih dahulu
                                         </div>

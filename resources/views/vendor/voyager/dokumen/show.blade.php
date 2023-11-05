@@ -41,8 +41,8 @@
                                 <td>
                                     <button type="button" data-toggle="modal" data-target="#pdf_modal"
                                             data-jenis="spp" data-id="{{ $dokumen->spp->id }}"
-                                            data-no="{{ $dokumen->spp->no_spp }}"
-                                            class="btn btn-sm btn-danger tampilkan"><i
+                                            data-no="{{ $dokumen->spp->no_spp }}" title="Tampilkan"
+                                            class="btn btn-sm btn-primary tampilkan"><i
                                                 class="voyager-file-text"></i>
                                     </button>
                                 </td>
@@ -57,8 +57,8 @@
                                 <td>
                                     <button type="button" data-toggle="modal" data-target="#pdf_modal"
                                             data-jenis="spm" data-id="{{ $dokumen->spm->id }}"
-                                            data-no="{{ $dokumen->spm->no_spm }}"
-                                            class="btn btn-sm btn-danger tampilkan"><i
+                                            data-no="{{ $dokumen->spm->no_spm }}" title="Tampilkan"
+                                            class="btn btn-sm btn-primary tampilkan"><i
                                                 class="voyager-file-text"></i>
                                     </button>
                                 </td>
@@ -73,8 +73,8 @@
                                 <td>
                                     <button type="button" data-toggle="modal" data-target="#pdf_modal"
                                             data-jenis="sp2d" data-id="{{ $dokumen->sp2d->id }}"
-                                            data-no="{{ $dokumen->sp2d->no_sp2d }}"
-                                            class="btn btn-sm btn-danger tampilkan">
+                                            data-no="{{ $dokumen->sp2d->no_sp2d }}" title="Tampilkan"
+                                            class="btn btn-sm btn-primary tampilkan">
                                         <i class="voyager-file-text"></i>
                                     </button>
                                 </td>
@@ -90,8 +90,8 @@
                                     <td>
                                         <button type="button" data-toggle="modal" data-target="#pdf_modal"
                                                 data-jenis="pendukung" data-id="{{ $pendukung->id }}"
-                                                data-no="{{ $pendukung->nama_dokumen }}"
-                                                class="btn btn-sm btn-danger tampilkan">
+                                                data-no="{{ $pendukung->nama_dokumen }}" title="Tampilkan"
+                                                class="btn btn-sm btn-primary tampilkan">
                                             <i class="voyager-file-text"></i>
                                         </button>
                                     </td>
